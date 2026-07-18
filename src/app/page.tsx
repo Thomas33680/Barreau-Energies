@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, Ruler, PackageCheck, HeartHandshake } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Ruler, PackageCheck, HeartHandshake, ImageIcon } from "lucide-react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -71,6 +72,46 @@ export default function Home() {
             {services.map((service) => (
               <ServiceCard key={service.slug} service={service} />
             ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-white pb-24">
+        <Container>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <Link
+              href="/realisations"
+              className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-3xl bg-ink sm:aspect-[16/11]"
+            >
+              <Image
+                src="/realisations/parigne-leveque-climatisation-4.jpg"
+                alt="Climatisation réversible haut de gamme Mitsubishi Electric installée par Barreau Énergies à Parigné-l'Évêque"
+                fill
+                sizes="(min-width: 640px) 50vw, 100vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
+                  Climatisation haut de gamme
+                </p>
+                <p className="mt-2 text-lg font-bold text-white">
+                  Installation Mitsubishi Electric à {siteConfig.address.line}
+                </p>
+                <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-white/80">
+                  Voir nos réalisations
+                  <ArrowRight size={16} aria-hidden="true" />
+                </span>
+              </div>
+            </Link>
+
+            <div className="relative flex aspect-[4/5] flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-ink/15 bg-ink/[0.03] text-ink/40 sm:aspect-[16/11]">
+              <ImageIcon size={32} aria-hidden="true" />
+              <p className="text-sm font-medium text-ink/60">
+                Chauffe-eau thermodynamique
+              </p>
+              <p className="text-xs">Photo de chantier à venir</p>
+            </div>
           </div>
         </Container>
       </section>

@@ -73,7 +73,7 @@ export const services: Service[] = [
       "Jusqu'à 70 % d'économies sur la facture d'eau chaude",
       "Adapté à la maison individuelle comme à la rénovation",
       "Installation propre et rapide",
-      "Solution éligible à certaines aides financières",
+      "Un conseil personnalisé pour bien dimensionner votre équipement",
     ],
   },
 ];
@@ -109,7 +109,6 @@ export const navLinks = [
   { href: "/", label: "Accueil" },
   { href: "/services", label: "Nos services" },
   { href: "/realisations", label: "Réalisations" },
-  { href: "/aides-financements", label: "Aides & Financements" },
   { href: "/avis", label: "Avis clients" },
   { href: "/contact", label: "Contact" },
 ] as const;

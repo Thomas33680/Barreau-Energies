@@ -31,8 +31,13 @@ avant la mise en ligne définitive :
   `src/lib/site-config.ts` est vide, à compléter avec de vrais avis.
 - **Mentions légales** (`/mentions-legales`) : il ne manque plus que le
   numéro de contrat d'assurance.
-- **Aides & Financements** : contenu générique sur les dispositifs publics,
-  à vérifier/actualiser régulièrement (montants et conditions évoluent).
+- **Accueil** (`/`) : la vignette « Chauffe-eau thermodynamique » est en
+  attente d'une vraie photo de chantier (même chose que pour la galerie
+  Réalisations).
+
+Pas de page « Aides & Financements » : l'entreprise n'étant pas certifiée
+RGE, mentionner MaPrimeRénov'/CEE serait trompeur pour les clients (ces
+aides sont conditionnées à un installateur RGE dans la plupart des cas).
 
 Toutes les informations de contact (téléphone, email, adresse, zone
 d'intervention) sont centralisées dans `src/lib/site-config.ts`.
