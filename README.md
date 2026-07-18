@@ -24,12 +24,13 @@ Le site est disponible sur [http://localhost:3000](http://localhost:3000).
 Certaines sections contiennent des placeholders volontaires, à remplacer
 avant la mise en ligne définitive :
 
-- **Réalisations** (`/realisations`) : galerie en attente de vraies photos
-  de chantiers.
+- **Réalisations** (`/realisations`) : 1 chantier illustré pour l'instant
+  (climatisation à Parigné-l'Évêque), à compléter au fil des prochains
+  chantiers.
 - **Avis clients** (`/avis`) : le tableau `testimonials` dans
   `src/lib/site-config.ts` est vide, à compléter avec de vrais avis.
-- **Mentions légales** (`/mentions-legales`) : forme juridique, SIRET,
-  RCS/RM, assurance décennale et hébergeur à renseigner.
+- **Mentions légales** (`/mentions-legales`) : il ne manque plus que le
+  numéro de contrat d'assurance.
 - **Aides & Financements** : contenu générique sur les dispositifs publics,
   à vérifier/actualiser régulièrement (montants et conditions évoluent).
 
@@ -50,3 +51,23 @@ Le favicon (`src/app/icon.png`, `src/app/apple-icon.png`) et l'image de
 partage social (`src/app/opengraph-image.png`) sont générés à partir de ces
 mêmes assets. Si le logo évolue, régénérez-les à partir d'un nouveau
 fichier source de haute qualité plutôt que de les modifier à la main.
+
+## Mise en ligne (hébergement)
+
+Le site est hébergé sur [Vercel](https://vercel.com) (créateurs de
+Next.js) : configuration automatique, HTTPS gratuit, et gestion simple du
+nom de domaine `barreau-energies.fr`.
+
+Pour mettre le site en ligne :
+
+1. Créer un compte sur [vercel.com](https://vercel.com) (gratuit, connexion
+   possible avec le compte GitHub `Thomas33680`).
+2. « Add New Project » → sélectionner le dépôt `Barreau-Energies` → laisser
+   les réglages par défaut (Vercel détecte Next.js automatiquement) →
+   Deploy.
+3. Une fois déployé, aller dans **Project Settings → Domains** et ajouter
+   `barreau-energies.fr` (et `www.barreau-energies.fr`), puis suivre les
+   instructions pour pointer le domaine (enregistrements DNS à ajouter chez
+   le registrar où le nom de domaine a été acheté).
+4. Chaque nouveau push sur la branche principale republie automatiquement
+   le site.

@@ -16,10 +16,9 @@ export default function MentionsLegalesPage() {
         <div className="mt-10 space-y-8 text-sm leading-relaxed text-ink/75">
           <div className="rounded-2xl border border-brand-orange/30 bg-brand-orange/5 p-5">
             <strong className="text-ink">À compléter avant mise en ligne :</strong>{" "}
-            les champs marqués « à compléter » ci-dessous sont obligatoires
-            pour un site professionnel en France (numéro de contrat
-            d&apos;assurance, hébergeur). Merci de me transmettre ces
-            informations pour finaliser cette page.
+            le numéro de contrat d&apos;assurance, marqué « à compléter »
+            ci-dessous, est obligatoire pour un site professionnel en France.
+            Merci de me le transmettre pour finaliser cette page.
           </div>
 
           <div>
@@ -58,7 +57,11 @@ export default function MentionsLegalesPage() {
 
           <div>
             <h2 className="text-base font-bold text-ink">Hébergement</h2>
-            <p className="mt-2">Hébergeur du site : à compléter.</p>
+            <p className="mt-2">
+              Vercel Inc.
+              <br />
+              340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis
+            </p>
           </div>
 
           <div>
