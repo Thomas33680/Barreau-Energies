@@ -1,10 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-
-const bars = [
-  { color: "bg-brand-blue" },
-  { color: "bg-brand-green" },
-  { color: "bg-brand-orange" },
-];
 
 export function Logo({ dark = true }: { dark?: boolean }) {
   const textColor = dark ? "text-white" : "text-ink";
@@ -12,17 +7,17 @@ export function Logo({ dark = true }: { dark?: boolean }) {
   return (
     <Link
       href="/"
-      className="flex items-center gap-3 shrink-0"
-      aria-label={`${"Barreau Énergies"} — retour à l'accueil`}
+      className="flex shrink-0 items-center gap-2.5"
+      aria-label="Barreau Énergies — retour à l'accueil"
     >
-      <span className="flex flex-col gap-1" aria-hidden="true">
-        {bars.map((bar, i) => (
-          <span
-            key={i}
-            className={`h-1.5 w-7 rounded-full ${bar.color}`}
-          />
-        ))}
-      </span>
+      <Image
+        src="/logo-mark.png"
+        alt=""
+        width={340}
+        height={406}
+        priority
+        className="h-10 w-auto sm:h-11"
+      />
       <span className="leading-none">
         <span className={`block text-lg font-extrabold tracking-wide ${textColor}`}>
           BARREAU
