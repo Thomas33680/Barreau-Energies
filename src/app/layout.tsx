@@ -1,0 +1,48 @@
+import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
+import "./globals.css";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { StickyCallBar } from "@/components/StickyCallBar";
+import { siteConfig } from "@/lib/site-config";
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description:
+    "Barreau Énergies installe vos pompes à chaleur, climatisations et chauffe-eaux thermodynamiques à Parigné-l'Évêque, Le Mans et alentours.",
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.tagline,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: "fr_FR",
+    type: "website",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="fr" className={`${montserrat.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col pb-16 lg:pb-0">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <StickyCallBar />
+      </body>
+    </html>
+  );
+}
