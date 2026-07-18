@@ -18,8 +18,9 @@ export default function MentionsLegalesPage() {
             <strong className="text-ink">À compléter avant mise en ligne :</strong>{" "}
             les champs marqués « à compléter » ci-dessous sont obligatoires
             pour un site professionnel en France (forme juridique, SIRET,
-            RCS/RM, capital social, assurance décennale, hébergeur). Merci de
-            me transmettre ces informations pour finaliser cette page.
+            RCS/RM, capital social, numéro de contrat d&apos;assurance,
+            hébergeur). Merci de me transmettre ces informations pour
+            finaliser cette page.
           </div>
 
           <div>
@@ -48,7 +49,13 @@ export default function MentionsLegalesPage() {
             <h2 className="text-base font-bold text-ink">Assurance professionnelle</h2>
             <p className="mt-2">
               Garantie décennale et assurance responsabilité civile
-              professionnelle : à compléter (assureur, numéro de contrat).
+              professionnelle souscrites auprès de :
+              <br />
+              ERGO France
+              <br />
+              6 rue Ménars, 75002 Paris
+              <br />
+              Numéro de contrat : à compléter
             </p>
           </div>
 
