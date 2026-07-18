@@ -17,10 +17,9 @@ export default function MentionsLegalesPage() {
           <div className="rounded-2xl border border-brand-orange/30 bg-brand-orange/5 p-5">
             <strong className="text-ink">À compléter avant mise en ligne :</strong>{" "}
             les champs marqués « à compléter » ci-dessous sont obligatoires
-            pour un site professionnel en France (forme juridique, RCS/RM,
-            capital social, numéro de contrat d&apos;assurance, hébergeur).
-            Merci de me transmettre ces informations pour finaliser cette
-            page.
+            pour un site professionnel en France (numéro de contrat
+            d&apos;assurance, hébergeur). Merci de me transmettre ces
+            informations pour finaliser cette page.
           </div>
 
           <div>
@@ -28,11 +27,9 @@ export default function MentionsLegalesPage() {
             <p className="mt-2">
               {siteConfig.name}
               <br />
-              Forme juridique : à compléter
+              Micro-entreprise (entrepreneur individuel)
               <br />
               SIRET : 984 587 501 00029
-              <br />
-              RCS / RM : à compléter
               <br />
               Adresse : {siteConfig.address.postalCode}{" "}
               {siteConfig.address.line}
