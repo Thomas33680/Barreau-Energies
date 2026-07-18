@@ -38,25 +38,39 @@ export default function Home() {
           className="pointer-events-none absolute -bottom-32 left-1/3 h-96 w-96 rounded-full bg-brand-blue/20 blur-3xl"
           aria-hidden="true"
         />
-        <Container className="relative flex flex-col items-start gap-8 py-24 sm:py-32">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-green">
-            Chauffage · Climatisation · Eau chaude
-          </p>
-          <h1 className="max-w-2xl text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">
-            Votre expert en confort thermique.
-          </h1>
-          <p className="max-w-xl text-lg leading-relaxed text-white/70">
-            Des solutions de chauffage, climatisation et ventilation adaptées
-            à vos besoins, installées par une entreprise locale et réactive.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Button href="/contact" variant="primary">
-              Demander un devis
-              <ArrowRight size={16} aria-hidden="true" />
-            </Button>
-            <Button href={siteConfig.phoneHref} variant="ghost">
-              {siteConfig.phone}
-            </Button>
+        <Container className="relative grid gap-12 py-24 sm:py-32 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-10">
+          <div className="flex flex-col items-start gap-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-green">
+              Chauffage · Climatisation · Eau chaude
+            </p>
+            <h1 className="max-w-2xl text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">
+              Votre expert en confort thermique.
+            </h1>
+            <p className="max-w-xl text-lg leading-relaxed text-white/70">
+              Des solutions de chauffage, climatisation et ventilation
+              adaptées à vos besoins, installées par une entreprise locale
+              et réactive.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Button href="/contact" variant="primary">
+                Demander un devis
+                <ArrowRight size={16} aria-hidden="true" />
+              </Button>
+              <Button href={siteConfig.phoneHref} variant="ghost">
+                {siteConfig.phone}
+              </Button>
+            </div>
+          </div>
+
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black/40">
+            <Image
+              src="/hero-pompe-a-chaleur.jpg"
+              alt="Pompe à chaleur installée sur une maison individuelle"
+              fill
+              priority
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="object-cover"
+            />
           </div>
         </Container>
       </section>

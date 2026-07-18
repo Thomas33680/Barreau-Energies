@@ -42,6 +42,15 @@ aides sont conditionnées à un installateur RGE dans la plupart des cas).
 Toutes les informations de contact (téléphone, email, adresse, zone
 d'intervention) sont centralisées dans `src/lib/site-config.ts`.
 
+## Images
+
+- `public/realisations/*` : vraies photos de chantiers (climatisation à
+  Parigné-l'Évêque), EXIF/GPS supprimées avant publication.
+- `public/hero-pompe-a-chaleur.jpg` : visuel du hero de l'accueil,
+  générée par IA (illustration générique, ce n'est pas une photo d'un
+  chantier réel) — à remplacer par une vraie photo de pompe à chaleur
+  installée dès qu'une sera disponible.
+
 ## Logo
 
 Le logo officiel (`public/brand/carte-de-visite-recto.png`, fourni par
