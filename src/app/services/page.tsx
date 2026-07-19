@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, Lightbulb, TrendingDown } from "lucide-react";
 import { Flame, Snowflake, Droplets, LucideIcon } from "lucide-react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
@@ -67,23 +67,49 @@ export default function ServicesPage() {
                 </Button>
               </div>
 
-              <ul className="grid gap-4 sm:grid-cols-2">
-                {service.points.map((point) => (
-                  <li
-                    key={point}
-                    className="flex items-start gap-3 rounded-xl border border-ink/10 bg-white p-5"
-                  >
-                    <Check
-                      size={18}
-                      className={`mt-0.5 shrink-0 ${colors.text}`}
-                      aria-hidden="true"
-                    />
-                    <span className="text-sm leading-relaxed text-ink/75">
-                      {point}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex flex-col gap-6">
+                <ul className="grid gap-4 sm:grid-cols-2">
+                  {service.points.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-start gap-3 rounded-xl border border-ink/10 bg-white p-5"
+                    >
+                      <Check
+                        size={18}
+                        className={`mt-0.5 shrink-0 ${colors.text}`}
+                        aria-hidden="true"
+                      />
+                      <span className="text-sm leading-relaxed text-ink/75">
+                        {point}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="rounded-2xl border border-ink/10 bg-white p-6">
+                  <div className="flex items-center gap-2">
+                    <Lightbulb size={18} className={colors.text} aria-hidden="true" />
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-ink">
+                      Comment ça marche ?
+                    </h3>
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-ink/70">
+                    {service.howItWorks}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-ink/10 bg-white p-6">
+                  <div className="flex items-center gap-2">
+                    <TrendingDown size={18} className={colors.text} aria-hidden="true" />
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-ink">
+                      Économies d&apos;énergie
+                    </h3>
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-ink/70">
+                    {service.savings}
+                  </p>
+                </div>
+              </div>
             </Container>
           </section>
         );

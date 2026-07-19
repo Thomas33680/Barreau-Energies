@@ -80,14 +80,16 @@ export default function Home() {
           <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-ink/40">
             Marques que nous installons
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14">
             {partnerBrands.map((brand) => (
-              <span
-                key={brand}
-                className="rounded-full border border-ink/10 bg-ink/[0.03] px-5 py-2.5 text-sm font-semibold tracking-wide text-ink/70"
-              >
-                {brand}
-              </span>
+              <Image
+                key={brand.name}
+                src={brand.logo}
+                alt={brand.name}
+                width={brand.width}
+                height={brand.height}
+                className="h-7 w-auto object-contain grayscale transition-all duration-200 hover:grayscale-0 sm:h-9"
+              />
             ))}
           </div>
         </Container>

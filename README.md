@@ -50,6 +50,11 @@ d'intervention) sont centralisées dans `src/lib/site-config.ts`.
   générée par IA (illustration générique, ce n'est pas une photo d'un
   chantier réel) — à remplacer par une vraie photo de pompe à chaleur
   installée dès qu'une sera disponible.
+- `public/brands/*` : logos des marques installées (Mitsubishi Electric,
+  Daikin, Altech, Atlantic, Panasonic, Thermor), fond transparent, affichés
+  sur l'accueil pour indiquer les équipements posés — ce ne sont pas des
+  partenariats officiels revendiqués, juste les marques du matériel
+  installé.
 
 ## Logo
 

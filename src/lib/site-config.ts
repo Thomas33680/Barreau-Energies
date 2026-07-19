@@ -27,6 +27,8 @@ export type Service = {
   summary: string;
   description: string;
   points: string[];
+  howItWorks: string;
+  savings: string;
 };
 
 export const services: Service[] = [
@@ -45,6 +47,10 @@ export const services: Service[] = [
       "Matériel de qualité, marques reconnues",
       "Mise en service et suivi après installation",
     ],
+    howItWorks:
+      "Une pompe à chaleur ne « fabrique » pas la chaleur : elle capte les calories déjà présentes dans l'air extérieur, même par temps froid, et les concentre pour chauffer votre logement. On distingue deux systèmes : la pompe à chaleur air/air diffuse directement de l'air chaud (ou frais) dans les pièces via des unités murales — c'est la même technologie qu'une climatisation réversible, sans travaux sur votre circuit de chauffage. La pompe à chaleur air/eau, elle, chauffe l'eau qui circule dans vos radiateurs ou votre plancher chauffant, et peut aussi produire votre eau chaude sanitaire : c'est la solution la plus adaptée pour remplacer une chaudière fioul ou gaz.",
+    savings:
+      "Une pompe à chaleur restitue en moyenne 3 à 4 kWh de chaleur pour seulement 1 kWh d'électricité consommé (ce rapport s'appelle le COP, coefficient de performance). Concrètement, à confort égal, elle consomme donc 3 à 4 fois moins d'énergie qu'un chauffage électrique classique (convecteurs), ce qui se traduit par une baisse significative et durable de votre facture de chauffage.",
   },
   {
     slug: "climatisation",
@@ -60,6 +66,10 @@ export const services: Service[] = [
       "Installation soignée, discrète et durable",
       "Conseils d'entretien pour préserver la performance",
     ],
+    howItWorks:
+      "Une climatisation réversible fonctionne exactement comme une pompe à chaleur air/air : elle capte les calories de l'air extérieur pour chauffer votre intérieur en hiver, et inverse simplement son cycle pour rafraîchir en été. Un même équipement assure donc confort d'hiver et confort d'été, sans avoir besoin d'un second système de chauffage.",
+    savings:
+      "Utilisée pour le chauffage, une climatisation réversible consomme 3 à 4 fois moins d'électricité qu'un radiateur électrique classique pour produire la même quantité de chaleur (grâce à son COP de 3 à 4). C'est donc un investissement qui s'amortit aussi sur votre facture de chauffage, pas seulement en été.",
   },
   {
     slug: "chauffe-eau-thermodynamique",
@@ -75,16 +85,20 @@ export const services: Service[] = [
       "Installation propre et rapide",
       "Un conseil personnalisé pour bien dimensionner votre équipement",
     ],
+    howItWorks:
+      "Aussi appelé « ballon thermodynamique », cet équipement associe un ballon d'eau chaude classique à une petite pompe à chaleur intégrée. Celle-ci capte les calories de l'air ambiant (buanderie, garage ou air extérieur selon le modèle) pour chauffer l'eau, au lieu d'utiliser une résistance électrique qui consomme beaucoup d'énergie. Il ne chauffe que l'eau sanitaire (douche, robinets), pas votre logement.",
+    savings:
+      "Grâce à sa pompe à chaleur intégrée, un chauffe-eau thermodynamique consomme environ 3 fois moins d'électricité qu'un cumulus électrique classique à résistance pour produire la même quantité d'eau chaude, soit jusqu'à 70 % d'économies sur ce poste de votre facture.",
   },
 ];
 
 export const partnerBrands = [
-  "Mitsubishi Electric",
-  "Daikin",
-  "Altech",
-  "Atlantic",
-  "Panasonic",
-  "Thermor",
+  { name: "Mitsubishi Electric", logo: "/brands/mitsubishi-electric.png", width: 540, height: 158 },
+  { name: "Daikin", logo: "/brands/daikin.png", width: 310, height: 76 },
+  { name: "Altech", logo: "/brands/altech.png", width: 245, height: 61 },
+  { name: "Atlantic", logo: "/brands/atlantic.png", width: 330, height: 78 },
+  { name: "Panasonic", logo: "/brands/panasonic.png", width: 296, height: 56 },
+  { name: "Thermor", logo: "/brands/thermor.png", width: 240, height: 117 },
 ] as const;
 
 export const values = [
