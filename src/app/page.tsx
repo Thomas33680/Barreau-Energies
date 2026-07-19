@@ -37,7 +37,26 @@ export default function Home() {
     <>
       <Hero />
 
-      <section className="border-b border-ink/10 bg-white py-12">
+      <section className="bg-white py-24">
+        <Container>
+          <FadeIn>
+            <SectionHeading
+              eyebrow="Nos services"
+              title="Confort, performance, économies"
+              description="Trois métiers, une même exigence : des installations fiables qui font durablement baisser vos factures d'énergie."
+            />
+          </FadeIn>
+          <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => (
+              <StaggerItem key={service.slug}>
+                <ServiceCard service={service} />
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </Container>
+      </section>
+
+      <section className="border-y border-ink/10 bg-white py-12">
         <Container>
           <FadeIn>
             <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-ink/40">
@@ -53,25 +72,6 @@ export default function Home() {
                   width={brand.width}
                   height={brand.height}
                 />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-        </Container>
-      </section>
-
-      <section className="bg-white py-24">
-        <Container>
-          <FadeIn>
-            <SectionHeading
-              eyebrow="Nos services"
-              title="Confort, performance, économies"
-              description="Trois métiers, une même exigence : des installations fiables qui font durablement baisser vos factures d'énergie."
-            />
-          </FadeIn>
-          <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => (
-              <StaggerItem key={service.slug}>
-                <ServiceCard service={service} />
               </StaggerItem>
             ))}
           </StaggerGroup>
@@ -184,8 +184,8 @@ export default function Home() {
             </h2>
             <p className="max-w-lg text-white/90">
               Basés à {siteConfig.address.line} ({siteConfig.address.postalCode}),
-              nous intervenons sur {siteConfig.address.zone}. Devis gratuit et
-              sans engagement.
+              nous intervenons sur {siteConfig.address.zoneDetailed}. Devis
+              gratuit et sans engagement.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button href="/contact" variant="secondary">

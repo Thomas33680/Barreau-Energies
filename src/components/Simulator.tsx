@@ -2,10 +2,17 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Flame, Droplets } from "lucide-react";
+import { ArrowRight, Flame, Snowflake, Droplets } from "lucide-react";
 import { Button } from "@/components/Button";
+import { simulatorPricing } from "@/lib/site-config";
 
-type Mode = "pac" | "cet";
+type Mode = "air-eau" | "air-air" | "cet";
+
+const modes = [
+  { id: "air-eau" as Mode, label: "Pompe à chaleur air/eau", shortLabel: "Air/eau", icon: Flame, color: "#67b814" },
+  { id: "air-air" as Mode, label: "Pompe à chaleur air/air", shortLabel: "Air/air", icon: Snowflake, color: "#0066b3" },
+  { id: "cet" as Mode, label: "Chauffe-eau thermodynamique", shortLabel: "Chauffe-eau", icon: Droplets, color: "#ff7a00" },
+] as const;
 
 const insulationLevels = [
   { id: "bonne", label: "Bonne (récente, RT2012/BBC)", coef: 65 },
@@ -14,13 +21,17 @@ const insulationLevels = [
 ] as const;
 
 const occupantsLevels = [
-  { id: "1-2", label: "1 à 2 personnes", volume: 150 },
-  { id: "3-4", label: "3 à 4 personnes", volume: 200 },
-  { id: "5-6", label: "5 à 6 personnes", volume: 250 },
-  { id: "7+", label: "7 personnes et +", volume: 300 },
+  { id: "1-2", label: "1 à 2 personnes", volume: 150 as const },
+  { id: "3-4", label: "3 à 4 personnes", volume: 200 as const },
+  { id: "5-6", label: "5 à 6 personnes", volume: 250 as const },
+  { id: "7+", label: "7 personnes et +", volume: 300 as const },
 ] as const;
 
-function AnimatedNumber({ value, className }: { value: number; className?: string }) {
+function formatEuro(n: number) {
+  return `${Math.round(n / 100) * 100} €`.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+function AnimatedNumber({ value, className }: { value: number | string; className?: string }) {
   return (
     <span className={`relative inline-flex overflow-hidden ${className ?? ""}`}>
       <AnimatePresence mode="popLayout" initial={false}>
@@ -71,13 +82,14 @@ function GaugeRing({ percent, color }: { percent: number; color: string }) {
 }
 
 export function Simulator() {
-  const [mode, setMode] = useState<Mode>("pac");
+  const [mode, setMode] = useState<Mode>("air-eau");
   const [surface, setSurface] = useState(90);
   const [insulation, setInsulation] = useState<(typeof insulationLevels)[number]["id"]>(
     "moyenne",
   );
   const [occupants, setOccupants] = useState<(typeof occupantsLevels)[number]["id"]>("3-4");
 
+  const activeMode = modes.find((m) => m.id === mode)!;
   const insulationLevel = insulationLevels.find((l) => l.id === insulation)!;
   const occupantsLevel = occupantsLevels.find((l) => l.id === occupants)!;
 
@@ -86,28 +98,33 @@ export function Simulator() {
     return Math.round(raw * 2) / 2;
   }, [surface, insulationLevel]);
 
-  const powerPercent = (power / 18) * 100;
-  const volumePercent = (occupantsLevel.volume / 300) * 100;
+  const isPac = mode === "air-eau" || mode === "air-air";
+  const gaugePercent = isPac ? (power / 18) * 100 : (occupantsLevel.volume / 300) * 100;
+  const gaugeValue = isPac ? power : occupantsLevel.volume;
+  const gaugeUnit = isPac ? "kW" : "L";
+  const gaugeCaption = isPac ? "puissance estimée" : "volume conseillé";
+
+  const priceRange = useMemo(() => {
+    if (mode === "air-eau") {
+      const { minPerKw, maxPerKw } = simulatorPricing.airEau;
+      return { min: power * minPerKw, max: power * maxPerKw };
+    }
+    if (mode === "air-air") {
+      const { minPerKw, maxPerKw } = simulatorPricing.airAir;
+      return { min: power * minPerKw, max: power * maxPerKw };
+    }
+    return simulatorPricing.cet[occupantsLevel.volume];
+  }, [mode, power, occupantsLevel]);
 
   return (
     <div className="rounded-3xl border border-ink/10 bg-white p-6 shadow-sm sm:p-10">
-      <div className="flex rounded-full border border-ink/10 bg-ink/[0.03] p-1 sm:inline-flex">
-        {(
-          [
-            { id: "pac" as Mode, label: "Pompe à chaleur", shortLabel: "PAC", icon: Flame },
-            {
-              id: "cet" as Mode,
-              label: "Chauffe-eau thermodynamique",
-              shortLabel: "Chauffe-eau",
-              icon: Droplets,
-            },
-          ]
-        ).map((tab) => (
+      <div className="flex rounded-full border border-ink/10 bg-ink/[0.03] p-1">
+        {modes.map((tab) => (
           <button
             key={tab.id}
             type="button"
             onClick={() => setMode(tab.id)}
-            className="relative flex-1 cursor-pointer whitespace-nowrap rounded-full px-2.5 py-2 text-xs font-semibold transition-colors duration-200 sm:flex-none sm:px-4 sm:py-2.5 sm:text-sm"
+            className="relative flex-1 cursor-pointer whitespace-nowrap rounded-full px-1.5 py-2 text-[11px] font-semibold transition-colors duration-200 sm:px-4 sm:py-2.5 sm:text-sm"
           >
             {mode === tab.id && (
               <motion.span
@@ -117,11 +134,11 @@ export function Simulator() {
               />
             )}
             <span
-              className={`relative z-10 flex items-center justify-center gap-1.5 sm:gap-2 ${
+              className={`relative z-10 flex items-center justify-center gap-1 sm:gap-2 ${
                 mode === tab.id ? "text-white" : "text-ink/60"
               }`}
             >
-              <tab.icon size={16} aria-hidden="true" />
+              <tab.icon size={15} aria-hidden="true" />
               <span className="sm:hidden">{tab.shortLabel}</span>
               <span className="hidden sm:inline">{tab.label}</span>
             </span>
@@ -131,7 +148,7 @@ export function Simulator() {
 
       <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-center">
         <AnimatePresence mode="wait">
-          {mode === "pac" ? (
+          {isPac ? (
             <motion.div
               key="pac"
               initial={{ opacity: 0, x: -16 }}
@@ -215,29 +232,31 @@ export function Simulator() {
           )}
         </AnimatePresence>
 
-        <div className="flex flex-col items-center justify-center gap-6 rounded-2xl bg-ink/[0.03] p-8 text-center">
+        <div className="flex flex-col items-center justify-center gap-5 rounded-2xl bg-ink/[0.03] p-8 text-center">
           <div className="relative flex items-center justify-center">
-            <GaugeRing
-              percent={mode === "pac" ? powerPercent : volumePercent}
-              color={mode === "pac" ? "#67b814" : "#ff7a00"}
-            />
+            <GaugeRing percent={gaugePercent} color={activeMode.color} />
             <div className="absolute flex flex-col items-center">
               <span className="flex items-baseline gap-1 text-4xl font-extrabold text-ink">
-                <AnimatedNumber value={mode === "pac" ? power : occupantsLevel.volume} />
-                <span className="text-lg font-bold text-ink/50">
-                  {mode === "pac" ? "kW" : "L"}
-                </span>
+                <AnimatedNumber value={gaugeValue} />
+                <span className="text-lg font-bold text-ink/50">{gaugeUnit}</span>
               </span>
-              <span className="mt-1 text-xs text-ink/50">
-                {mode === "pac" ? "puissance estimée" : "volume conseillé"}
-              </span>
+              <span className="mt-1 text-xs text-ink/50">{gaugeCaption}</span>
             </div>
           </div>
 
+          <div className="w-full rounded-xl border border-ink/10 bg-white px-5 py-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-ink/40">
+              Budget estimé (haut de gamme, pose incluse)
+            </p>
+            <p className="mt-1 text-xl font-extrabold text-ink">
+              <AnimatedNumber value={`${formatEuro(priceRange.min)} – ${formatEuro(priceRange.max)}`} />
+            </p>
+          </div>
+
           <p className="max-w-xs text-xs leading-relaxed text-ink/50">
-            Estimation indicative basée sur des ratios standards du secteur.
-            Un dimensionnement précis nécessite une étude thermique réalisée
-            à votre domicile.
+            Estimation indicative basée sur des ratios et prix moyens
+            constatés pour du matériel haut de gamme. Le tarif exact dépend
+            d&apos;une étude réalisée à votre domicile.
           </p>
 
           <Button href="/contact" variant="primary">

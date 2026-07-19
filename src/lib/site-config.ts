@@ -11,6 +11,8 @@ export const siteConfig = {
     line: "Parigné-l'Évêque",
     postalCode: "72250",
     zone: "Le Mans et alentours",
+    zoneDetailed: "Le Mans et un rayon de 50 km",
+    radiusKm: 50,
   },
   social: {
     facebook: "",
@@ -29,6 +31,8 @@ export type Service = {
   points: string[];
   howItWorks: string;
   savings: string;
+  /** Facteur d'économie approximatif vs. chauffage/eau chaude électrique classique (ex : 3.5 = 3,5 fois moins d'énergie consommée). */
+  comparisonFactor: number;
 };
 
 export const services: Service[] = [
@@ -51,6 +55,7 @@ export const services: Service[] = [
       "Une pompe à chaleur ne « fabrique » pas la chaleur : elle capte les calories déjà présentes dans l'air extérieur, même par temps froid, et les concentre pour chauffer votre logement. On distingue deux systèmes : la pompe à chaleur air/air diffuse directement de l'air chaud (ou frais) dans les pièces via des unités murales — c'est la même technologie qu'une climatisation réversible, sans travaux sur votre circuit de chauffage. La pompe à chaleur air/eau, elle, chauffe l'eau qui circule dans vos radiateurs ou votre plancher chauffant, et peut aussi produire votre eau chaude sanitaire : c'est la solution la plus adaptée pour remplacer une chaudière fioul ou gaz.",
     savings:
       "Une pompe à chaleur restitue en moyenne 3 à 4 kWh de chaleur pour seulement 1 kWh d'électricité consommé (ce rapport s'appelle le COP, coefficient de performance). Concrètement, à confort égal, elle consomme donc 3 à 4 fois moins d'énergie qu'un chauffage électrique classique (convecteurs), ce qui se traduit par une baisse significative et durable de votre facture de chauffage.",
+    comparisonFactor: 3.5,
   },
   {
     slug: "climatisation",
@@ -70,6 +75,7 @@ export const services: Service[] = [
       "Une climatisation réversible fonctionne exactement comme une pompe à chaleur air/air : elle capte les calories de l'air extérieur pour chauffer votre intérieur en hiver, et inverse simplement son cycle pour rafraîchir en été. Un même équipement assure donc confort d'hiver et confort d'été, sans avoir besoin d'un second système de chauffage.",
     savings:
       "Utilisée pour le chauffage, une climatisation réversible consomme 3 à 4 fois moins d'électricité qu'un radiateur électrique classique pour produire la même quantité de chaleur (grâce à son COP de 3 à 4). C'est donc un investissement qui s'amortit aussi sur votre facture de chauffage, pas seulement en été.",
+    comparisonFactor: 3.5,
   },
   {
     slug: "chauffe-eau-thermodynamique",
@@ -89,6 +95,7 @@ export const services: Service[] = [
       "Aussi appelé « ballon thermodynamique », cet équipement associe un ballon d'eau chaude classique à une petite pompe à chaleur intégrée. Celle-ci capte les calories de l'air ambiant (buanderie, garage ou air extérieur selon le modèle) pour chauffer l'eau, au lieu d'utiliser une résistance électrique qui consomme beaucoup d'énergie. Il ne chauffe que l'eau sanitaire (douche, robinets), pas votre logement.",
     savings:
       "Grâce à sa pompe à chaleur intégrée, un chauffe-eau thermodynamique consomme environ 3 fois moins d'électricité qu'un cumulus électrique classique à résistance pour produire la même quantité d'eau chaude, soit jusqu'à 70 % d'économies sur ce poste de votre facture.",
+    comparisonFactor: 3,
   },
 ];
 
@@ -177,7 +184,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Dans quelles villes intervenez-vous ?",
     answer:
-      "Nous sommes basés à Parigné-l'Évêque (72250) et intervenons au Mans et dans les communes alentours. Consultez notre page Zone d'intervention pour plus de détails, ou contactez-nous directement pour vérifier si nous couvrons votre secteur.",
+      "Nous sommes basés à Parigné-l'Évêque (72250) et intervenons au Mans ainsi que dans un rayon de 50 km autour. Consultez notre page Zone d'intervention pour plus de détails, ou contactez-nous directement pour vérifier si nous couvrons votre secteur.",
   },
 ];
 
@@ -192,6 +199,22 @@ export type Testimonial = {
 // Aucun avis client réel pour le moment : tableau volontairement vide.
 // Ajoutez vos vrais avis ici au fur et à mesure (nom, ville, service, citation, note).
 export const testimonials: Testimonial[] = [];
+
+/**
+ * Fourchettes de prix indicatives (positionnement haut de gamme : matériel
+ * premium + pose incluse). À ajuster si vos tarifs réels diffèrent — ce
+ * sont des ordres de grandeur du marché, pas une grille tarifaire figée.
+ */
+export const simulatorPricing = {
+  airEau: { minPerKw: 1600, maxPerKw: 2400 },
+  airAir: { minPerKw: 900, maxPerKw: 1300 },
+  cet: {
+    150: { min: 2800, max: 3600 },
+    200: { min: 3000, max: 3900 },
+    250: { min: 3400, max: 4300 },
+    300: { min: 3800, max: 4800 },
+  } as Record<number, { min: number; max: number }>,
+} as const;
 
 export const footerLinks = [
   { href: "/zone-intervention", label: "Zone d'intervention" },

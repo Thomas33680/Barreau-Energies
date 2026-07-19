@@ -23,14 +23,14 @@ et alentours.
   `prefers-reduced-motion` via `MotionConfig reducedMotion="user"` +
   variantes Tailwind `motion-safe:`/`motion-reduce:` pour les animations
   CSS pures).
-- **Simulateur** (`/simulateur`, aussi intégré sur l'accueil) :
-  estimation en temps réel de la puissance de pompe à chaleur (à partir
-  de la surface et du niveau d'isolation) ou du volume de chauffe-eau
-  thermodynamique (à partir de la taille du foyer). Les ratios utilisés
-  sont des ordres de grandeur standards du secteur, présentés comme
-  indicatifs — aucun prix n'est affiché (données commerciales que je
-  n'ai pas), le simulateur renvoie vers une demande de devis
-  personnalisé.
+- **Simulateur** (`/simulateur`, aussi intégré sur l'accueil) : 3 modes
+  (pompe à chaleur air/eau, air/air, chauffe-eau thermodynamique).
+  Estimation en temps réel de la puissance (surface + isolation) ou du
+  volume (taille du foyer), avec une fourchette de budget associée.
+  **Les fourchettes de prix (`simulatorPricing` dans
+  `src/lib/site-config.ts`) sont des ordres de grandeur de marché pour du
+  matériel haut de gamme, pas une grille tarifaire réelle** — à ajuster
+  si les tarifs pratiqués diffèrent.
 
 ## Développement
 
