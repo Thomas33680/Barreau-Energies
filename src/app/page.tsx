@@ -6,7 +6,7 @@ import { Button } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ServiceCard } from "@/components/ServiceCard";
 import { ValueCard } from "@/components/ValueCard";
-import { siteConfig, services, values } from "@/lib/site-config";
+import { siteConfig, services, values, partnerBrands } from "@/lib/site-config";
 
 const promises = [
   {
@@ -71,6 +71,24 @@ export default function Home() {
               sizes="(min-width: 1024px) 45vw, 100vw"
               className="object-cover"
             />
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-ink/10 bg-white py-12">
+        <Container>
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-ink/40">
+            Marques que nous installons
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            {partnerBrands.map((brand) => (
+              <span
+                key={brand}
+                className="rounded-full border border-ink/10 bg-ink/[0.03] px-5 py-2.5 text-sm font-semibold tracking-wide text-ink/70"
+              >
+                {brand}
+              </span>
+            ))}
           </div>
         </Container>
       </section>

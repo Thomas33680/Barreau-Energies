@@ -78,6 +78,15 @@ export const services: Service[] = [
   },
 ];
 
+export const partnerBrands = [
+  "Mitsubishi Electric",
+  "Daikin",
+  "Altech",
+  "Atlantic",
+  "Panasonic",
+  "Thermor",
+] as const;
+
 export const values = [
   {
     name: "Confiance",
