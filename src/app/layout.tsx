@@ -5,7 +5,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyCallBar } from "@/components/StickyCallBar";
 import { MotionProvider } from "@/components/motion/MotionProvider";
-import { PageTransition } from "@/components/motion/PageTransition";
 import { siteConfig } from "@/lib/site-config";
 
 const montserrat = Montserrat({
@@ -46,9 +45,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col pb-16 lg:pb-0">
         <MotionProvider>
           <Header />
-          <main className="flex-1">
-            <PageTransition>{children}</PageTransition>
-          </main>
+          <main className="flex-1">{children}</main>
           <Footer />
           <StickyCallBar />
         </MotionProvider>
