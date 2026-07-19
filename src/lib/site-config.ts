@@ -132,9 +132,58 @@ export const navLinks = [
   { href: "/", label: "Accueil" },
   { href: "/services", label: "Nos services" },
   { href: "/realisations", label: "Réalisations" },
+  { href: "/faq", label: "FAQ" },
   { href: "/avis", label: "Avis clients" },
   { href: "/contact", label: "Contact" },
 ] as const;
+
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+export const faqItems: FaqItem[] = [
+  {
+    question: "Quelle est la différence entre une pompe à chaleur air/air et air/eau ?",
+    answer:
+      "La pompe à chaleur air/air capte les calories de l'air extérieur et les diffuse directement sous forme d'air chaud (ou frais) via des unités murales — c'est la même technologie qu'une climatisation réversible. La pompe à chaleur air/eau chauffe l'eau qui circule dans vos radiateurs ou votre plancher chauffant, et peut aussi produire l'eau chaude sanitaire : elle remplace une chaudière fioul ou gaz. Nous vous aidons à choisir la solution la plus adaptée à votre logement.",
+  },
+  {
+    question: "Proposez-vous un devis gratuit ?",
+    answer:
+      "Oui, chaque devis est gratuit et sans engagement. Contactez-nous avec quelques informations sur votre logement et votre projet, nous revenons vers vous rapidement.",
+  },
+  {
+    question: "Êtes-vous certifiés RGE ? Puis-je bénéficier de MaPrimeRénov' ou des CEE ?",
+    answer:
+      "Nous ne sommes pas certifiés RGE actuellement. La plupart des aides publiques comme MaPrimeRénov' ou les primes CEE nécessitent un installateur RGE pour être accordées : nos installations ne sont donc pas éligibles à ces dispositifs. En contrepartie, nous proposons des tarifs justes, sans les démarches administratives liées à ces aides.",
+  },
+  {
+    question: "Combien de temps dure une installation ?",
+    answer:
+      "Cela dépend du type d'équipement et de la configuration de votre logement : comptez généralement d'une demi-journée à deux jours pour une installation standard (climatisation, pompe à chaleur ou chauffe-eau thermodynamique). Un délai précis vous sera communiqué avec votre devis.",
+  },
+  {
+    question: "Vos installations sont-elles garanties ?",
+    answer:
+      "Oui : nos installations sont couvertes par notre garantie décennale et notre assurance responsabilité civile professionnelle (coordonnées dans nos mentions légales). Chaque équipement bénéficie en complément de la garantie du fabricant, généralement de 2 à 5 ans selon la marque et le modèle.",
+  },
+  {
+    question: "Faut-il entretenir régulièrement une pompe à chaleur ou un climatiseur ?",
+    answer:
+      "Oui, un entretien régulier (nettoyage des filtres, contrôle du circuit frigorifique) permet de préserver les performances et la durée de vie de votre équipement. Nous pouvons vous conseiller sur le suivi adapté à votre installation.",
+  },
+  {
+    question: "Un chauffe-eau thermodynamique fait-il beaucoup de bruit ?",
+    answer:
+      "Comme tout équipement avec un compresseur, il émet un léger bruit de fonctionnement, comparable à celui d'un réfrigérateur. Nous étudions avec vous le meilleur emplacement (garage, buanderie...) pour un confort optimal.",
+  },
+  {
+    question: "Dans quelles villes intervenez-vous ?",
+    answer:
+      "Nous sommes basés à Parigné-l'Évêque (72250) et intervenons au Mans et dans les communes alentours. Consultez notre page Zone d'intervention pour plus de détails, ou contactez-nous directement pour vérifier si nous couvrons votre secteur.",
+  },
+];
 
 export type Testimonial = {
   name: string;
