@@ -23,6 +23,20 @@ et alentours.
   `prefers-reduced-motion` via `MotionConfig reducedMotion="user"` +
   variantes Tailwind `motion-safe:`/`motion-reduce:` pour les animations
   CSS pures).
+- **Transition de page** (`PageTransition.tsx`, montée dans
+  `layout.tsx`) : à chaque navigation, un rideau plein écran (dégradé de
+  marque + logo) balaie l'écran avant de révéler la nouvelle page — le
+  contenu de la page précédente est volontairement retenu jusqu'à ce que
+  le rideau couvre entièrement l'écran, pour ne jamais laisser entrevoir
+  la nouvelle page avant l'effet. Ignorée si `prefers-reduced-motion` est
+  actif (navigation instantanée).
+  ⚠️ Si vous modifiez ce composant, évitez d'y afficher des valeurs
+  calculées côté client (ex. `useReducedMotion()`) directement dans du
+  texte JSX sans les rendre aussi côté serveur — Next.js pré-rend ce
+  composant côté serveur où ce hook vaut `null`, et un texte qui diffère
+  entre serveur et client déclenche une erreur d'hydratation qui force
+  React à tout regénérer, cassant le timing de la transition (bug vécu
+  et corrigé pendant le développement).
 - **Simulateur** (`/simulateur`, aussi intégré sur l'accueil) : 3 modes
   (pompe à chaleur air/eau, air/air, chauffe-eau thermodynamique).
   Estimation en temps réel de la puissance (surface + isolation) ou du

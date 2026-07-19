@@ -75,11 +75,10 @@ export function Footer() {
       </Container>
 
       <div className="border-t border-white/10">
-        <Container className="flex flex-col items-center justify-between gap-2 py-6 text-xs text-white/50 sm:flex-row">
+        <Container className="py-6 text-center text-xs text-white/50">
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. Tous droits réservés.
           </p>
-          <p>Gérant : {siteConfig.gerant}</p>
         </Container>
       </div>
     </footer>
