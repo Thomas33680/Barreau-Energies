@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Accordion } from "@/components/Accordion";
+import { FadeIn } from "@/components/motion/FadeIn";
 import { faqItems } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default function FaqPage() {
         <Container className="max-w-3xl">
           <Accordion items={faqItems} />
 
-          <div className="mt-12 flex flex-col items-center gap-4 rounded-2xl border border-ink/10 bg-ink/[0.03] p-8 text-center">
+          <FadeIn className="mt-12 flex flex-col items-center gap-4 rounded-2xl border border-ink/10 bg-ink/[0.03] p-8 text-center">
             <p className="text-sm text-ink/70">
               D&apos;autres questions ? Nous sommes disponibles pour en
               discuter.
@@ -37,7 +38,7 @@ export default function FaqPage() {
             <Button href="/contact" variant="primary">
               Nous contacter
             </Button>
-          </div>
+          </FadeIn>
         </Container>
       </section>
     </>

@@ -9,6 +9,28 @@ et alentours.
 - [Next.js](https://nextjs.org) (App Router) + TypeScript
 - Tailwind CSS v4
 - [lucide-react](https://lucide.dev) pour les icônes
+- [Framer Motion](https://motion.dev) pour les animations (reveals au
+  scroll, micro-interactions, hero animé)
+
+## Interactivité & animations
+
+- `src/components/motion/` regroupe les briques réutilisables : `FadeIn`
+  et `StaggerGroup`/`StaggerItem` (apparition au scroll), `HoverScale` /
+  `HoverLogo` / `HoverImageLink` (micro-interactions au survol),
+  `HeroBackground` (dégradé "aurora" animé + particules + icône
+  ventilateur en rotation lente), `ScrollHero` (flou/rétrécissement du
+  hero au scroll), `ScrollProgressBar`, `MotionProvider` (respecte
+  `prefers-reduced-motion` via `MotionConfig reducedMotion="user"` +
+  variantes Tailwind `motion-safe:`/`motion-reduce:` pour les animations
+  CSS pures).
+- **Simulateur** (`/simulateur`, aussi intégré sur l'accueil) :
+  estimation en temps réel de la puissance de pompe à chaleur (à partir
+  de la surface et du niveau d'isolation) ou du volume de chauffe-eau
+  thermodynamique (à partir de la taille du foyer). Les ratios utilisés
+  sont des ordres de grandeur standards du secteur, présentés comme
+  indicatifs — aucun prix n'est affiché (données commerciales que je
+  n'ai pas), le simulateur renvoie vers une demande de devis
+  personnalisé.
 
 ## Développement
 

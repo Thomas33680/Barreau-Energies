@@ -4,6 +4,7 @@ import { Flame, Snowflake, Droplets, LucideIcon } from "lucide-react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
+import { FadeIn } from "@/components/motion/FadeIn";
 import { services, Service } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -49,7 +50,7 @@ export default function ServicesPage() {
             className={`scroll-mt-20 py-20 ${index % 2 === 1 ? "bg-ink/[0.02]" : "bg-white"}`}
           >
             <Container className="grid items-start gap-10 lg:grid-cols-[1fr_1.2fr]">
-              <div>
+              <FadeIn>
                 <span
                   className={`flex h-14 w-14 items-center justify-center rounded-xl ${colors.bg} ${colors.text}`}
                 >
@@ -65,9 +66,9 @@ export default function ServicesPage() {
                   Demander un devis
                   <ArrowRight size={16} aria-hidden="true" />
                 </Button>
-              </div>
+              </FadeIn>
 
-              <div className="flex flex-col gap-6">
+              <FadeIn delay={0.15} className="flex flex-col gap-6">
                 <ul className="grid gap-4 sm:grid-cols-2">
                   {service.points.map((point) => (
                     <li
@@ -109,7 +110,7 @@ export default function ServicesPage() {
                     {service.savings}
                   </p>
                 </div>
-              </div>
+              </FadeIn>
             </Container>
           </section>
         );

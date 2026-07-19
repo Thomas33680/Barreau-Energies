@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyCallBar } from "@/components/StickyCallBar";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 import { siteConfig } from "@/lib/site-config";
 
 const montserrat = Montserrat({
@@ -38,10 +39,12 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${montserrat.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col pb-16 lg:pb-0">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <StickyCallBar />
+        <MotionProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <StickyCallBar />
+        </MotionProvider>
       </body>
     </html>
   );

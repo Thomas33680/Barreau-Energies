@@ -131,6 +131,7 @@ export const values = [
 export const navLinks = [
   { href: "/", label: "Accueil" },
   { href: "/services", label: "Nos services" },
+  { href: "/simulateur", label: "Simulateur" },
   { href: "/realisations", label: "Réalisations" },
   { href: "/faq", label: "FAQ" },
   { href: "/avis", label: "Avis clients" },

@@ -4,6 +4,8 @@ import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
 import { TestimonialCard } from "@/components/TestimonialCard";
+import { FadeIn } from "@/components/motion/FadeIn";
+import { StaggerGroup, StaggerItem } from "@/components/motion/StaggerGroup";
 import { siteConfig, testimonials } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -15,20 +17,24 @@ export default function AvisPage() {
   return (
     <section className="bg-white py-20">
       <Container>
-        <SectionHeading
-          eyebrow="Avis clients"
-          title="Ce que pensent nos clients"
-          center
-        />
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Avis clients"
+            title="Ce que pensent nos clients"
+            center
+          />
+        </FadeIn>
 
         {testimonials.length > 0 ? (
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial) => (
-              <TestimonialCard key={testimonial.name} testimonial={testimonial} />
+              <StaggerItem key={testimonial.name}>
+                <TestimonialCard testimonial={testimonial} />
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         ) : (
-          <div className="mx-auto mt-12 flex max-w-md flex-col items-center gap-4 rounded-2xl border border-dashed border-ink/15 bg-ink/[0.03] p-10 text-center">
+          <FadeIn delay={0.1} className="mx-auto mt-12 flex max-w-md flex-col items-center gap-4 rounded-2xl border border-dashed border-ink/15 bg-ink/[0.03] p-10 text-center">
             <MessageSquareHeart size={32} className="text-brand-green" aria-hidden="true" />
             <p className="text-sm leading-relaxed text-ink/70">
               Les premiers avis clients seront bientôt affichés ici. Vous êtes
@@ -37,7 +43,7 @@ export default function AvisPage() {
             <Button href={`mailto:${siteConfig.email}`} variant="primary">
               Laisser un avis
             </Button>
-          </div>
+          </FadeIn>
         )}
       </Container>
     </section>
