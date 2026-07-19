@@ -154,11 +154,6 @@ export const faqItems: FaqItem[] = [
       "Oui, chaque devis est gratuit et sans engagement. Contactez-nous avec quelques informations sur votre logement et votre projet, nous revenons vers vous rapidement.",
   },
   {
-    question: "Êtes-vous certifiés RGE ? Puis-je bénéficier de MaPrimeRénov' ou des CEE ?",
-    answer:
-      "Nous ne sommes pas certifiés RGE actuellement. La plupart des aides publiques comme MaPrimeRénov' ou les primes CEE nécessitent un installateur RGE pour être accordées : nos installations ne sont donc pas éligibles à ces dispositifs. En contrepartie, nous proposons des tarifs justes, sans les démarches administratives liées à ces aides.",
-  },
-  {
     question: "Combien de temps dure une installation ?",
     answer:
       "Cela dépend du type d'équipement et de la configuration de votre logement : comptez généralement d'une demi-journée à deux jours pour une installation standard (climatisation, pompe à chaleur ou chauffe-eau thermodynamique). Un délai précis vous sera communiqué avec votre devis.",
