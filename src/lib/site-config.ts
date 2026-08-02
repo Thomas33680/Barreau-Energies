@@ -145,6 +145,8 @@ export const partnerBrands = [
   { name: "Atlantic", logo: "/brands/atlantic.png" },
   { name: "Panasonic", logo: "/brands/panasonic.png" },
   { name: "Thermor", logo: "/brands/thermor.png" },
+  { name: "Ariston", logo: "/brands/ariston.png" },
+  { name: "BWT", logo: "/brands/bwt.png" },
 ] as const;
 
 export const values = [
