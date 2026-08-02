@@ -546,9 +546,9 @@ export function Simulator() {
                 </div>
 
                 <p className="max-w-xs text-xs leading-relaxed text-ink/50">
-                  Estimation indicative basée sur des ratios et prix moyens
-                  constatés pour du matériel de qualité. Le tarif exact dépend
-                  d&apos;une étude réalisée à votre domicile.
+                  Cette estimation comprend le matériel, la pose standard, les
+                  raccordements courants et la mise en service. Elle doit être
+                  confirmée après une visite technique.
                 </p>
 
                 {!showLeadForm && !submitted && (
