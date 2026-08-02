@@ -240,12 +240,15 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [];
 
 /**
- * Fourchettes de prix indicatives (positionnement haut de gamme : matériel
- * premium + pose incluse). À ajuster si vos tarifs réels diffèrent — ce
- * sont des ordres de grandeur du marché, pas une grille tarifaire figée.
+ * Fourchettes de prix indicatives (matériel + pose). Méthode : prix matériel
+ * relevés sur cedeo.fr (fournisseur pro), majorés de 35 % (pose, marge).
+ * airEau calculé sur 4 références (ensembles/monobloc complets, 11-14 kW,
+ * TTC) le 02/08/2026 — à recalculer si les tarifs cedeo évoluent. Les autres
+ * catégories restent des estimations de marché à confirmer avec le même
+ * protocole (cedeo.fr + 35 %).
  */
 export const simulatorPricing = {
-  airEau: { minPerKw: 1600, maxPerKw: 2400 },
+  airEau: { minPerKw: 990, maxPerKw: 1360 },
   airAir: { minPerKw: 900, maxPerKw: 1300 },
   cet: {
     150: { min: 2800, max: 3600 },
