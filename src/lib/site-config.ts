@@ -203,7 +203,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Combien de temps dure une installation ?",
     answer:
-      "Cela dépend du type d'équipement et de la configuration de votre logement : comptez généralement d'une demi-journée à deux jours pour une installation standard (climatisation, pompe à chaleur ou chauffe-eau thermodynamique). Un délai précis vous sera communiqué avec votre devis.",
+      "Cela dépend du type d'équipement et de la configuration de votre logement : comptez généralement d'une demi-journée à deux jours pour une installation standard (climatisation, pompe à chaleur, chauffe-eau ou adoucisseur). Un délai précis vous sera communiqué avec votre devis.",
   },
   {
     question: "Vos installations sont-elles garanties ?",
@@ -213,7 +213,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Faut-il entretenir régulièrement une pompe à chaleur ou un climatiseur ?",
     answer:
-      "Oui, un entretien régulier (nettoyage des filtres, contrôle du circuit frigorifique) permet de préserver les performances et la durée de vie de votre équipement. Nous pouvons vous conseiller sur le suivi adapté à votre installation.",
+      "Oui, un entretien régulier (nettoyage des filtres, contrôle du circuit frigorifique) permet de préserver les performances et la durée de vie de votre équipement. Nous proposons des contrats d'entretien annuel et intervenons en dépannage en cas de panne, pour toutes marques.",
   },
   {
     question: "Un chauffe-eau thermodynamique fait-il beaucoup de bruit ?",
@@ -252,6 +252,12 @@ export const simulatorPricing = {
     200: { min: 3000, max: 3900 },
     250: { min: 3400, max: 4300 },
     300: { min: 3800, max: 4800 },
+  } as Record<number, { min: number; max: number }>,
+  adoucisseur: {
+    10: { min: 900, max: 1400 },
+    20: { min: 1300, max: 1900 },
+    25: { min: 1600, max: 2200 },
+    30: { min: 1900, max: 2600 },
   } as Record<number, { min: number; max: number }>,
 } as const;
 

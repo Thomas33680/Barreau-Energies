@@ -10,7 +10,7 @@ import { HoverScale } from "@/components/motion/HoverScale";
 export const metadata: Metadata = {
   title: "Réalisations",
   description:
-    "Découvrez les installations réalisées par Barreau Énergies : pompes à chaleur, climatisation, chauffe-eaux thermodynamiques.",
+    "Découvrez les installations réalisées par Barreau Énergies : climatisation, pompes à chaleur, chauffe-eaux et traitement de l'eau.",
 };
 
 const projects = [

@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contactez Barreau Énergies pour votre projet de pompe à chaleur, climatisation ou chauffe-eau thermodynamique.",
+    "Contactez Barreau Énergies pour votre projet de climatisation, pompe à chaleur, chauffe-eau, traitement de l'eau ou entretien.",
 };
 
 const contactItems = [

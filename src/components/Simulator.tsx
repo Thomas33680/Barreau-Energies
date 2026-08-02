@@ -2,16 +2,17 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Flame, Snowflake, Droplets } from "lucide-react";
+import { ArrowRight, Flame, Snowflake, Droplets, Filter } from "lucide-react";
 import { Button } from "@/components/Button";
 import { simulatorPricing } from "@/lib/site-config";
 
-type Mode = "air-eau" | "air-air" | "cet";
+type Mode = "air-eau" | "air-air" | "cet" | "adoucisseur";
 
 const modes = [
   { id: "air-air" as Mode, label: "Pompe à chaleur air/air", shortLabel: "Air/air", icon: Snowflake, color: "#0066b3" },
   { id: "air-eau" as Mode, label: "Pompe à chaleur air/eau", shortLabel: "Air/eau", icon: Flame, color: "#67b814" },
   { id: "cet" as Mode, label: "Chauffe-eau thermodynamique", shortLabel: "Chauffe-eau", icon: Droplets, color: "#ff7a00" },
+  { id: "adoucisseur" as Mode, label: "Traitement de l'eau", shortLabel: "Adoucisseur", icon: Filter, color: "#0d9488" },
 ] as const;
 
 const insulationLevels = [
@@ -21,10 +22,10 @@ const insulationLevels = [
 ] as const;
 
 const occupantsLevels = [
-  { id: "1-2", label: "1 à 2 personnes", volume: 150 as const },
-  { id: "3-4", label: "3 à 4 personnes", volume: 200 as const },
-  { id: "5-6", label: "5 à 6 personnes", volume: 250 as const },
-  { id: "7+", label: "7 personnes et +", volume: 300 as const },
+  { id: "1-2", label: "1 à 2 personnes", volume: 150 as const, resinLiters: 10 as const },
+  { id: "3-4", label: "3 à 4 personnes", volume: 200 as const, resinLiters: 20 as const },
+  { id: "5-6", label: "5 à 6 personnes", volume: 250 as const, resinLiters: 25 as const },
+  { id: "7+", label: "7 personnes et +", volume: 300 as const, resinLiters: 30 as const },
 ] as const;
 
 function formatEuro(n: number) {
@@ -99,10 +100,20 @@ export function Simulator() {
   }, [surface, insulationLevel]);
 
   const isPac = mode === "air-eau" || mode === "air-air";
-  const gaugePercent = isPac ? (power / 18) * 100 : (occupantsLevel.volume / 300) * 100;
-  const gaugeValue = isPac ? power : occupantsLevel.volume;
+  const isAdoucisseur = mode === "adoucisseur";
+
+  const gaugePercent = isPac
+    ? (power / 18) * 100
+    : isAdoucisseur
+      ? (occupantsLevel.resinLiters / 30) * 100
+      : (occupantsLevel.volume / 300) * 100;
+  const gaugeValue = isPac ? power : isAdoucisseur ? occupantsLevel.resinLiters : occupantsLevel.volume;
   const gaugeUnit = isPac ? "kW" : "L";
-  const gaugeCaption = isPac ? "puissance estimée" : "volume conseillé";
+  const gaugeCaption = isPac
+    ? "puissance estimée"
+    : isAdoucisseur
+      ? "capacité résine conseillée"
+      : "volume conseillé";
 
   const priceRange = useMemo(() => {
     if (mode === "air-eau") {
@@ -112,6 +123,9 @@ export function Simulator() {
     if (mode === "air-air") {
       const { minPerKw, maxPerKw } = simulatorPricing.airAir;
       return { min: power * minPerKw, max: power * maxPerKw };
+    }
+    if (mode === "adoucisseur") {
+      return simulatorPricing.adoucisseur[occupantsLevel.resinLiters];
     }
     return simulatorPricing.cet[occupantsLevel.volume];
   }, [mode, power, occupantsLevel]);
@@ -219,7 +233,9 @@ export function Simulator() {
                       onClick={() => setOccupants(level.id)}
                       className={`cursor-pointer rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
                         occupants === level.id
-                          ? "border-brand-orange bg-brand-orange/10 text-ink"
+                          ? isAdoucisseur
+                            ? "border-brand-teal bg-brand-teal/10 text-ink"
+                            : "border-brand-orange bg-brand-orange/10 text-ink"
                           : "border-ink/10 text-ink/60 hover:border-ink/20"
                       }`}
                     >

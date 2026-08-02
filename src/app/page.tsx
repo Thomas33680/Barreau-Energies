@@ -43,7 +43,7 @@ export default function Home() {
             <SectionHeading
               eyebrow="Nos services"
               title="Confort, performance, économies"
-              description="Trois métiers, une même exigence : des installations fiables qui font durablement baisser vos factures d'énergie."
+              description="De l'installation à l'entretien, une même exigence : des équipements fiables, économes et durables, pour votre confort comme pour votre budget."
             />
           </FadeIn>
           <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -129,7 +129,7 @@ export default function Home() {
               <div className="relative flex aspect-[4/5] flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-ink/15 bg-ink/[0.03] text-ink/40 sm:aspect-[16/11]">
                 <ImageIcon size={32} aria-hidden="true" />
                 <p className="text-sm font-medium text-ink/60">
-                  Chauffe-eau thermodynamique
+                  Eau chaude sanitaire
                 </p>
                 <p className="text-xs">Photo de chantier à venir</p>
               </div>

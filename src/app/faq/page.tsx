@@ -9,7 +9,7 @@ import { faqItems } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Toutes les réponses à vos questions sur nos installations de pompes à chaleur, climatisation et chauffe-eaux thermodynamiques.",
+    "Toutes les réponses à vos questions sur nos installations de climatisation, pompes à chaleur, chauffe-eaux, traitement de l'eau et entretien.",
 };
 
 export default function FaqPage() {

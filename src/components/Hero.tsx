@@ -23,7 +23,7 @@ export function Hero() {
             transition={{ duration: 0.5 }}
             className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-green"
           >
-            Chauffage · Climatisation · Eau chaude
+            Chauffage · Climatisation · Eau chaude · Traitement de l&apos;eau
           </motion.p>
 
           <StaggerText
@@ -37,9 +37,9 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.65 }}
             className="max-w-xl text-lg leading-relaxed text-white/70"
           >
-            Des solutions de chauffage, climatisation et ventilation
-            adaptées à vos besoins, installées par une entreprise locale
-            et réactive.
+            Des solutions de chauffage, climatisation, eau chaude
+            sanitaire et traitement de l&apos;eau adaptées à vos besoins,
+            installées et entretenues par une entreprise locale et réactive.
           </motion.p>
 
           <motion.div
