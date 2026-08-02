@@ -43,7 +43,7 @@ export const services: Service[] = [
     shortName: "Climatisation réversible",
     color: "blue",
     summary:
-      "Rafraîchissement l'été, chauffage économique l'hiver : la même technologie que la pompe à chaleur air/air.",
+      "Rafraîchissement l'été, chauffage économique l'hiver, pour un confort optimal toute l'année.",
     description:
       "Réversible, notre climatisation capte les calories de l'air extérieur pour chauffer votre intérieur en hiver et inverse simplement son cycle pour rafraîchir en été — c'est la même technologie qu'une pompe à chaleur air/air. Mono-split ou multi-split, nos installations s'adaptent à votre logement ou vos locaux professionnels pour un confort optimal toute l'année.",
     points: [
@@ -64,7 +64,7 @@ export const services: Service[] = [
     shortName: "Pompe à chaleur air/eau",
     color: "green",
     summary:
-      "Chauffage économique et écologique pour toute l'année, en remplacement d'une chaudière fioul ou gaz.",
+      "Remplacez votre chaudière fioul, gaz ou électrique par une pompe à chaleur performante pour réduire votre consommation d'énergie.",
     description:
       "Nous étudions votre logement pour dimensionner et installer la pompe à chaleur air/eau la plus adaptée à vos besoins : elle chauffe l'eau qui circule dans vos radiateurs ou votre plancher chauffant, et peut aussi produire votre eau chaude sanitaire. Confort thermique toute l'année, baisse de la facture énergétique et solution durable pour l'environnement.",
     points: [
@@ -85,7 +85,7 @@ export const services: Service[] = [
     shortName: "Eau chaude sanitaire",
     color: "orange",
     summary:
-      "Ballon thermodynamique économique ou chauffe-eau électrique classique, selon votre budget et votre logement.",
+      "Ballons thermodynamiques et chauffe-eau électriques adaptés à votre logement et à votre budget.",
     description:
       "Pour votre eau chaude sanitaire, nous installons le chauffe-eau thermodynamique — qui utilise les calories de l'air pour chauffer votre eau avec une consommation électrique fortement réduite — ou le chauffe-eau électrique classique, une solution éprouvée avec un investissement de départ plus faible. Nous vous conseillons sur le choix le plus adapté à votre logement et votre budget.",
     points: [
@@ -106,7 +106,7 @@ export const services: Service[] = [
     shortName: "Traitement de l'eau",
     color: "teal",
     summary:
-      "Adoucisseurs d'eau pour protéger vos installations et votre confort au quotidien.",
+      "Adoucisseurs d'eau pour protéger vos installations et améliorer votre confort au quotidien.",
     description:
       "Notre secteur est concerné par une eau particulièrement calcaire. Nous installons des adoucisseurs d'eau pour préserver la durée de vie de vos équipements (chauffe-eau, pompe à chaleur, robinetterie, électroménager), réduire votre consommation de produits d'entretien et améliorer votre confort au quotidien.",
     points: [
@@ -124,7 +124,7 @@ export const services: Service[] = [
     shortName: "Entretien & dépannage",
     color: "amber",
     summary:
-      "Contrats d'entretien et interventions de dépannage pour prolonger la durée de vie de vos équipements.",
+      "Entretien, maintenance et dépannage de vos équipements pour garantir leurs performances et leur longévité.",
     description:
       "Un entretien régulier préserve les performances, la fiabilité et la durée de vie de vos équipements (pompe à chaleur, climatisation, chauffe-eau, adoucisseur). Nous intervenons aussi en dépannage en cas de panne ou de baisse de performance, pour un diagnostic rapide et une remise en service dans les meilleurs délais.",
     points: [
