@@ -1,18 +1,31 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Ruler, PackageCheck, HeartHandshake, ImageIcon } from "lucide-react";
+import {
+  ArrowRight,
+  Ruler,
+  PackageCheck,
+  HeartHandshake,
+  ImageIcon,
+  Phone,
+  ClipboardList,
+  FileText,
+  Wrench,
+  Settings2,
+  MessageSquareHeart,
+} from "lucide-react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ServiceCard } from "@/components/ServiceCard";
 import { ValueCard } from "@/components/ValueCard";
+import { TestimonialCard } from "@/components/TestimonialCard";
 import { Hero } from "@/components/Hero";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { StaggerGroup, StaggerItem } from "@/components/motion/StaggerGroup";
 import { HoverImageLink } from "@/components/motion/HoverImageLink";
 import { HoverLogo } from "@/components/motion/HoverLogo";
 import { Simulator } from "@/components/Simulator";
-import { siteConfig, services, values, partnerBrands } from "@/lib/site-config";
+import { siteConfig, services, values, partnerBrands, testimonials } from "@/lib/site-config";
 
 const promises = [
   {
@@ -29,6 +42,39 @@ const promises = [
     icon: HeartHandshake,
     title: "Accompagnement personnalisé",
     description: "Du devis à la mise en service, un interlocuteur unique et disponible.",
+  },
+];
+
+const projectSteps = [
+  {
+    icon: Phone,
+    title: "Premier contact",
+    description: "Vous nous contactez par téléphone, email ou formulaire : nous échangeons sur votre projet et vos besoins.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Visite technique",
+    description: "Nous nous déplaçons chez vous pour étudier votre logement et dimensionner la solution la plus adaptée.",
+  },
+  {
+    icon: FileText,
+    title: "Devis gratuit",
+    description: "Vous recevez un devis détaillé et sans engagement, avec un tarif clair.",
+  },
+  {
+    icon: Wrench,
+    title: "Installation",
+    description: "Nos techniciens réalisent l'installation avec soin, dans le respect de votre logement.",
+  },
+  {
+    icon: Settings2,
+    title: "Mise en service",
+    description: "Nous testons et réglons votre équipement pour des performances optimales dès le premier jour.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Suivi",
+    description: "Nous restons disponibles après les travaux : conseils, entretien et dépannage si besoin.",
   },
 ];
 
@@ -70,6 +116,51 @@ export default function Home() {
               </StaggerItem>
             ))}
           </StaggerGroup>
+        </Container>
+      </section>
+
+      <section className="bg-white py-24">
+        <Container>
+          <FadeIn>
+            <SectionHeading
+              eyebrow="Avis clients"
+              title="Ce que pensent nos clients"
+              center
+            />
+          </FadeIn>
+
+          {testimonials.length > 0 ? (
+            <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {testimonials.slice(0, 3).map((testimonial) => (
+                <StaggerItem key={testimonial.name}>
+                  <TestimonialCard testimonial={testimonial} />
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          ) : (
+            <FadeIn delay={0.1} className="mx-auto mt-12 flex max-w-md flex-col items-center gap-4 rounded-2xl border border-dashed border-ink/15 bg-ink/[0.03] p-10 text-center">
+              <MessageSquareHeart size={32} className="text-brand-green" aria-hidden="true" />
+              <p className="text-sm leading-relaxed text-ink/70">
+                Les premiers avis clients seront bientôt affichés ici. Vous êtes
+                client de Barreau Énergies ? Votre retour nous aide à progresser.
+              </p>
+              <Button href={`mailto:${siteConfig.email}`} variant="primary">
+                Laisser un avis
+              </Button>
+            </FadeIn>
+          )}
+
+          {testimonials.length > 0 && (
+            <FadeIn delay={0.15} className="mt-8 text-center">
+              <Link
+                href="/avis"
+                className="inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-brand-green"
+              >
+                Voir tous les avis
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </FadeIn>
+          )}
         </Container>
       </section>
 
@@ -133,6 +224,41 @@ export default function Home() {
         </Container>
       </section>
 
+      <section className="bg-white py-24">
+        <Container>
+          <FadeIn>
+            <SectionHeading
+              eyebrow="Notre méthode"
+              title="Comment se déroule votre projet ?"
+              description="De la prise de contact au suivi après travaux, un accompagnement clair à chaque étape."
+              center
+            />
+          </FadeIn>
+          <StaggerGroup className="relative mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-6 lg:gap-4">
+            <div
+              className="absolute top-6 right-0 left-0 hidden h-px bg-ink/10 lg:block"
+              aria-hidden="true"
+            />
+            {projectSteps.map((step, index) => (
+              <StaggerItem key={step.title} className="relative flex flex-col items-start gap-4 lg:items-center lg:text-center">
+                <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-green text-white">
+                  <step.icon size={20} aria-hidden="true" />
+                  <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[10px] font-bold text-white">
+                    {index + 1}
+                  </span>
+                </span>
+                <div>
+                  <h3 className="text-sm font-bold text-ink">{step.title}</h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-ink/60">
+                    {step.description}
+                  </p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </Container>
+      </section>
+
       <section className="border-y border-ink/10 bg-ink/[0.02] py-20">
         <StaggerGroup>
           <Container className="grid gap-10 sm:grid-cols-3">
@@ -155,9 +281,9 @@ export default function Home() {
         <Container>
           <FadeIn>
             <SectionHeading
-              eyebrow="Nos valeurs"
-              title="L'exigence d'un professionnel, la proximité d'un artisan."
-              description="Transparence, qualité d'exécution et disponibilité : les engagements que nous tenons sur chaque chantier."
+              eyebrow="Pourquoi nous choisir"
+              title="Pourquoi choisir Barreau Énergies ?"
+              description="Des engagements concrets, tenus sur chaque chantier."
               light
               center
             />
