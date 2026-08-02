@@ -63,15 +63,10 @@ export default function Home() {
               Marques que nous installons
             </p>
           </FadeIn>
-          <StaggerGroup className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14">
+          <StaggerGroup className="mt-6 grid grid-cols-2 items-center justify-items-center gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-10">
             {partnerBrands.map((brand) => (
               <StaggerItem key={brand.name}>
-                <HoverLogo
-                  src={brand.logo}
-                  alt={brand.name}
-                  width={brand.width}
-                  height={brand.height}
-                />
+                <HoverLogo src={brand.logo} alt={brand.name} />
               </StaggerItem>
             ))}
           </StaggerGroup>

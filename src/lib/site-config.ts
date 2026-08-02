@@ -139,12 +139,12 @@ export const services: Service[] = [
 ];
 
 export const partnerBrands = [
-  { name: "Mitsubishi Electric", logo: "/brands/mitsubishi-electric.png", width: 540, height: 158 },
-  { name: "Daikin", logo: "/brands/daikin.png", width: 310, height: 76 },
-  { name: "Altech", logo: "/brands/altech.png", width: 245, height: 61 },
-  { name: "Atlantic", logo: "/brands/atlantic.png", width: 330, height: 78 },
-  { name: "Panasonic", logo: "/brands/panasonic.png", width: 296, height: 56 },
-  { name: "Thermor", logo: "/brands/thermor.png", width: 240, height: 117 },
+  { name: "Mitsubishi Electric", logo: "/brands/mitsubishi-electric.png" },
+  { name: "Daikin", logo: "/brands/daikin.png" },
+  { name: "Altech", logo: "/brands/altech.png" },
+  { name: "Atlantic", logo: "/brands/atlantic.png" },
+  { name: "Panasonic", logo: "/brands/panasonic.png" },
+  { name: "Thermor", logo: "/brands/thermor.png" },
 ] as const;
 
 export const values = [
