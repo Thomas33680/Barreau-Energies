@@ -536,7 +536,8 @@ export function Simulator() {
 
                 <div className="w-full rounded-xl border border-ink/10 bg-white px-5 py-4">
                   <p className="text-xs font-semibold uppercase tracking-wide text-ink/40">
-                    Votre estimation de projet (haut de gamme, pose incluse)
+                    Estimation pour une installation complète avec matériel de
+                    qualité et pose professionnelle
                   </p>
                   <p className="mt-2 text-xs text-ink/50">À partir de</p>
                   <p className="text-xl font-extrabold text-ink">
@@ -546,7 +547,7 @@ export function Simulator() {
 
                 <p className="max-w-xs text-xs leading-relaxed text-ink/50">
                   Estimation indicative basée sur des ratios et prix moyens
-                  constatés pour du matériel haut de gamme. Le tarif exact dépend
+                  constatés pour du matériel de qualité. Le tarif exact dépend
                   d&apos;une étude réalisée à votre domicile.
                 </p>
 
