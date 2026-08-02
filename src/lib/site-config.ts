@@ -32,8 +32,19 @@ export type Service = {
   howItWorks: string;
   /** Uniquement pour les services chauffants comparables à un chauffage électrique classique. */
   savings?: string;
-  /** Facteur d'économie approximatif vs. chauffage/eau chaude électrique classique (ex : 3.5 = 3,5 fois moins d'énergie consommée). Omis pour les services non concernés (traitement de l'eau, chauffe-eau électrique). */
+  /** Facteur d'économie approximatif vs. chauffage/eau chaude électrique classique (ex : 3.5 = 3,5 fois moins d'énergie consommée). Sert à documenter le calcul de annualSavingsExample. */
   comparisonFactor?: number;
+  /**
+   * Exemple chiffré concret pour la page services (facture annuelle estimée
+   * en € pour un cas de référence donné). Basé sur un prix moyen de
+   * l'électricité de 0,25 €/kWh et le comparisonFactor du service — à
+   * ajuster si ces hypothèses changent.
+   */
+  annualSavingsExample?: {
+    reference: string;
+    classicCost: number;
+    solutionCost: number;
+  };
 };
 
 export const services: Service[] = [
@@ -57,6 +68,11 @@ export const services: Service[] = [
     savings:
       "Utilisée pour le chauffage, une climatisation réversible consomme 3 à 4 fois moins d'électricité qu'un radiateur électrique classique pour produire la même quantité de chaleur (grâce à son COP de 3 à 4). C'est donc un investissement qui s'amortit aussi sur votre facture de chauffage, pas seulement en été.",
     comparisonFactor: 3.5,
+    annualSavingsExample: {
+      reference: "Pour une pièce de 20 m² chauffée tout l'hiver (environ 2 000 kWh de besoin)",
+      classicCost: 500,
+      solutionCost: 145,
+    },
   },
   {
     slug: "pompe-a-chaleur-air-eau",
@@ -78,6 +94,11 @@ export const services: Service[] = [
     savings:
       "Une pompe à chaleur air/eau restitue en moyenne 3 à 4 kWh de chaleur pour seulement 1 kWh d'électricité consommé (ce rapport s'appelle le COP, coefficient de performance). Concrètement, à confort égal, elle consomme donc 3 à 4 fois moins d'énergie qu'un chauffage électrique classique (convecteurs), ce qui se traduit par une baisse significative et durable de votre facture de chauffage.",
     comparisonFactor: 3.5,
+    annualSavingsExample: {
+      reference: "Pour un logement de 100 m² chauffé à l'année (environ 12 000 kWh de besoin)",
+      classicCost: 3000,
+      solutionCost: 860,
+    },
   },
   {
     slug: "eau-chaude-sanitaire",
@@ -99,6 +120,11 @@ export const services: Service[] = [
     savings:
       "Grâce à sa pompe à chaleur intégrée, un chauffe-eau thermodynamique consomme environ 3 fois moins d'électricité qu'un chauffe-eau électrique classique à résistance pour produire la même quantité d'eau chaude, soit jusqu'à 70 % d'économies sur ce poste de votre facture.",
     comparisonFactor: 3,
+    annualSavingsExample: {
+      reference: "Pour une famille de 4 personnes (environ 2 500 kWh/an pour l'eau chaude)",
+      classicCost: 625,
+      solutionCost: 210,
+    },
   },
   {
     slug: "traitement-eau",
@@ -221,6 +247,21 @@ export const faqItems: FaqItem[] = [
     question: "Un chauffe-eau thermodynamique fait-il beaucoup de bruit ?",
     answer:
       "Comme tout équipement avec un compresseur, il émet un léger bruit de fonctionnement, comparable à celui d'un réfrigérateur. Nous étudions avec vous le meilleur emplacement (garage, buanderie...) pour un confort optimal.",
+  },
+  {
+    question: "Chauffe-eau électrique ou thermodynamique : lequel choisir ?",
+    answer:
+      "Le chauffe-eau thermodynamique consomme environ 3 fois moins d'électricité qu'un chauffe-eau électrique classique, mais représente un investissement de départ plus élevé. Le chauffe-eau électrique reste une solution simple et économique à l'achat, adaptée aux petits logements, aux résidences secondaires ou aux budgets serrés. Nous vous conseillons selon votre logement, votre budget et votre consommation d'eau chaude.",
+  },
+  {
+    question: "Pourquoi installer un adoucisseur d'eau ?",
+    answer:
+      "Notre secteur est concerné par une eau assez calcaire. Un adoucisseur protège vos canalisations et vos équipements (chauffe-eau, pompe à chaleur, robinetterie, électroménager) du tartre, réduit votre consommation de produits d'entretien et améliore votre confort au quotidien. Il nécessite un suivi régulier (recharge en sel, régénération) que nous pouvons assurer.",
+  },
+  {
+    question: "Proposez-vous un contrat d'entretien pour mes équipements ?",
+    answer:
+      "Oui, nous proposons des contrats d'entretien annuel pour vos pompes à chaleur, climatisations, chauffe-eaux et adoucisseurs, toutes marques confondues. En cas de panne, nous intervenons aussi en dépannage pour un diagnostic rapide et une remise en service dans les meilleurs délais.",
   },
   {
     question: "Dans quelles villes intervenez-vous ?",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { MapPin, MapPinned, AlertCircle, Lightbulb, PackageCheck, TrendingUp, ImageIcon } from "lucide-react";
+import { MapPin, MapPinned, AlertCircle, Lightbulb, PackageCheck, TrendingUp } from "lucide-react";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FadeIn } from "@/components/motion/FadeIn";
@@ -22,11 +22,7 @@ type Project = {
   solution: string;
   material: string;
   result: string;
-  phases: {
-    avant: string[];
-    pendant: string[];
-    apres: string[];
-  };
+  photos: string[];
 };
 
 const projects: Project[] = [
@@ -44,16 +40,12 @@ const projects: Project[] = [
       "Groupe extérieur et unité murale Mitsubishi Electric, liaison frigorifique et raccordement électrique aux normes, mise en service et réglages personnalisés.",
     result:
       "Un séjour rafraîchi efficacement l'été, chauffé économiquement l'hiver grâce à un COP de 3 à 4, pour une installation discrète qui s'intègre à la décoration intérieure.",
-    phases: {
-      avant: [],
-      pendant: [],
-      apres: [
-        "/realisations/parigne-leveque-climatisation-1.jpg",
-        "/realisations/parigne-leveque-climatisation-2.jpg",
-        "/realisations/parigne-leveque-climatisation-3.jpg",
-        "/realisations/parigne-leveque-climatisation-4.jpg",
-      ],
-    },
+    photos: [
+      "/realisations/parigne-leveque-climatisation-1.jpg",
+      "/realisations/parigne-leveque-climatisation-2.jpg",
+      "/realisations/parigne-leveque-climatisation-3.jpg",
+      "/realisations/parigne-leveque-climatisation-4.jpg",
+    ],
   },
 ];
 
@@ -67,12 +59,6 @@ const infoBlocks: {
   { key: "solution", label: "Solution", icon: Lightbulb },
   { key: "material", label: "Matériel installé", icon: PackageCheck },
   { key: "result", label: "Résultat", icon: TrendingUp },
-];
-
-const phaseLabels: { key: keyof Project["phases"]; label: string }[] = [
-  { key: "avant", label: "Avant" },
-  { key: "pendant", label: "Pendant" },
-  { key: "apres", label: "Après" },
 ];
 
 export default function RealisationsPage() {
@@ -123,41 +109,20 @@ export default function RealisationsPage() {
               </div>
 
               <div className="border-t border-ink/10 bg-ink/[0.02] p-8 sm:p-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/40">
-                  Avant / Pendant / Après
-                </p>
-                <StaggerGroup className="mt-6 grid gap-6 sm:grid-cols-3">
-                  {phaseLabels.map(({ key, label }) => {
-                    const images = project.phases[key];
-                    return (
-                      <StaggerItem key={key}>
-                        <p className="text-sm font-semibold text-ink">{label}</p>
-                        {images.length > 0 ? (
-                          <div className="mt-3 grid grid-cols-2 gap-2">
-                            {images.map((src) => (
-                              <HoverScale
-                                key={src}
-                                className="relative aspect-square overflow-hidden rounded-xl bg-ink/5"
-                              >
-                                <Image
-                                  src={src}
-                                  alt={`${project.title} — ${label} — ${project.location}`}
-                                  fill
-                                  sizes="(min-width: 1024px) 16vw, (min-width: 640px) 25vw, 45vw"
-                                  className="object-cover"
-                                />
-                              </HoverScale>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="mt-3 flex aspect-[4/3] flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-ink/15 text-ink/35">
-                            <ImageIcon size={22} aria-hidden="true" />
-                            <p className="text-xs">Photo à venir</p>
-                          </div>
-                        )}
-                      </StaggerItem>
-                    );
-                  })}
+                <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {project.photos.map((src) => (
+                    <StaggerItem key={src}>
+                      <HoverScale className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-ink/5">
+                        <Image
+                          src={src}
+                          alt={`${project.title} — ${project.location}`}
+                          fill
+                          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover"
+                        />
+                      </HoverScale>
+                    </StaggerItem>
+                  ))}
                 </StaggerGroup>
               </div>
             </FadeIn>

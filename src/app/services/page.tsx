@@ -107,10 +107,12 @@ export default function ServicesPage() {
                 </FadeIn>
               </div>
 
-              {service.comparisonFactor !== undefined && service.savings && (
+              {service.annualSavingsExample && service.savings && (
                 <FadeIn delay={0.2} className="mt-10">
                   <EnergySavingsVisual
-                    factor={service.comparisonFactor}
+                    reference={service.annualSavingsExample.reference}
+                    classicCost={service.annualSavingsExample.classicCost}
+                    solutionCost={service.annualSavingsExample.solutionCost}
                     label={service.shortName}
                     color={service.color}
                     description={service.savings}
