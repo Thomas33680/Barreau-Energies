@@ -36,7 +36,7 @@ export default function ZoneInterventionPage() {
           <SectionHeading
             eyebrow="Zone d'intervention"
             title="Une entreprise locale, proche de chez vous"
-            description={`Basés à ${siteConfig.address.line} (${siteConfig.address.postalCode}), nous intervenons au Mans et dans un rayon de ${siteConfig.address.radiusKm} km pour tous vos projets de pompe à chaleur, climatisation, chauffe-eau et traitement de l'eau.`}
+            description={`Basés à ${siteConfig.address.line} (${siteConfig.address.postalCode}), nous intervenons au Mans et dans un rayon de ${siteConfig.address.radiusKm} km pour tous vos projets de climatisation, pompe à chaleur, eau chaude sanitaire, traitement de l'eau et entretien.`}
           />
         </FadeIn>
 

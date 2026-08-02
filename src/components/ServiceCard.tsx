@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Flame, Snowflake, Droplets, Zap, Filter, ArrowRight, LucideIcon } from "lucide-react";
+import { Flame, Snowflake, Droplets, Filter, Wrench, ArrowRight, LucideIcon } from "lucide-react";
 import { Service } from "@/lib/site-config";
 
 const icons: Record<Service["slug"], LucideIcon> = {
-  "pompes-a-chaleur": Flame,
-  climatisation: Snowflake,
-  "chauffe-eau-thermodynamique": Droplets,
-  "chauffe-eau-electrique": Zap,
-  "adoucisseur-eau": Filter,
+  "climatisation-reversible": Snowflake,
+  "pompe-a-chaleur-air-eau": Flame,
+  "eau-chaude-sanitaire": Droplets,
+  "traitement-eau": Filter,
+  "entretien-depannage": Wrench,
 };
 
 const colorClasses: Record<Service["color"], { bg: string; text: string }> = {

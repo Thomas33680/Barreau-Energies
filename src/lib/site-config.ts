@@ -38,91 +38,75 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: "pompes-a-chaleur",
-    name: "Installation de pompes à chaleur",
-    shortName: "Pompes à chaleur",
-    color: "green",
-    summary:
-      "Chauffage économique et écologique pour toute l'année, air/eau ou air/air.",
-    description:
-      "Nous étudions votre logement pour dimensionner et installer la pompe à chaleur la plus adaptée à vos besoins : confort thermique toute l'année, baisse de la facture énergétique et solution durable pour l'environnement.",
-    points: [
-      "Étude thermique et dimensionnement sur mesure",
-      "Pompes à chaleur air/eau et air/air",
-      "Matériel de qualité, marques reconnues",
-      "Mise en service et suivi après installation",
-    ],
-    howItWorks:
-      "Une pompe à chaleur ne « fabrique » pas la chaleur : elle capte les calories déjà présentes dans l'air extérieur, même par temps froid, et les concentre pour chauffer votre logement. On distingue deux systèmes : la pompe à chaleur air/air diffuse directement de l'air chaud (ou frais) dans les pièces via des unités murales — c'est la même technologie qu'une climatisation réversible, sans travaux sur votre circuit de chauffage. La pompe à chaleur air/eau, elle, chauffe l'eau qui circule dans vos radiateurs ou votre plancher chauffant, et peut aussi produire votre eau chaude sanitaire : c'est la solution la plus adaptée pour remplacer une chaudière fioul ou gaz.",
-    savings:
-      "Une pompe à chaleur restitue en moyenne 3 à 4 kWh de chaleur pour seulement 1 kWh d'électricité consommé (ce rapport s'appelle le COP, coefficient de performance). Concrètement, à confort égal, elle consomme donc 3 à 4 fois moins d'énergie qu'un chauffage électrique classique (convecteurs), ce qui se traduit par une baisse significative et durable de votre facture de chauffage.",
-    comparisonFactor: 3.5,
-  },
-  {
-    slug: "climatisation",
-    name: "Installation de climatisation",
-    shortName: "Climatisation",
+    slug: "climatisation-reversible",
+    name: "Installation de climatisation réversible",
+    shortName: "Climatisation réversible",
     color: "blue",
-    summary: "Rafraîchissement et qualité de l'air pour votre habitat ou vos locaux.",
+    summary:
+      "Rafraîchissement l'été, chauffage économique l'hiver : la même technologie que la pompe à chaleur air/air.",
     description:
-      "Réversibles ou non, nos solutions de climatisation s'adaptent à votre logement ou vos locaux professionnels pour un confort optimal en toute saison, avec un souci constant de performance énergétique.",
+      "Réversible, notre climatisation capte les calories de l'air extérieur pour chauffer votre intérieur en hiver et inverse simplement son cycle pour rafraîchir en été — c'est la même technologie qu'une pompe à chaleur air/air. Mono-split ou multi-split, nos installations s'adaptent à votre logement ou vos locaux professionnels pour un confort optimal toute l'année.",
     points: [
-      "Climatisation réversible (chaud/froid)",
+      "Climatisation réversible (chaud/froid), aussi appelée PAC air/air",
       "Mono-split et multi-split",
       "Installation soignée, discrète et durable",
       "Conseils d'entretien pour préserver la performance",
     ],
     howItWorks:
-      "Une climatisation réversible fonctionne exactement comme une pompe à chaleur air/air : elle capte les calories de l'air extérieur pour chauffer votre intérieur en hiver, et inverse simplement son cycle pour rafraîchir en été. Un même équipement assure donc confort d'hiver et confort d'été, sans avoir besoin d'un second système de chauffage.",
+      "Une climatisation réversible ne « fabrique » pas la chaleur : elle capte les calories déjà présentes dans l'air extérieur, même par temps froid, et les diffuse directement sous forme d'air chaud (ou frais) dans les pièces via des unités murales. Un même équipement assure donc confort d'hiver et confort d'été, sans avoir besoin d'un second système de chauffage ni de travaux sur un circuit d'eau.",
     savings:
       "Utilisée pour le chauffage, une climatisation réversible consomme 3 à 4 fois moins d'électricité qu'un radiateur électrique classique pour produire la même quantité de chaleur (grâce à son COP de 3 à 4). C'est donc un investissement qui s'amortit aussi sur votre facture de chauffage, pas seulement en été.",
     comparisonFactor: 3.5,
   },
   {
-    slug: "chauffe-eau-thermodynamique",
-    name: "Installation de chauffe-eau thermodynamiques",
-    shortName: "Chauffe-eau thermodynamique",
-    color: "orange",
-    summary: "Eau chaude sanitaire économique grâce à l'énergie captée dans l'air.",
+    slug: "pompe-a-chaleur-air-eau",
+    name: "Installation de pompes à chaleur air/eau",
+    shortName: "Pompe à chaleur air/eau",
+    color: "green",
+    summary:
+      "Chauffage économique et écologique pour toute l'année, en remplacement d'une chaudière fioul ou gaz.",
     description:
-      "Le chauffe-eau thermodynamique utilise les calories de l'air pour chauffer votre eau sanitaire, avec une consommation électrique fortement réduite par rapport à un ballon classique.",
+      "Nous étudions votre logement pour dimensionner et installer la pompe à chaleur air/eau la plus adaptée à vos besoins : elle chauffe l'eau qui circule dans vos radiateurs ou votre plancher chauffant, et peut aussi produire votre eau chaude sanitaire. Confort thermique toute l'année, baisse de la facture énergétique et solution durable pour l'environnement.",
     points: [
-      "Jusqu'à 70 % d'économies sur la facture d'eau chaude",
-      "Adapté à la maison individuelle comme à la rénovation",
-      "Installation propre et rapide",
-      "Un conseil personnalisé pour bien dimensionner votre équipement",
+      "Étude thermique et dimensionnement sur mesure",
+      "Remplacement de chaudière fioul ou gaz",
+      "Matériel de qualité, marques reconnues",
+      "Mise en service et suivi après installation",
     ],
     howItWorks:
-      "Aussi appelé « ballon thermodynamique », cet équipement associe un ballon d'eau chaude classique à une petite pompe à chaleur intégrée. Celle-ci capte les calories de l'air ambiant (buanderie, garage ou air extérieur selon le modèle) pour chauffer l'eau, au lieu d'utiliser une résistance électrique qui consomme beaucoup d'énergie. Il ne chauffe que l'eau sanitaire (douche, robinets), pas votre logement.",
+      "Une pompe à chaleur air/eau ne « fabrique » pas la chaleur : elle capte les calories déjà présentes dans l'air extérieur, même par temps froid, et les concentre pour chauffer l'eau qui circule dans vos radiateurs ou votre plancher chauffant. Elle peut aussi produire votre eau chaude sanitaire : c'est la solution la plus adaptée pour remplacer une chaudière fioul ou gaz.",
     savings:
-      "Grâce à sa pompe à chaleur intégrée, un chauffe-eau thermodynamique consomme environ 3 fois moins d'électricité qu'un cumulus électrique classique à résistance pour produire la même quantité d'eau chaude, soit jusqu'à 70 % d'économies sur ce poste de votre facture.",
+      "Une pompe à chaleur air/eau restitue en moyenne 3 à 4 kWh de chaleur pour seulement 1 kWh d'électricité consommé (ce rapport s'appelle le COP, coefficient de performance). Concrètement, à confort égal, elle consomme donc 3 à 4 fois moins d'énergie qu'un chauffage électrique classique (convecteurs), ce qui se traduit par une baisse significative et durable de votre facture de chauffage.",
+    comparisonFactor: 3.5,
+  },
+  {
+    slug: "eau-chaude-sanitaire",
+    name: "Installation de chauffe-eau : thermodynamique ou électrique",
+    shortName: "Eau chaude sanitaire",
+    color: "orange",
+    summary:
+      "Ballon thermodynamique économique ou chauffe-eau électrique classique, selon votre budget et votre logement.",
+    description:
+      "Pour votre eau chaude sanitaire, nous installons le chauffe-eau thermodynamique — qui utilise les calories de l'air pour chauffer votre eau avec une consommation électrique fortement réduite — ou le chauffe-eau électrique classique, une solution éprouvée avec un investissement de départ plus faible. Nous vous conseillons sur le choix le plus adapté à votre logement et votre budget.",
+    points: [
+      "Chauffe-eau thermodynamique : jusqu'à 70 % d'économies",
+      "Chauffe-eau électrique : résistance blindée ou stéatite",
+      "Adapté à la maison individuelle comme à la rénovation",
+      "Conseil personnalisé pour bien dimensionner votre équipement",
+    ],
+    howItWorks:
+      "Le chauffe-eau thermodynamique (ou « ballon thermodynamique ») associe un ballon d'eau chaude classique à une petite pompe à chaleur intégrée, qui capte les calories de l'air ambiant pour chauffer l'eau au lieu d'utiliser une résistance électrique gourmande en énergie. Le chauffe-eau électrique classique, lui, chauffe l'eau grâce à une résistance immergée dans le ballon (blindée ou protégée par un fourreau en stéatite) : plus simple, sans unité extérieure, avec un investissement de départ plus faible.",
+    savings:
+      "Grâce à sa pompe à chaleur intégrée, un chauffe-eau thermodynamique consomme environ 3 fois moins d'électricité qu'un chauffe-eau électrique classique à résistance pour produire la même quantité d'eau chaude, soit jusqu'à 70 % d'économies sur ce poste de votre facture.",
     comparisonFactor: 3,
   },
   {
-    slug: "chauffe-eau-electrique",
-    name: "Installation de chauffe-eau électriques",
-    shortName: "Chauffe-eau électrique",
-    color: "amber",
-    summary:
-      "Solution simple et économique à l'achat pour votre eau chaude sanitaire.",
-    description:
-      "En alternative au chauffe-eau thermodynamique, nous installons aussi des chauffe-eau électriques classiques (résistance blindée ou stéatite) : une solution éprouvée, avec un investissement de départ plus faible, adaptée aux petits logements, aux résidences secondaires ou aux budgets serrés.",
-    points: [
-      "Ballons à résistance blindée ou stéatite",
-      "Toutes capacités, du studio à la grande famille",
-      "Installation et raccordement aux normes en vigueur",
-      "Conseil pour choisir entre chauffe-eau électrique et thermodynamique",
-    ],
-    howItWorks:
-      "Le chauffe-eau électrique chauffe l'eau grâce à une résistance immergée dans le ballon (ou protégée par un fourreau en stéatite, plus adapté aux eaux calcaires). Simple et fiable, il ne nécessite ni unité extérieure ni emplacement technique particulier, contrairement au chauffe-eau thermodynamique.",
-  },
-  {
-    slug: "adoucisseur-eau",
-    name: "Installation d'adoucisseurs d'eau",
-    shortName: "Adoucisseur d'eau",
+    slug: "traitement-eau",
+    name: "Traitement de l'eau",
+    shortName: "Traitement de l'eau",
     color: "teal",
     summary:
-      "Traitement de l'eau dure pour protéger vos installations et votre confort.",
+      "Adoucisseurs d'eau pour protéger vos installations et votre confort au quotidien.",
     description:
       "Notre secteur est concerné par une eau particulièrement calcaire. Nous installons des adoucisseurs d'eau pour préserver la durée de vie de vos équipements (chauffe-eau, pompe à chaleur, robinetterie, électroménager), réduire votre consommation de produits d'entretien et améliorer votre confort au quotidien.",
     points: [
@@ -133,6 +117,24 @@ export const services: Service[] = [
     ],
     howItWorks:
       "Un adoucisseur capte le calcium et le magnésium responsables de la dureté de l'eau grâce à une résine échangeuse d'ions, et les remplace par des ions sodium. L'eau distribuée dans votre logement est ainsi débarrassée du calcaire, ce qui protège durablement vos canalisations et tous les appareils utilisant de l'eau chaude.",
+  },
+  {
+    slug: "entretien-depannage",
+    name: "Entretien et dépannage",
+    shortName: "Entretien & dépannage",
+    color: "amber",
+    summary:
+      "Contrats d'entretien et interventions de dépannage pour prolonger la durée de vie de vos équipements.",
+    description:
+      "Un entretien régulier préserve les performances, la fiabilité et la durée de vie de vos équipements (pompe à chaleur, climatisation, chauffe-eau, adoucisseur). Nous intervenons aussi en dépannage en cas de panne ou de baisse de performance, pour un diagnostic rapide et une remise en service dans les meilleurs délais.",
+    points: [
+      "Contrats d'entretien annuel, toutes marques",
+      "Nettoyage des filtres et contrôle du circuit frigorifique",
+      "Diagnostic de panne et dépannage",
+      "Suivi et conseils pour préserver vos performances",
+    ],
+    howItWorks:
+      "Un entretien régulier permet de repérer une baisse de performance ou une anomalie avant qu'elle ne devienne une panne : nettoyage des filtres, contrôle du circuit frigorifique, vérification des pressions et des raccordements. En cas de panne, nous intervenons pour un diagnostic précis et une remise en service rapide de votre installation.",
   },
 ];
 

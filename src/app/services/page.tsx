@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Check, ArrowRight, Lightbulb } from "lucide-react";
-import { Flame, Snowflake, Droplets, Zap, Filter, LucideIcon } from "lucide-react";
+import { Flame, Snowflake, Droplets, Filter, Wrench, LucideIcon } from "lucide-react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -11,15 +11,15 @@ import { services, Service } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Nos services",
   description:
-    "Installation de pompes à chaleur, climatisation, chauffe-eaux thermodynamiques et électriques, et adoucisseurs d'eau par Barreau Énergies.",
+    "Climatisation réversible, pompe à chaleur air/eau, eau chaude sanitaire, traitement de l'eau et entretien par Barreau Énergies.",
 };
 
 const icons: Record<Service["slug"], LucideIcon> = {
-  "pompes-a-chaleur": Flame,
-  climatisation: Snowflake,
-  "chauffe-eau-thermodynamique": Droplets,
-  "chauffe-eau-electrique": Zap,
-  "adoucisseur-eau": Filter,
+  "climatisation-reversible": Snowflake,
+  "pompe-a-chaleur-air-eau": Flame,
+  "eau-chaude-sanitaire": Droplets,
+  "traitement-eau": Filter,
+  "entretien-depannage": Wrench,
 };
 
 const colorClasses: Record<Service["color"], { bg: string; text: string }> = {
@@ -38,7 +38,7 @@ export default function ServicesPage() {
           <SectionHeading
             eyebrow="Nos services"
             title="Des solutions complètes pour votre confort thermique"
-            description="Chauffage, climatisation, eau chaude sanitaire et traitement de l'eau : nous vous accompagnons de l'étude à la mise en service."
+            description="Chauffage, climatisation, eau chaude sanitaire, traitement de l'eau et entretien : nous vous accompagnons de l'étude au suivi dans la durée."
             light
           />
         </Container>
