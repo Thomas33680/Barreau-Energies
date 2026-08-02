@@ -149,28 +149,28 @@ export const partnerBrands = [
 
 export const values = [
   {
-    name: "Confiance",
-    description: "Des installations fiables et durables.",
+    name: "Devis clair et transparent",
+    description: "Un chiffrage détaillé, sans surprise ni frais cachés.",
   },
   {
-    name: "Expertise",
-    description: "Un savoir-faire technique à votre service.",
+    name: "Installation soignée",
+    description: "Un travail précis et durable, dans le respect de votre logement.",
   },
   {
-    name: "Performance",
-    description: "Des solutions éco-performantes et économiques.",
+    name: "Réactivité",
+    description: "Des réponses rapides et des interventions dans les meilleurs délais.",
   },
   {
-    name: "Proximité",
-    description: "Une entreprise locale, réactive et disponible.",
+    name: "Entreprise locale",
+    description: "Implantée près de chez vous, disponible et à votre écoute.",
   },
   {
-    name: "Responsabilité",
-    description: "Des choix durables pour un avenir meilleur.",
+    name: "Accompagnement personnalisé",
+    description: "Un interlocuteur unique, du premier contact au suivi après travaux.",
   },
   {
-    name: "Innovation",
-    description: "Des technologies modernes pour votre confort.",
+    name: "Matériel reconnu",
+    description: "Des équipements de marques reconnues, choisis pour leur fiabilité.",
   },
 ] as const;
 

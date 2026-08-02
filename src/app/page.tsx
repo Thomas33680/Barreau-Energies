@@ -161,7 +161,8 @@ export default function Home() {
           <FadeIn>
             <SectionHeading
               eyebrow="Nos valeurs"
-              title="Votre confort, notre priorité"
+              title="L'exigence d'un professionnel, la proximité d'un artisan."
+              description="Transparence, qualité d'exécution et disponibilité : les engagements que nous tenons sur chaque chantier."
               light
               center
             />

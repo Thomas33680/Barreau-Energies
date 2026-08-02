@@ -4,20 +4,21 @@ import { motion } from "framer-motion";
 import {
   ShieldCheck,
   Award,
-  TrendingUp,
   MapPin,
-  Leaf,
-  Lightbulb,
+  FileText,
+  Wrench,
+  Zap,
+  HeartHandshake,
   LucideIcon,
 } from "lucide-react";
 
 const icons: Record<string, LucideIcon> = {
-  Confiance: ShieldCheck,
-  Expertise: Award,
-  Performance: TrendingUp,
-  Proximité: MapPin,
-  Responsabilité: Leaf,
-  Innovation: Lightbulb,
+  "Devis clair et transparent": FileText,
+  "Installation soignée": Wrench,
+  "Réactivité": Zap,
+  "Entreprise locale": MapPin,
+  "Accompagnement personnalisé": HeartHandshake,
+  "Matériel reconnu": Award,
 };
 
 export function ValueCard({
