@@ -220,13 +220,13 @@ export function Simulator() {
 
   return (
     <div className="rounded-3xl border border-ink/10 bg-white p-6 shadow-sm sm:p-10">
-      <div className="grid grid-cols-3 gap-1.5 rounded-2xl border border-ink/10 bg-ink/[0.03] p-1.5">
+      <div className="flex flex-wrap justify-center gap-1.5 rounded-2xl border border-ink/10 bg-ink/[0.03] p-1.5">
         {modes.map((tab) => (
           <button
             key={tab.id}
             type="button"
             onClick={() => handleModeChange(tab.id)}
-            className="relative cursor-pointer whitespace-nowrap rounded-xl px-1.5 py-2.5 text-[11px] font-semibold transition-colors duration-200 sm:px-3 sm:text-sm"
+            className="relative shrink-0 grow-0 basis-[calc((100%-0.75rem)/3)] cursor-pointer whitespace-nowrap rounded-xl px-1.5 py-2.5 text-center text-[11px] font-semibold transition-colors duration-200 sm:px-3 sm:text-sm"
           >
             {mode === tab.id && (
               <motion.span

@@ -119,51 +119,6 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="bg-white py-24">
-        <Container>
-          <FadeIn>
-            <SectionHeading
-              eyebrow="Avis clients"
-              title="Ce que pensent nos clients"
-              center
-            />
-          </FadeIn>
-
-          {testimonials.length > 0 ? (
-            <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {testimonials.slice(0, 3).map((testimonial) => (
-                <StaggerItem key={testimonial.name}>
-                  <TestimonialCard testimonial={testimonial} />
-                </StaggerItem>
-              ))}
-            </StaggerGroup>
-          ) : (
-            <FadeIn delay={0.1} className="mx-auto mt-12 flex max-w-md flex-col items-center gap-4 rounded-2xl border border-dashed border-ink/15 bg-ink/[0.03] p-10 text-center">
-              <MessageSquareHeart size={32} className="text-brand-green" aria-hidden="true" />
-              <p className="text-sm leading-relaxed text-ink/70">
-                Les premiers avis clients seront bientôt affichés ici. Vous êtes
-                client de Barreau Énergies ? Votre retour nous aide à progresser.
-              </p>
-              <Button href={`mailto:${siteConfig.email}`} variant="primary">
-                Laisser un avis
-              </Button>
-            </FadeIn>
-          )}
-
-          {testimonials.length > 0 && (
-            <FadeIn delay={0.15} className="mt-8 text-center">
-              <Link
-                href="/avis"
-                className="inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-brand-green"
-              >
-                Voir tous les avis
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-            </FadeIn>
-          )}
-        </Container>
-      </section>
-
       <section className="bg-ink/[0.02] py-24">
         <Container className="max-w-4xl">
           <FadeIn>
@@ -177,6 +132,41 @@ export default function Home() {
           <FadeIn delay={0.1} className="mt-12">
             <Simulator />
           </FadeIn>
+        </Container>
+      </section>
+
+      <section className="bg-white py-24">
+        <Container>
+          <FadeIn>
+            <SectionHeading
+              eyebrow="Notre méthode"
+              title="Comment se déroule votre projet ?"
+              description="De la prise de contact au suivi après travaux, un accompagnement clair à chaque étape."
+              center
+            />
+          </FadeIn>
+          <StaggerGroup className="relative mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-6 lg:gap-4">
+            <div
+              className="absolute top-6 right-0 left-0 hidden h-px bg-ink/10 lg:block"
+              aria-hidden="true"
+            />
+            {projectSteps.map((step, index) => (
+              <StaggerItem key={step.title} className="relative flex flex-col items-start gap-4 lg:items-center lg:text-center">
+                <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-green text-white">
+                  <step.icon size={20} aria-hidden="true" />
+                  <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[10px] font-bold text-white">
+                    {index + 1}
+                  </span>
+                </span>
+                <div>
+                  <h3 className="text-sm font-bold text-ink">{step.title}</h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-ink/60">
+                    {step.description}
+                  </p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </Container>
       </section>
 
@@ -228,34 +218,44 @@ export default function Home() {
         <Container>
           <FadeIn>
             <SectionHeading
-              eyebrow="Notre méthode"
-              title="Comment se déroule votre projet ?"
-              description="De la prise de contact au suivi après travaux, un accompagnement clair à chaque étape."
+              eyebrow="Avis clients"
+              title="Ce que pensent nos clients"
               center
             />
           </FadeIn>
-          <StaggerGroup className="relative mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-6 lg:gap-4">
-            <div
-              className="absolute top-6 right-0 left-0 hidden h-px bg-ink/10 lg:block"
-              aria-hidden="true"
-            />
-            {projectSteps.map((step, index) => (
-              <StaggerItem key={step.title} className="relative flex flex-col items-start gap-4 lg:items-center lg:text-center">
-                <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-green text-white">
-                  <step.icon size={20} aria-hidden="true" />
-                  <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[10px] font-bold text-white">
-                    {index + 1}
-                  </span>
-                </span>
-                <div>
-                  <h3 className="text-sm font-bold text-ink">{step.title}</h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-ink/60">
-                    {step.description}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+
+          {testimonials.length > 0 ? (
+            <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {testimonials.slice(0, 3).map((testimonial) => (
+                <StaggerItem key={testimonial.name}>
+                  <TestimonialCard testimonial={testimonial} />
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          ) : (
+            <FadeIn delay={0.1} className="mx-auto mt-12 flex max-w-md flex-col items-center gap-4 rounded-2xl border border-dashed border-ink/15 bg-ink/[0.03] p-10 text-center">
+              <MessageSquareHeart size={32} className="text-brand-green" aria-hidden="true" />
+              <p className="text-sm leading-relaxed text-ink/70">
+                Les premiers avis clients seront bientôt affichés ici. Vous êtes
+                client de Barreau Énergies ? Votre retour nous aide à progresser.
+              </p>
+              <Button href={`mailto:${siteConfig.email}`} variant="primary">
+                Laisser un avis
+              </Button>
+            </FadeIn>
+          )}
+
+          {testimonials.length > 0 && (
+            <FadeIn delay={0.15} className="mt-8 text-center">
+              <Link
+                href="/avis"
+                className="inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-brand-green"
+              >
+                Voir tous les avis
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </FadeIn>
+          )}
         </Container>
       </section>
 
