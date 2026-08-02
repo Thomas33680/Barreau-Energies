@@ -25,14 +25,15 @@ export type Service = {
   slug: string;
   name: string;
   shortName: string;
-  color: "blue" | "green" | "orange";
+  color: "blue" | "green" | "orange" | "teal" | "amber";
   summary: string;
   description: string;
   points: string[];
   howItWorks: string;
-  savings: string;
-  /** Facteur d'économie approximatif vs. chauffage/eau chaude électrique classique (ex : 3.5 = 3,5 fois moins d'énergie consommée). */
-  comparisonFactor: number;
+  /** Uniquement pour les services chauffants comparables à un chauffage électrique classique. */
+  savings?: string;
+  /** Facteur d'économie approximatif vs. chauffage/eau chaude électrique classique (ex : 3.5 = 3,5 fois moins d'énergie consommée). Omis pour les services non concernés (traitement de l'eau, chauffe-eau électrique). */
+  comparisonFactor?: number;
 };
 
 export const services: Service[] = [
@@ -96,6 +97,42 @@ export const services: Service[] = [
     savings:
       "Grâce à sa pompe à chaleur intégrée, un chauffe-eau thermodynamique consomme environ 3 fois moins d'électricité qu'un cumulus électrique classique à résistance pour produire la même quantité d'eau chaude, soit jusqu'à 70 % d'économies sur ce poste de votre facture.",
     comparisonFactor: 3,
+  },
+  {
+    slug: "chauffe-eau-electrique",
+    name: "Installation de chauffe-eau électriques",
+    shortName: "Chauffe-eau électrique",
+    color: "amber",
+    summary:
+      "Solution simple et économique à l'achat pour votre eau chaude sanitaire.",
+    description:
+      "En alternative au chauffe-eau thermodynamique, nous installons aussi des chauffe-eau électriques classiques (résistance blindée ou stéatite) : une solution éprouvée, avec un investissement de départ plus faible, adaptée aux petits logements, aux résidences secondaires ou aux budgets serrés.",
+    points: [
+      "Ballons à résistance blindée ou stéatite",
+      "Toutes capacités, du studio à la grande famille",
+      "Installation et raccordement aux normes en vigueur",
+      "Conseil pour choisir entre chauffe-eau électrique et thermodynamique",
+    ],
+    howItWorks:
+      "Le chauffe-eau électrique chauffe l'eau grâce à une résistance immergée dans le ballon (ou protégée par un fourreau en stéatite, plus adapté aux eaux calcaires). Simple et fiable, il ne nécessite ni unité extérieure ni emplacement technique particulier, contrairement au chauffe-eau thermodynamique.",
+  },
+  {
+    slug: "adoucisseur-eau",
+    name: "Installation d'adoucisseurs d'eau",
+    shortName: "Adoucisseur d'eau",
+    color: "teal",
+    summary:
+      "Traitement de l'eau dure pour protéger vos installations et votre confort.",
+    description:
+      "Notre secteur est concerné par une eau particulièrement calcaire. Nous installons des adoucisseurs d'eau pour préserver la durée de vie de vos équipements (chauffe-eau, pompe à chaleur, robinetterie, électroménager), réduire votre consommation de produits d'entretien et améliorer votre confort au quotidien.",
+    points: [
+      "Diagnostic de la dureté de votre eau",
+      "Adoucisseurs à résine, dimensionnés selon votre consommation",
+      "Protection de vos équipements et canalisations contre le calcaire",
+      "Mise en service et suivi de l'entretien (sel, régénération)",
+    ],
+    howItWorks:
+      "Un adoucisseur capte le calcium et le magnésium responsables de la dureté de l'eau grâce à une résine échangeuse d'ions, et les remplace par des ions sodium. L'eau distribuée dans votre logement est ainsi débarrassée du calcaire, ce qui protège durablement vos canalisations et tous les appareils utilisant de l'eau chaude.",
   },
 ];
 

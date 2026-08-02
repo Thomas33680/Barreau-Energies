@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Check, ArrowRight, Lightbulb } from "lucide-react";
-import { Flame, Snowflake, Droplets, LucideIcon } from "lucide-react";
+import { Flame, Snowflake, Droplets, Zap, Filter, LucideIcon } from "lucide-react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -11,19 +11,23 @@ import { services, Service } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Nos services",
   description:
-    "Installation de pompes à chaleur, climatisation et chauffe-eaux thermodynamiques par Barreau Énergies.",
+    "Installation de pompes à chaleur, climatisation, chauffe-eaux thermodynamiques et électriques, et adoucisseurs d'eau par Barreau Énergies.",
 };
 
 const icons: Record<Service["slug"], LucideIcon> = {
   "pompes-a-chaleur": Flame,
   climatisation: Snowflake,
   "chauffe-eau-thermodynamique": Droplets,
+  "chauffe-eau-electrique": Zap,
+  "adoucisseur-eau": Filter,
 };
 
 const colorClasses: Record<Service["color"], { bg: string; text: string }> = {
   blue: { bg: "bg-brand-blue/10", text: "text-brand-blue" },
   green: { bg: "bg-brand-green/10", text: "text-brand-green" },
   orange: { bg: "bg-brand-orange/10", text: "text-brand-orange" },
+  teal: { bg: "bg-brand-teal/10", text: "text-brand-teal" },
+  amber: { bg: "bg-brand-amber/10", text: "text-brand-amber" },
 };
 
 export default function ServicesPage() {
@@ -34,7 +38,7 @@ export default function ServicesPage() {
           <SectionHeading
             eyebrow="Nos services"
             title="Des solutions complètes pour votre confort thermique"
-            description="Chauffage, climatisation, eau chaude sanitaire : nous vous accompagnons de l'étude à la mise en service."
+            description="Chauffage, climatisation, eau chaude sanitaire et traitement de l'eau : nous vous accompagnons de l'étude à la mise en service."
             light
           />
         </Container>
@@ -103,14 +107,16 @@ export default function ServicesPage() {
                 </FadeIn>
               </div>
 
-              <FadeIn delay={0.2} className="mt-10">
-                <EnergySavingsVisual
-                  factor={service.comparisonFactor}
-                  label={service.shortName}
-                  color={service.color}
-                  description={service.savings}
-                />
-              </FadeIn>
+              {service.comparisonFactor !== undefined && service.savings && (
+                <FadeIn delay={0.2} className="mt-10">
+                  <EnergySavingsVisual
+                    factor={service.comparisonFactor}
+                    label={service.shortName}
+                    color={service.color}
+                    description={service.savings}
+                  />
+                </FadeIn>
+              )}
             </Container>
           </section>
         );

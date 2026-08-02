@@ -2,12 +2,15 @@
 
 import { motion } from "framer-motion";
 import { TrendingDown, Zap } from "lucide-react";
+import { Service } from "@/lib/site-config";
 
-const colorMap = {
+const colorMap: Record<Service["color"], { bar: string; text: string; ring: string }> = {
   blue: { bar: "bg-brand-blue", text: "text-brand-blue", ring: "ring-brand-blue/20" },
   green: { bar: "bg-brand-green", text: "text-brand-green", ring: "ring-brand-green/20" },
   orange: { bar: "bg-brand-orange", text: "text-brand-orange", ring: "ring-brand-orange/20" },
-} as const;
+  teal: { bar: "bg-brand-teal", text: "text-brand-teal", ring: "ring-brand-teal/20" },
+  amber: { bar: "bg-brand-amber", text: "text-brand-amber", ring: "ring-brand-amber/20" },
+};
 
 export function EnergySavingsVisual({
   factor,
@@ -17,7 +20,7 @@ export function EnergySavingsVisual({
 }: {
   factor: number;
   label: string;
-  color: "blue" | "green" | "orange";
+  color: Service["color"];
   description: string;
 }) {
   const colors = colorMap[color];

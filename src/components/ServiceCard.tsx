@@ -2,19 +2,23 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Flame, Snowflake, Droplets, ArrowRight, LucideIcon } from "lucide-react";
+import { Flame, Snowflake, Droplets, Zap, Filter, ArrowRight, LucideIcon } from "lucide-react";
 import { Service } from "@/lib/site-config";
 
 const icons: Record<Service["slug"], LucideIcon> = {
   "pompes-a-chaleur": Flame,
   climatisation: Snowflake,
   "chauffe-eau-thermodynamique": Droplets,
+  "chauffe-eau-electrique": Zap,
+  "adoucisseur-eau": Filter,
 };
 
 const colorClasses: Record<Service["color"], { bg: string; text: string }> = {
   blue: { bg: "bg-brand-blue/10", text: "text-brand-blue" },
   green: { bg: "bg-brand-green/10", text: "text-brand-green" },
   orange: { bg: "bg-brand-orange/10", text: "text-brand-orange" },
+  teal: { bg: "bg-brand-teal/10", text: "text-brand-teal" },
+  amber: { bg: "bg-brand-amber/10", text: "text-brand-amber" },
 };
 
 const MotionLink = motion.create(Link);

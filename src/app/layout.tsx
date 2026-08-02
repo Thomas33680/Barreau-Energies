@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description:
-    "Barreau Énergies installe vos pompes à chaleur, climatisations et chauffe-eaux thermodynamiques à Parigné-l'Évêque, Le Mans et alentours.",
+    "Barreau Énergies installe vos pompes à chaleur, climatisations, chauffe-eaux thermodynamiques et électriques, et adoucisseurs d'eau à Parigné-l'Évêque, Le Mans et alentours.",
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.tagline,
