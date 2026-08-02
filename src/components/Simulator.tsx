@@ -2,15 +2,16 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Flame, Snowflake, Droplets, Filter, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Flame, Snowflake, Droplets, Filter, Zap, CheckCircle2 } from "lucide-react";
 import { siteConfig, simulatorPricing } from "@/lib/site-config";
 
-type Mode = "air-eau" | "air-air" | "cet" | "adoucisseur";
+type Mode = "air-eau" | "air-air" | "cet" | "chauffe-eau-electrique" | "adoucisseur";
 
 const modes = [
   { id: "air-air" as Mode, label: "Pompe à chaleur air/air", shortLabel: "Air/air", icon: Snowflake, color: "#0066b3" },
   { id: "air-eau" as Mode, label: "Pompe à chaleur air/eau", shortLabel: "Air/eau", icon: Flame, color: "#67b814" },
   { id: "cet" as Mode, label: "Chauffe-eau thermodynamique", shortLabel: "Chauffe-eau", icon: Droplets, color: "#ff7a00" },
+  { id: "chauffe-eau-electrique" as Mode, label: "Chauffe-eau électrique", shortLabel: "Élec.", icon: Zap, color: "#f59e0b" },
   { id: "adoucisseur" as Mode, label: "Traitement de l'eau", shortLabel: "Adoucisseur", icon: Filter, color: "#0d9488" },
 ] as const;
 
@@ -49,6 +50,7 @@ const modeDurations: Record<Mode, string> = {
   "air-air": "Une demi-journée à une journée",
   "air-eau": "1 à 2 jours",
   cet: "Une demi-journée",
+  "chauffe-eau-electrique": "Quelques heures à une demi-journée",
   adoucisseur: "Une demi-journée",
 };
 
@@ -143,6 +145,8 @@ export function Simulator() {
   const isPac = mode === "air-eau" || mode === "air-air";
   const isAdoucisseur = mode === "adoucisseur";
   const isCet = mode === "cet";
+  const isChauffeEauElectrique = mode === "chauffe-eau-electrique";
+  const isHotWater = isCet || isChauffeEauElectrique;
 
   const gaugePercent = isPac
     ? (power / 18) * 100
@@ -169,6 +173,9 @@ export function Simulator() {
     if (mode === "adoucisseur") {
       return simulatorPricing.adoucisseur[occupantsLevel.resinLiters];
     }
+    if (mode === "chauffe-eau-electrique") {
+      return simulatorPricing.chauffeEauElectrique[occupantsLevel.volume];
+    }
     return simulatorPricing.cet[occupantsLevel.volume];
   }, [mode, power, occupantsLevel]);
 
@@ -189,8 +196,8 @@ export function Simulator() {
       isPac ? `Surface à chauffer : ${surface} m²` : null,
       isPac ? `Année de construction : ${constructionPeriod.label}` : null,
       isPac ? `Chauffage actuel : ${heatingTypes.find((h) => h.id === heating)?.label}` : null,
-      isCet || isAdoucisseur ? `Composition du foyer : ${occupantsLevel.label}` : null,
-      isCet ? `Salles de bain : ${bathroomsLevels.find((b) => b.id === bathrooms)?.label}` : null,
+      isHotWater || isAdoucisseur ? `Composition du foyer : ${occupantsLevel.label}` : null,
+      isHotWater ? `Salles de bain : ${bathroomsLevels.find((b) => b.id === bathrooms)?.label}` : null,
       "",
       `${gaugeCaption} : ${gaugeValue} ${gaugeUnit}`,
       `Budget estimatif : à partir de ${formatEuro(priceRange.min)}`,
@@ -361,9 +368,9 @@ export function Simulator() {
                     </div>
                   </div>
                 </motion.div>
-              ) : isCet ? (
+              ) : isHotWater ? (
                 <motion.div
-                  key="cet"
+                  key="hot-water"
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -16 }}
@@ -380,7 +387,9 @@ export function Simulator() {
                           onClick={() => setOccupants(level.id)}
                           className={`cursor-pointer rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
                             occupants === level.id
-                              ? "border-brand-orange bg-brand-orange/10 text-ink"
+                              ? isCet
+                                ? "border-brand-orange bg-brand-orange/10 text-ink"
+                                : "border-brand-amber bg-brand-amber/10 text-ink"
                               : "border-ink/10 text-ink/60 hover:border-ink/20"
                           }`}
                         >
@@ -400,7 +409,9 @@ export function Simulator() {
                           onClick={() => setBathrooms(option.id)}
                           className={`cursor-pointer rounded-xl border px-3 py-3 text-center text-xs font-medium transition-colors duration-200 sm:text-sm ${
                             bathrooms === option.id
-                              ? "border-brand-orange bg-brand-orange/10 text-ink"
+                              ? isCet
+                                ? "border-brand-orange bg-brand-orange/10 text-ink"
+                                : "border-brand-amber bg-brand-amber/10 text-ink"
                               : "border-ink/10 text-ink/60 hover:border-ink/20"
                           }`}
                         >
@@ -493,13 +504,13 @@ export function Simulator() {
                       </div>
                     </>
                   )}
-                  {(isCet || isAdoucisseur) && (
+                  {(isHotWater || isAdoucisseur) && (
                     <div>
                       <dt className="text-ink/50">Foyer</dt>
                       <dd className="font-medium text-ink">{occupantsLevel.label}</dd>
                     </div>
                   )}
-                  {isCet && (
+                  {isHotWater && (
                     <div>
                       <dt className="text-ink/50">Salles de bain</dt>
                       <dd className="font-medium text-ink">

@@ -250,8 +250,13 @@ export const testimonials: Testimonial[] = [];
  * - cet : climplus.com, une seule référence confirmée par volume (200L
  *   Atlantic Égéo, 250L Thermor Aeromax Access) ; 150L et 300L pas encore
  *   mis à jour faute de référence au volume confirmé.
- * Adoucisseur reste une estimation de marché à confirmer avec le même
- * protocole.
+ * - chauffeEauElectrique : climplus.com. 200L a un vrai écart min/max
+ *   (entrée de gamme stéatite vs ACI Hybride premium) ; 150L sur une seule
+ *   référence ; 250L/300L pas de référence confirmée, repris du 200L en
+ *   attendant.
+ * - adoucisseur : cedeo.fr (BWT), 10L sur une seule référence confirmée ;
+ *   20L/25L/30L pas encore mis à jour faute de référence au volume
+ *   confirmé.
  */
 export const simulatorPricing = {
   airEau: { minPerKw: 990, maxPerKw: 1360 },
@@ -262,8 +267,14 @@ export const simulatorPricing = {
     250: { min: 2700, max: 3100 },
     300: { min: 3800, max: 4800 },
   } as Record<number, { min: number; max: number }>,
+  chauffeEauElectrique: {
+    150: { min: 1300, max: 1300 },
+    200: { min: 640, max: 1460 },
+    250: { min: 640, max: 1460 },
+    300: { min: 640, max: 1460 },
+  } as Record<number, { min: number; max: number }>,
   adoucisseur: {
-    10: { min: 900, max: 1400 },
+    10: { min: 2400, max: 2400 },
     20: { min: 1300, max: 1900 },
     25: { min: 1600, max: 2200 },
     30: { min: 1900, max: 2600 },
