@@ -262,10 +262,11 @@ export function Simulator() {
 
           <div className="w-full rounded-xl border border-ink/10 bg-white px-5 py-4">
             <p className="text-xs font-semibold uppercase tracking-wide text-ink/40">
-              Budget estimé (haut de gamme, pose incluse)
+              Votre estimation de projet (haut de gamme, pose incluse)
             </p>
-            <p className="mt-1 text-xl font-extrabold text-ink">
-              <AnimatedNumber value={`${formatEuro(priceRange.min)} – ${formatEuro(priceRange.max)}`} />
+            <p className="mt-2 text-xs text-ink/50">À partir de</p>
+            <p className="text-xl font-extrabold text-ink">
+              <AnimatedNumber value={formatEuro(priceRange.min)} />
             </p>
           </div>
 
@@ -276,7 +277,7 @@ export function Simulator() {
           </p>
 
           <Button href="/contact" variant="primary">
-            Demander un devis personnalisé
+            Recevoir mon devis gratuit
             <ArrowRight size={16} aria-hidden="true" />
           </Button>
         </div>
