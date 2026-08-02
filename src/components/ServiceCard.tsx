@@ -28,7 +28,7 @@ export function ServiceCard({ service }: { service: Service }) {
       href={`/services#${service.slug}`}
       whileHover={{ y: -8 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
-      className="group flex cursor-pointer flex-col rounded-2xl border border-ink/10 bg-white p-8 shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-ink/10"
+      className="group flex h-full cursor-pointer flex-col rounded-2xl border border-ink/10 bg-white p-8 shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-ink/10"
     >
       <motion.span
         whileHover={{ rotate: 8, scale: 1.08 }}

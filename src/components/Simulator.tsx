@@ -9,8 +9,8 @@ import { simulatorPricing } from "@/lib/site-config";
 type Mode = "air-eau" | "air-air" | "cet";
 
 const modes = [
-  { id: "air-eau" as Mode, label: "Pompe à chaleur air/eau", shortLabel: "Air/eau", icon: Flame, color: "#67b814" },
   { id: "air-air" as Mode, label: "Pompe à chaleur air/air", shortLabel: "Air/air", icon: Snowflake, color: "#0066b3" },
+  { id: "air-eau" as Mode, label: "Pompe à chaleur air/eau", shortLabel: "Air/eau", icon: Flame, color: "#67b814" },
   { id: "cet" as Mode, label: "Chauffe-eau thermodynamique", shortLabel: "Chauffe-eau", icon: Droplets, color: "#ff7a00" },
 ] as const;
 
@@ -82,7 +82,7 @@ function GaugeRing({ percent, color }: { percent: number; color: string }) {
 }
 
 export function Simulator() {
-  const [mode, setMode] = useState<Mode>("air-eau");
+  const [mode, setMode] = useState<Mode>("air-air");
   const [surface, setSurface] = useState(90);
   const [insulation, setInsulation] = useState<(typeof insulationLevels)[number]["id"]>(
     "moyenne",

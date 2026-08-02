@@ -48,7 +48,7 @@ export default function Home() {
           </FadeIn>
           <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <StaggerItem key={service.slug}>
+              <StaggerItem key={service.slug} className="h-full">
                 <ServiceCard service={service} />
               </StaggerItem>
             ))}
