@@ -247,16 +247,19 @@ export const testimonials: Testimonial[] = [];
  * - airAir : climplus.com (Mitsubishi Série M résidentiel), 2 systèmes
  *   mono-split reconstitués (unité intérieure + groupe extérieur assortis),
  *   sur la puissance chaud (Pc). Échantillon réduit, à élargir.
- * Les autres catégories (cet, adoucisseur) restent des estimations de
- * marché à confirmer avec le même protocole.
+ * - cet : climplus.com, une seule référence confirmée par volume (200L
+ *   Atlantic Égéo, 250L Thermor Aeromax Access) ; 150L et 300L pas encore
+ *   mis à jour faute de référence au volume confirmé.
+ * Adoucisseur reste une estimation de marché à confirmer avec le même
+ * protocole.
  */
 export const simulatorPricing = {
   airEau: { minPerKw: 990, maxPerKw: 1360 },
   airAir: { minPerKw: 730, maxPerKw: 945 },
   cet: {
     150: { min: 2800, max: 3600 },
-    200: { min: 3000, max: 3900 },
-    250: { min: 3400, max: 4300 },
+    200: { min: 2600, max: 3000 },
+    250: { min: 2700, max: 3100 },
     300: { min: 3800, max: 4800 },
   } as Record<number, { min: number; max: number }>,
   adoucisseur: {
