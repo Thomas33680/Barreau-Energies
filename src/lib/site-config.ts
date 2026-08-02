@@ -241,15 +241,18 @@ export const testimonials: Testimonial[] = [];
 
 /**
  * Fourchettes de prix indicatives (matériel + pose). Méthode : prix matériel
- * relevés sur cedeo.fr (fournisseur pro), majorés de 35 % (pose, marge).
- * airEau calculé sur 4 références (ensembles/monobloc complets, 11-14 kW,
- * TTC) le 02/08/2026 — à recalculer si les tarifs cedeo évoluent. Les autres
- * catégories restent des estimations de marché à confirmer avec le même
- * protocole (cedeo.fr + 35 %).
+ * relevés chez des fournisseurs pro, majorés de 35 % (pose, marge), le
+ * 02/08/2026 — à recalculer si les tarifs fournisseurs évoluent.
+ * - airEau : cedeo.fr, 4 références (ensembles/monobloc complets, 11-14 kW).
+ * - airAir : climplus.com (Mitsubishi Série M résidentiel), 2 systèmes
+ *   mono-split reconstitués (unité intérieure + groupe extérieur assortis),
+ *   sur la puissance chaud (Pc). Échantillon réduit, à élargir.
+ * Les autres catégories (cet, adoucisseur) restent des estimations de
+ * marché à confirmer avec le même protocole.
  */
 export const simulatorPricing = {
   airEau: { minPerKw: 990, maxPerKw: 1360 },
-  airAir: { minPerKw: 900, maxPerKw: 1300 },
+  airAir: { minPerKw: 730, maxPerKw: 945 },
   cet: {
     150: { min: 2800, max: 3600 },
     200: { min: 3000, max: 3900 },
