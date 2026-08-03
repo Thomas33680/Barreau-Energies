@@ -131,24 +131,19 @@ export default function ServicesPage() {
               </div>
 
               {service.images && (
-                <FadeIn
-                  delay={0.2}
-                  className={`mt-10 grid gap-4 ${service.images.length > 1 ? "sm:grid-cols-2" : ""}`}
-                >
+                <FadeIn delay={0.2} className="mt-10 grid gap-4 sm:grid-cols-2">
                   {service.images.map((image) => (
                     <figure
                       key={image.src}
                       className="overflow-hidden rounded-2xl border border-ink/10 bg-white"
                     >
-                      <div
-                        className={`relative w-full ${service.images!.length > 1 ? "aspect-[3/2]" : "aspect-[16/9]"}`}
-                      >
+                      <div className="relative aspect-[3/2] w-full">
                         <Image
                           src={image.src}
                           alt={image.alt}
                           fill
                           className="object-cover"
-                          sizes={service.images!.length > 1 ? "(min-width: 640px) 50vw, 100vw" : "100vw"}
+                          sizes="(min-width: 640px) 50vw, 100vw"
                         />
                       </div>
                       <figcaption className="px-5 py-3 text-sm font-medium text-ink/60">
