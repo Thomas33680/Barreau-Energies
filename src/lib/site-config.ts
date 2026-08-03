@@ -232,21 +232,21 @@ export const services: Service[] = [
   },
   {
     slug: "entretien-depannage",
-    name: "Entretien et dépannage",
+    name: "Entretien et dépannage de pompes à chaleur, climatisations et chauffe-eau",
     shortName: "Entretien & dépannage",
     color: "amber",
     summary:
       "Entretien, maintenance et dépannage de vos équipements pour garantir leurs performances et leur longévité.",
     description:
-      "Un entretien régulier préserve les performances, la fiabilité et la durée de vie de vos équipements (pompe à chaleur, climatisation, chauffe-eau, adoucisseur). Nous intervenons aussi en dépannage en cas de panne ou de baisse de performance, pour un diagnostic rapide et une remise en service dans les meilleurs délais.",
+      "Un entretien régulier permet de préserver les performances, de réduire les risques de panne et de prolonger la durée de vie de vos équipements. Nous assurons l'entretien et le dépannage de vos pompes à chaleur, climatisations, chauffe-eau thermodynamiques, chauffe-eau électriques et adoucisseurs, avec un diagnostic rapide et des interventions soignées.",
     points: [
       "Contrats d'entretien annuel, toutes marques",
-      "Nettoyage des filtres et contrôle du circuit frigorifique",
+      "Intervention rapide en cas de panne",
       "Diagnostic de panne et dépannage",
       "Suivi et conseils pour préserver vos performances",
     ],
     howItWorks:
-      "Un entretien régulier permet de repérer une baisse de performance ou une anomalie avant qu'elle ne devienne une panne : nettoyage des filtres, contrôle du circuit frigorifique, vérification des pressions et des raccordements. En cas de panne, nous intervenons pour un diagnostic précis et une remise en service rapide de votre installation.",
+      "Lors d'un entretien, nous contrôlons l'état général de votre installation, nettoyons les éléments essentiels, vérifions les performances et détectons les éventuelles anomalies avant qu'elles ne provoquent une panne. En cas de dysfonctionnement, nous réalisons un diagnostic précis afin de remettre votre équipement en service dans les meilleurs délais.",
   },
 ];
 
