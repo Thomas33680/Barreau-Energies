@@ -75,20 +75,15 @@ export default function ServicesPage() {
                   </Button>
 
                   {service.images && service.images.length === 1 && (
-                    <figure className="mt-6 overflow-hidden rounded-2xl border border-ink/10 bg-white">
-                      <div className="relative aspect-[3/2] w-full">
-                        <Image
-                          src={service.images[0].src}
-                          alt={service.images[0].alt}
-                          fill
-                          className="object-cover"
-                          sizes="(min-width: 1024px) 40vw, 100vw"
-                        />
-                      </div>
-                      <figcaption className="px-5 py-3 text-sm font-medium text-ink/60">
-                        {service.images[0].caption}
-                      </figcaption>
-                    </figure>
+                    <div className="relative mt-6 aspect-[3/2] w-full overflow-hidden rounded-2xl border border-ink/10 bg-white">
+                      <Image
+                        src={service.images[0].src}
+                        alt={service.images[0].alt}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 1024px) 40vw, 100vw"
+                      />
+                    </div>
                   )}
                 </FadeIn>
 
@@ -176,23 +171,18 @@ export default function ServicesPage() {
               {service.images && service.images.length > 1 && (
                 <FadeIn delay={0.2} className="mt-10 grid gap-4 sm:grid-cols-2">
                   {service.images.map((image) => (
-                    <figure
+                    <div
                       key={image.src}
-                      className="overflow-hidden rounded-2xl border border-ink/10 bg-white"
+                      className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-ink/10 bg-white"
                     >
-                      <div className="relative aspect-[3/2] w-full">
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          fill
-                          className="object-cover"
-                          sizes="(min-width: 640px) 50vw, 100vw"
-                        />
-                      </div>
-                      <figcaption className="px-5 py-3 text-sm font-medium text-ink/60">
-                        {image.caption}
-                      </figcaption>
-                    </figure>
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 640px) 50vw, 100vw"
+                      />
+                    </div>
                   ))}
                 </FadeIn>
               )}
