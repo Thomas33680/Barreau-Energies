@@ -61,15 +61,15 @@ export const services: Service[] = [
       "Climatisation réversible (chaud/froid), aussi appelée PAC air/air",
       "Mono-split et multi-split",
       "Installation soignée, discrète et durable",
-      "Conseils d'entretien pour préserver la performance",
+      "Pilotage à distance par Wi-Fi",
     ],
     howItWorks:
-      "Une climatisation réversible ne « fabrique » pas la chaleur : elle capte les calories déjà présentes dans l'air extérieur, même par temps froid, et les diffuse directement sous forme d'air chaud (ou frais) dans les pièces via des unités murales. Un même équipement assure donc confort d'hiver et confort d'été, sans avoir besoin d'un second système de chauffage ni de travaux sur un circuit d'eau.",
+      "Une climatisation réversible ne produit pas la chaleur, elle la capte dans l'air extérieur puis la restitue à l'intérieur. Le même équipement chauffe votre logement en hiver et le rafraîchit en été, tout en consommant beaucoup moins d'électricité qu'un chauffage électrique classique.",
     savings:
-      "Utilisée pour le chauffage, une climatisation réversible consomme 3 à 4 fois moins d'électricité qu'un radiateur électrique classique pour produire la même quantité de chaleur (grâce à son COP de 3 à 4). C'est donc un investissement qui s'amortit aussi sur votre facture de chauffage, pas seulement en été.",
+      "Grâce à son rendement élevé, une climatisation réversible peut consommer jusqu'à trois à quatre fois moins d'électricité qu'un radiateur électrique classique pour produire la même quantité de chaleur. Dans de nombreuses situations, l'investissement est compensé progressivement par les économies réalisées sur les factures de chauffage.",
     comparisonFactor: 3.5,
     annualSavingsExample: {
-      reference: "Pour une pièce de 20 m² chauffée tout l'hiver (environ 2 000 kWh de besoin)",
+      reference: "Pour une pièce de 20 m² chauffée avec des radiateurs électriques.",
       classicCost: 500,
       solutionCost: 145,
     },
