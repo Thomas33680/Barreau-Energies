@@ -61,7 +61,7 @@ export const services: Service[] = [
     summary:
       "Rafraîchissement l'été, chauffage économique l'hiver, pour un confort optimal toute l'année.",
     description:
-      "Réversible, notre climatisation capte les calories de l'air extérieur pour chauffer votre intérieur en hiver et inverse simplement son cycle pour rafraîchir en été — c'est la même technologie qu'une pompe à chaleur air/air. Mono-split ou multi-split, nos installations s'adaptent à votre logement ou vos locaux professionnels pour un confort optimal toute l'année.",
+      "Profitez d'un confort optimal toute l'année grâce à une climatisation réversible. Une seule installation vous permet de chauffer efficacement en hiver et de rafraîchir votre intérieur en été, tout en réduisant votre consommation d'énergie. Disponible en version monosplit, multisplit ou gainable, elle s'adapte à tous les types de logements.",
     points: [
       "Chauffage et climatisation toute l'année",
       "Monosplit, multisplit et gainable",
