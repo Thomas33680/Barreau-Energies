@@ -179,6 +179,13 @@ export const services: Service[] = [
       note: "*Estimation selon les hypothèses présentées.",
     },
     savingsLabel: "Chauffe-eau thermodynamique",
+    images: [
+      {
+        src: "/services/eau-chaude-sanitaire.jpg",
+        alt: "Comparaison entre un chauffe-eau électrique classique et un chauffe-eau thermodynamique installés en buanderie",
+        caption: "Chauffe-eau électrique classique et chauffe-eau thermodynamique",
+      },
+    ],
   },
   {
     slug: "traitement-eau",
