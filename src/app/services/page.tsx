@@ -165,7 +165,7 @@ export default function ServicesPage() {
                     reference={service.annualSavingsExample.reference}
                     classicCost={service.annualSavingsExample.classicCost}
                     solutionCost={service.annualSavingsExample.solutionCost}
-                    label={service.shortName}
+                    label={service.savingsLabel ?? service.shortName}
                     color={service.color}
                     description={service.savings}
                     tenYearSavings={service.tenYearSavings}

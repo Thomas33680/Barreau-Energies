@@ -50,6 +50,8 @@ export type Service = {
     headline: string;
     note: string;
   };
+  /** Libellé affiché dans le bloc économies d'énergie à la place de shortName, si le service couvre plusieurs solutions. */
+  savingsLabel?: string;
   useCases?: {
     title: string;
     items: string[];
@@ -163,7 +165,7 @@ export const services: Service[] = [
       "Conseil personnalisé pour bien dimensionner votre équipement",
     ],
     howItWorks:
-      "Le chauffe-eau thermodynamique (ou « ballon thermodynamique ») associe un ballon d'eau chaude classique à une petite pompe à chaleur intégrée, qui capte les calories de l'air ambiant pour chauffer l'eau au lieu d'utiliser une résistance électrique gourmande en énergie. Le chauffe-eau électrique classique, lui, chauffe l'eau grâce à une résistance immergée dans le ballon (blindée ou protégée par un fourreau en stéatite) : plus simple, sans unité extérieure, avec un investissement de départ plus faible.",
+      "Le chauffe-eau thermodynamique (ou « ballon thermodynamique ») associe un ballon d'eau chaude classique à une petite pompe à chaleur intégrée, qui capte les calories de l'air ambiant pour chauffer l'eau au lieu d'utiliser une résistance électrique gourmande en énergie. Le chauffe-eau électrique classique chauffe directement l'eau grâce à une résistance immergée. Plus simple et moins coûteux à l'achat, il reste une excellente solution lorsque le budget est prioritaire ou que le logement ne se prête pas à l'installation d'un chauffe-eau thermodynamique.",
     savings:
       "Grâce à sa pompe à chaleur intégrée, un chauffe-eau thermodynamique consomme environ 3 fois moins d'électricité qu'un chauffe-eau électrique classique à résistance pour produire la même quantité d'eau chaude, soit jusqu'à 70 % d'économies sur ce poste de votre facture.",
     comparisonFactor: 3,
@@ -172,6 +174,11 @@ export const services: Service[] = [
       classicCost: 625,
       solutionCost: 210,
     },
+    tenYearSavings: {
+      headline: "Jusqu'à 4 150 € économisés sur 10 ans*",
+      note: "*Estimation selon les hypothèses présentées.",
+    },
+    savingsLabel: "Chauffe-eau thermodynamique",
   },
   {
     slug: "traitement-eau",
