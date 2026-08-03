@@ -216,6 +216,13 @@ export const services: Service[] = [
     ],
     howItWorks:
       "L'adoucisseur retient le calcaire naturellement présent dans l'eau grâce à une résine échangeuse d'ions. L'eau distribuée dans toute la maison est ainsi adoucie, ce qui limite fortement les dépôts de tartre dans les canalisations, les robinets, le chauffe-eau, la pompe à chaleur et les appareils ménagers.",
+    images: [
+      {
+        src: "/services/traitement-eau.jpg",
+        alt: "Adoucisseur d'eau installé en buanderie, à côté du ballon d'eau chaude",
+        caption: "Adoucisseur d'eau",
+      },
+    ],
     benefits: {
       title: "Les bénéfices d'une eau adoucie",
       items: [
