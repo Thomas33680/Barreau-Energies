@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Check, ArrowRight, Lightbulb } from "lucide-react";
+import { Check, ArrowRight, Lightbulb, Search } from "lucide-react";
 import { Flame, Snowflake, Droplets, Filter, Wrench, LucideIcon } from "lucide-react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
@@ -130,6 +130,29 @@ export default function ServicesPage() {
                 </FadeIn>
               </div>
 
+              {service.benefits && (
+                <FadeIn delay={0.2} className="mt-10">
+                  <h3 className="text-center text-lg font-bold text-ink sm:text-xl">
+                    {service.benefits.title}
+                  </h3>
+                  <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
+                    {service.benefits.items.map((item) => (
+                      <div
+                        key={item.label}
+                        className="flex flex-col items-center gap-2 rounded-2xl border border-ink/10 bg-white p-5 text-center"
+                      >
+                        <span className="text-3xl" aria-hidden="true">
+                          {item.emoji}
+                        </span>
+                        <span className="text-sm font-medium text-ink/75">
+                          {item.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </FadeIn>
+              )}
+
               {service.images && (
                 <FadeIn delay={0.2} className="mt-10 grid gap-4 sm:grid-cols-2">
                   {service.images.map((image) => (
@@ -165,6 +188,22 @@ export default function ServicesPage() {
                     description={service.savings}
                     tenYearSavings={service.tenYearSavings}
                   />
+                </FadeIn>
+              )}
+
+              {service.calloutCard && (
+                <FadeIn delay={0.2} className="mt-10">
+                  <div className="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm sm:p-8">
+                    <div className="flex items-center gap-2">
+                      <Search size={20} className={colors.text} aria-hidden="true" />
+                      <h3 className="text-sm font-bold uppercase tracking-wide text-ink">
+                        {service.calloutCard.title}
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed text-ink/70">
+                      {service.calloutCard.description}
+                    </p>
+                  </div>
                 </FadeIn>
               )}
             </Container>

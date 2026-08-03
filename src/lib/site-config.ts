@@ -56,6 +56,15 @@ export type Service = {
     title: string;
     items: string[];
   };
+  benefits?: {
+    title: string;
+    items: { emoji: string; label: string }[];
+  };
+  /** Encart mis en avant de la même façon que le bloc économies d'énergie, pour un message qui n'est pas chiffré. */
+  calloutCard?: {
+    title: string;
+    description: string;
+  };
   images?: {
     src: string;
     alt: string;
@@ -195,7 +204,7 @@ export const services: Service[] = [
     summary:
       "Adoucisseurs d'eau pour protéger vos installations et améliorer votre confort au quotidien.",
     description:
-      "Notre secteur est concerné par une eau particulièrement calcaire. Nous installons des adoucisseurs d'eau pour préserver la durée de vie de vos équipements (chauffe-eau, pompe à chaleur, robinetterie, électroménager), réduire votre consommation de produits d'entretien et améliorer votre confort au quotidien.",
+      "En Sarthe, l'eau est particulièrement calcaire. À long terme, le tartre encrasse les chauffe-eau, les pompes à chaleur, les robinetteries et les appareils électroménagers. L'installation d'un adoucisseur protège durablement vos équipements, améliore votre confort au quotidien et contribue à réduire les coûts d'entretien et de remplacement.",
     points: [
       "Diagnostic de la dureté de votre eau",
       "Adoucisseurs à résine, dimensionnés selon votre consommation",
@@ -203,7 +212,23 @@ export const services: Service[] = [
       "Mise en service et suivi de l'entretien (sel, régénération)",
     ],
     howItWorks:
-      "Un adoucisseur capte le calcium et le magnésium responsables de la dureté de l'eau grâce à une résine échangeuse d'ions, et les remplace par des ions sodium. L'eau distribuée dans votre logement est ainsi débarrassée du calcaire, ce qui protège durablement vos canalisations et tous les appareils utilisant de l'eau chaude.",
+      "L'adoucisseur retient le calcaire naturellement présent dans l'eau grâce à une résine échangeuse d'ions. L'eau distribuée dans toute la maison est ainsi adoucie, ce qui limite fortement les dépôts de tartre dans les canalisations, les robinets, le chauffe-eau, la pompe à chaleur et les appareils ménagers.",
+    benefits: {
+      title: "Les bénéfices d'une eau adoucie",
+      items: [
+        { emoji: "🚿", label: "Douche plus agréable" },
+        { emoji: "🧼", label: "Moins de produits ménagers" },
+        { emoji: "🚰", label: "Robinetterie sans traces de calcaire" },
+        { emoji: "🔥", label: "Chauffe-eau mieux protégé" },
+        { emoji: "❄️", label: "Pompe à chaleur protégée" },
+        { emoji: "👕", label: "Linge plus doux" },
+      ],
+    },
+    calloutCard: {
+      title: "Diagnostic gratuit",
+      description:
+        "Nous réalisons gratuitement un diagnostic de la dureté de votre eau afin de déterminer si un adoucisseur est réellement utile dans votre logement.",
+    },
   },
   {
     slug: "entretien-depannage",
