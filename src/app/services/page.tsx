@@ -31,6 +31,14 @@ const colorClasses: Record<Service["color"], { bg: string; text: string }> = {
   amber: { bg: "bg-brand-amber/10", text: "text-brand-amber" },
 };
 
+const dotClasses: Record<Service["color"], string> = {
+  blue: "bg-brand-blue",
+  green: "bg-brand-green",
+  orange: "bg-brand-orange",
+  teal: "bg-brand-teal",
+  amber: "bg-brand-amber",
+};
+
 export default function ServicesPage() {
   return (
     <>
@@ -45,6 +53,29 @@ export default function ServicesPage() {
         </Container>
       </section>
 
+      <nav
+        aria-label="Navigation des services"
+        className="sticky top-20 z-40 border-b border-ink/10 bg-white/95 backdrop-blur"
+      >
+        <Container>
+          <div className="flex flex-wrap justify-center gap-2 py-3">
+            {services.map((service) => (
+              <a
+                key={service.slug}
+                href={`#${service.slug}`}
+                className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-ink/[0.03] px-4 py-2 text-sm font-medium text-ink/70 transition-colors hover:bg-ink/[0.06] hover:text-ink"
+              >
+                <span
+                  className={`h-2 w-2 shrink-0 rounded-full ${dotClasses[service.color]}`}
+                  aria-hidden="true"
+                />
+                {service.shortName}
+              </a>
+            ))}
+          </div>
+        </Container>
+      </nav>
+
       {services.map((service, index) => {
         const Icon = icons[service.slug];
         const colors = colorClasses[service.color];
@@ -53,7 +84,7 @@ export default function ServicesPage() {
           <section
             key={service.slug}
             id={service.slug}
-            className={`scroll-mt-20 py-20 ${index % 2 === 1 ? "bg-ink/[0.02]" : "bg-white"}`}
+            className={`scroll-mt-36 py-20 ${index % 2 === 1 ? "bg-ink/[0.02]" : "bg-white"}`}
           >
             <Container>
               <div className="grid items-start gap-10 lg:grid-cols-[1fr_1.2fr]">
