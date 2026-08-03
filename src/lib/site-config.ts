@@ -257,6 +257,13 @@ export const services: Service[] = [
     ],
     howItWorks:
       "Lors d'un entretien, nous contrôlons l'état général de votre installation, nettoyons les éléments essentiels, vérifions les performances et détectons les éventuelles anomalies avant qu'elles ne provoquent une panne. En cas de dysfonctionnement, nous réalisons un diagnostic précis afin de remettre votre équipement en service dans les meilleurs délais.",
+    images: [
+      {
+        src: "/services/entretien-depannage.jpg",
+        alt: "Technicien Barreau Énergies en intervention d'entretien sur une pompe à chaleur",
+        caption: "Entretien par nos techniciens",
+      },
+    ],
     checklistCards: [
       {
         title: "Nous entretenons",
