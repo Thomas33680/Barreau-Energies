@@ -139,6 +139,13 @@ export const services: Service[] = [
       headline: "Plus de 21 000 € d'économies sur 10 ans*",
       note: "*Estimation selon les hypothèses présentées.",
     },
+    images: [
+      {
+        src: "/services/pompe-a-chaleur-air-eau.jpg",
+        alt: "Unité extérieure de pompe à chaleur air/eau et ballon tampon installé en intérieur",
+        caption: "Pompe à chaleur air/eau",
+      },
+    ],
   },
   {
     slug: "eau-chaude-sanitaire",
