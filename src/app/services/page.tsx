@@ -73,6 +73,23 @@ export default function ServicesPage() {
                     Demander un devis
                     <ArrowRight size={16} aria-hidden="true" />
                   </Button>
+
+                  {service.images && service.images.length === 1 && (
+                    <figure className="mt-6 overflow-hidden rounded-2xl border border-ink/10 bg-white">
+                      <div className="relative aspect-[3/2] w-full">
+                        <Image
+                          src={service.images[0].src}
+                          alt={service.images[0].alt}
+                          fill
+                          className="object-cover"
+                          sizes="(min-width: 1024px) 40vw, 100vw"
+                        />
+                      </div>
+                      <figcaption className="px-5 py-3 text-sm font-medium text-ink/60">
+                        {service.images[0].caption}
+                      </figcaption>
+                    </figure>
+                  )}
                 </FadeIn>
 
                 <FadeIn delay={0.15} className="flex flex-col gap-6">
@@ -153,7 +170,7 @@ export default function ServicesPage() {
                 </FadeIn>
               )}
 
-              {service.images && (
+              {service.images && service.images.length > 1 && (
                 <FadeIn delay={0.2} className="mt-10 grid gap-4 sm:grid-cols-2">
                   {service.images.map((image) => (
                     <figure
