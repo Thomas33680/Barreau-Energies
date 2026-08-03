@@ -204,7 +204,7 @@ export const services: Service[] = [
     summary:
       "Adoucisseurs d'eau pour protéger vos installations et améliorer votre confort au quotidien.",
     description:
-      "En Sarthe, l'eau est particulièrement calcaire. À long terme, le tartre encrasse les chauffe-eau, les pompes à chaleur, les robinetteries et les appareils électroménagers. L'installation d'un adoucisseur protège durablement vos équipements, améliore votre confort au quotidien et contribue à réduire les coûts d'entretien et de remplacement.",
+      "En Sarthe, l'eau est particulièrement calcaire. À long terme, le tartre encrasse les chauffe-eau, les pompes à chaleur, les robinetteries et les appareils électroménagers. L'installation d'un adoucisseur protège durablement vos équipements, réduit les dépôts de calcaire, améliore le confort au quotidien avec une eau plus douce pour la peau, les cheveux et le linge, tout en contribuant à limiter les coûts d'entretien et de remplacement.",
     points: [
       "Diagnostic de la dureté de votre eau",
       "Adoucisseurs à résine, dimensionnés selon votre consommation",
