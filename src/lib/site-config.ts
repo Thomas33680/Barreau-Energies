@@ -52,10 +52,11 @@ export type Service = {
   };
   /** Libellé affiché dans le bloc économies d'énergie à la place de shortName, si le service couvre plusieurs solutions. */
   savingsLabel?: string;
-  useCases?: {
+  /** Encarts checklist additionnels (ex : "Dans quels cas choisir...", "Nous entretenons", "Pourquoi entretenir..."). */
+  checklistCards?: {
     title: string;
     items: string[];
-  };
+  }[];
   benefits?: {
     title: string;
     items: { emoji: string; label: string }[];
@@ -128,16 +129,18 @@ export const services: Service[] = [
     ],
     howItWorks:
       "Une pompe à chaleur air/eau capte les calories présentes dans l'air extérieur et les transmet à l'eau qui alimente vos radiateurs ou votre plancher chauffant. Avec un seul équipement, vous chauffez votre logement et, selon le modèle choisi, produisez également votre eau chaude sanitaire.",
-    useCases: {
-      title: "Dans quels cas choisir une PAC air/eau ?",
-      items: [
-        "Vous remplacez une chaudière fioul.",
-        "Vous remplacez une chaudière gaz.",
-        "Vous possédez un plancher chauffant.",
-        "Vous avez des radiateurs à eau.",
-        "Vous souhaitez produire également votre eau chaude sanitaire.",
-      ],
-    },
+    checklistCards: [
+      {
+        title: "Dans quels cas choisir une PAC air/eau ?",
+        items: [
+          "Vous remplacez une chaudière fioul.",
+          "Vous remplacez une chaudière gaz.",
+          "Vous possédez un plancher chauffant.",
+          "Vous avez des radiateurs à eau.",
+          "Vous souhaitez produire également votre eau chaude sanitaire.",
+        ],
+      },
+    ],
     savings:
       "Grâce à son excellent rendement, une pompe à chaleur air/eau restitue généralement trois à quatre fois plus d'énergie qu'elle n'en consomme. À confort égal, elle peut réduire fortement votre facture de chauffage par rapport à un système électrique classique.",
     comparisonFactor: 3.5,
@@ -247,6 +250,28 @@ export const services: Service[] = [
     ],
     howItWorks:
       "Lors d'un entretien, nous contrôlons l'état général de votre installation, nettoyons les éléments essentiels, vérifions les performances et détectons les éventuelles anomalies avant qu'elles ne provoquent une panne. En cas de dysfonctionnement, nous réalisons un diagnostic précis afin de remettre votre équipement en service dans les meilleurs délais.",
+    checklistCards: [
+      {
+        title: "Nous entretenons",
+        items: [
+          "Climatisation réversible",
+          "Pompe à chaleur air/eau",
+          "Chauffe-eau thermodynamique",
+          "Chauffe-eau électrique",
+          "Adoucisseur",
+        ],
+      },
+      {
+        title: "Pourquoi entretenir son installation ?",
+        items: [
+          "Préserver les performances",
+          "Réduire la consommation",
+          "Limiter les risques de panne",
+          "Prolonger la durée de vie",
+          "Conserver un confort optimal",
+        ],
+      },
+    ],
   },
 ];
 

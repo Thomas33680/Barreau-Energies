@@ -123,13 +123,16 @@ export default function ServicesPage() {
                     </p>
                   </div>
 
-                  {service.useCases && (
-                    <div className="rounded-2xl border border-ink/10 bg-white p-6">
+                  {service.checklistCards?.map((card) => (
+                    <div
+                      key={card.title}
+                      className="rounded-2xl border border-ink/10 bg-white p-6"
+                    >
                       <h3 className="text-sm font-bold uppercase tracking-wide text-ink">
-                        {service.useCases.title}
+                        {card.title}
                       </h3>
                       <ul className="mt-3 flex flex-col gap-2.5">
-                        {service.useCases.items.map((item) => (
+                        {card.items.map((item) => (
                           <li key={item} className="flex items-start gap-2.5">
                             <Check
                               size={16}
@@ -143,7 +146,7 @@ export default function ServicesPage() {
                         ))}
                       </ul>
                     </div>
-                  )}
+                  ))}
                 </FadeIn>
               </div>
 
