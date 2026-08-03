@@ -45,6 +45,11 @@ export type Service = {
     classicCost: number;
     solutionCost: number;
   };
+  images?: {
+    src: string;
+    alt: string;
+    caption: string;
+  }[];
 };
 
 export const services: Service[] = [
@@ -73,6 +78,18 @@ export const services: Service[] = [
       classicCost: 500,
       solutionCost: 145,
     },
+    images: [
+      {
+        src: "/services/climatisation-reversible-monosplit.jpg",
+        alt: "Unité murale de climatisation réversible mono-split installée dans un salon",
+        caption: "Mono-split",
+      },
+      {
+        src: "/services/climatisation-reversible-gainable.jpg",
+        alt: "Système de climatisation réversible gainable, diffusion d'air par grilles au plafond",
+        caption: "Gainable",
+      },
+    ],
   },
   {
     slug: "pompe-a-chaleur-air-eau",
