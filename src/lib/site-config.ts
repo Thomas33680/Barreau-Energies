@@ -63,9 +63,9 @@ export const services: Service[] = [
     description:
       "Réversible, notre climatisation capte les calories de l'air extérieur pour chauffer votre intérieur en hiver et inverse simplement son cycle pour rafraîchir en été — c'est la même technologie qu'une pompe à chaleur air/air. Mono-split ou multi-split, nos installations s'adaptent à votre logement ou vos locaux professionnels pour un confort optimal toute l'année.",
     points: [
-      "Climatisation réversible (chaud/froid), aussi appelée PAC air/air",
-      "Mono-split et multi-split",
-      "Installation soignée, discrète et durable",
+      "Chauffage et climatisation toute l'année",
+      "Monosplit, multisplit et gainable",
+      "Installation soignée et garantie",
       "Pilotage à distance par Wi-Fi",
     ],
     howItWorks:
