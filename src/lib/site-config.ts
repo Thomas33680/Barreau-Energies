@@ -45,6 +45,15 @@ export type Service = {
     classicCost: number;
     solutionCost: number;
   };
+  /** Grand chiffre mis en avant dans le bloc économies d'énergie, avec sa note de bas de page. */
+  tenYearSavings?: {
+    headline: string;
+    note: string;
+  };
+  useCases?: {
+    title: string;
+    items: string[];
+  };
   images?: {
     src: string;
     alt: string;
@@ -99,22 +108,36 @@ export const services: Service[] = [
     summary:
       "Remplacez votre chaudière fioul, gaz ou électrique par une pompe à chaleur performante pour réduire votre consommation d'énergie.",
     description:
-      "Nous étudions votre logement pour dimensionner et installer la pompe à chaleur air/eau la plus adaptée à vos besoins : elle chauffe l'eau qui circule dans vos radiateurs ou votre plancher chauffant, et peut aussi produire votre eau chaude sanitaire. Confort thermique toute l'année, baisse de la facture énergétique et solution durable pour l'environnement.",
+      "La pompe à chaleur air/eau remplace efficacement une chaudière fioul, gaz ou électrique tout en conservant vos radiateurs ou votre plancher chauffant. Elle assure le chauffage de votre logement et peut également produire votre eau chaude sanitaire, tout en réduisant significativement votre consommation d'énergie. Chaque installation est dimensionnée sur mesure selon les caractéristiques de votre habitation.",
     points: [
       "Étude thermique et dimensionnement sur mesure",
       "Remplacement de chaudière fioul ou gaz",
-      "Matériel de qualité, marques reconnues",
+      "Compatible radiateurs et plancher chauffant",
       "Mise en service et suivi après installation",
     ],
     howItWorks:
-      "Une pompe à chaleur air/eau ne « fabrique » pas la chaleur : elle capte les calories déjà présentes dans l'air extérieur, même par temps froid, et les concentre pour chauffer l'eau qui circule dans vos radiateurs ou votre plancher chauffant. Elle peut aussi produire votre eau chaude sanitaire : c'est la solution la plus adaptée pour remplacer une chaudière fioul ou gaz.",
+      "Une pompe à chaleur air/eau capte les calories présentes dans l'air extérieur et les transmet à l'eau qui alimente vos radiateurs ou votre plancher chauffant. Avec un seul équipement, vous chauffez votre logement et, selon le modèle choisi, produisez également votre eau chaude sanitaire.",
+    useCases: {
+      title: "Dans quels cas choisir une PAC air/eau ?",
+      items: [
+        "Vous remplacez une chaudière fioul.",
+        "Vous remplacez une chaudière gaz.",
+        "Vous possédez un plancher chauffant.",
+        "Vous avez des radiateurs à eau.",
+        "Vous souhaitez produire également votre eau chaude sanitaire.",
+      ],
+    },
     savings:
-      "Une pompe à chaleur air/eau restitue en moyenne 3 à 4 kWh de chaleur pour seulement 1 kWh d'électricité consommé (ce rapport s'appelle le COP, coefficient de performance). Concrètement, à confort égal, elle consomme donc 3 à 4 fois moins d'énergie qu'un chauffage électrique classique (convecteurs), ce qui se traduit par une baisse significative et durable de votre facture de chauffage.",
+      "Grâce à son excellent rendement, une pompe à chaleur air/eau restitue généralement trois à quatre fois plus d'énergie qu'elle n'en consomme. À confort égal, elle peut réduire fortement votre facture de chauffage par rapport à un système électrique classique.",
     comparisonFactor: 3.5,
     annualSavingsExample: {
       reference: "Pour un logement de 100 m² chauffé à l'année (environ 12 000 kWh de besoin)",
       classicCost: 3000,
       solutionCost: 860,
+    },
+    tenYearSavings: {
+      headline: "Plus de 21 000 € d'économies sur 10 ans*",
+      note: "*Estimation selon les hypothèses présentées.",
     },
   },
   {

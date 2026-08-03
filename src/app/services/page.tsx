@@ -105,6 +105,28 @@ export default function ServicesPage() {
                       {service.howItWorks}
                     </p>
                   </div>
+
+                  {service.useCases && (
+                    <div className="rounded-2xl border border-ink/10 bg-white p-6">
+                      <h3 className="text-sm font-bold uppercase tracking-wide text-ink">
+                        {service.useCases.title}
+                      </h3>
+                      <ul className="mt-3 flex flex-col gap-2.5">
+                        {service.useCases.items.map((item) => (
+                          <li key={item} className="flex items-start gap-2.5">
+                            <Check
+                              size={16}
+                              className={`mt-0.5 shrink-0 ${colors.text}`}
+                              aria-hidden="true"
+                            />
+                            <span className="text-sm leading-relaxed text-ink/75">
+                              {item}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </FadeIn>
               </div>
 
@@ -141,6 +163,7 @@ export default function ServicesPage() {
                     label={service.shortName}
                     color={service.color}
                     description={service.savings}
+                    tenYearSavings={service.tenYearSavings}
                   />
                 </FadeIn>
               )}

@@ -19,6 +19,7 @@ export function EnergySavingsVisual({
   label,
   color,
   description,
+  tenYearSavings,
 }: {
   reference: string;
   classicCost: number;
@@ -26,6 +27,7 @@ export function EnergySavingsVisual({
   label: string;
   color: Service["color"];
   description: string;
+  tenYearSavings?: { headline: string; note: string };
 }) {
   const colors = colorMap[color];
   const savedAmount = classicCost - solutionCost;
@@ -44,6 +46,15 @@ export function EnergySavingsVisual({
         </h3>
       </div>
       <p className="mt-1.5 text-xs text-ink/50">{reference}</p>
+
+      {tenYearSavings && (
+        <div className={`mt-5 rounded-2xl px-5 py-4 text-center ${colors.bg}`}>
+          <p className={`text-2xl font-extrabold sm:text-3xl ${colors.text}`}>
+            {tenYearSavings.headline}
+          </p>
+          <p className="mt-1 text-xs text-ink/45">{tenYearSavings.note}</p>
+        </div>
+      )}
 
       <div className="mt-6 grid items-center gap-3 sm:grid-cols-[1fr_auto_1fr]">
         <div className="rounded-2xl border border-ink/10 bg-ink/[0.02] p-5 text-center">
