@@ -60,7 +60,7 @@ export default function BarreauEnergiesChat() {
     {
       role: "assistant",
       content:
-        "Bonjour, je suis l'assistant Barreau Énergies. PAC, climatisation, chauffage, plomberie ou dépannage — comment puis-je vous aider ?",
+        "Bienvenue chez Barreau Energies ! Besoin d'un devis, d'un dépannage ou d'un conseil ? Je vous aide à trouver rapidement la solution adaptée à votre besoin.",
     },
   ]);
   const [input, setInput] = useState("");
