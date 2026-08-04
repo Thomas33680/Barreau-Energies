@@ -213,10 +213,28 @@ export default function BarreauEnergiesChat() {
           from { opacity: 0; transform: translateY(16px) scale(0.98); }
           to { opacity: 1; transform: translateY(0) scale(1); }
         }
+        @keyframes be-launcher-pulse {
+          0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+          100% { transform: translate(-50%, -50%) scale(1.7); opacity: 0; }
+        }
         .be-scroll::-webkit-scrollbar { width: 6px; }
         .be-scroll::-webkit-scrollbar-thumb { background: ${COLORS.border}; border-radius: 4px; }
         .be-chip:hover { border-color: ${COLORS.copper} !important; color: ${COLORS.copperSoft} !important; }
-        .be-launcher:hover { transform: scale(1.05); }
+        .be-launcher { position: relative; }
+        .be-launcher::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background: linear-gradient(135deg, ${COLORS.copper}, ${COLORS.teal});
+          transform: translate(-50%, -50%) scale(1);
+          z-index: -1;
+          animation: be-launcher-pulse 2.2s ease-out infinite;
+        }
+        .be-launcher:hover { transform: scale(1.06); }
         .be-send:hover { opacity: 0.85; }
         .be-input:focus { outline: none; border-color: ${COLORS.teal} !important; }
         .be-lead-btn:hover { background: ${COLORS.surfaceLight} !important; }
@@ -237,8 +255,8 @@ export default function BarreauEnergiesChat() {
           className="be-launcher be-launcher-pos"
           onClick={() => setIsOpen(true)}
           style={{
-            width: 60,
-            height: 60,
+            width: 72,
+            height: 72,
             borderRadius: "50%",
             border: "none",
             cursor: "pointer",
@@ -246,13 +264,13 @@ export default function BarreauEnergiesChat() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
+            boxShadow: `0 10px 32px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.08), 0 6px 20px ${COLORS.copper}66`,
             transition: "transform 0.2s ease",
             zIndex: 45,
           }}
           aria-label="Ouvrir le chat"
         >
-          <MessageCircle size={24} color="#10151A" strokeWidth={2.2} />
+          <MessageCircle size={30} color="#10151A" strokeWidth={2.2} />
         </button>
       )}
 
