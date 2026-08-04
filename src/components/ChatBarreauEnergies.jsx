@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Loader2, Flame, Snowflake, Phone, CheckCircle2 } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, Flame, Snowflake, Phone, Mail, CheckCircle2 } from "lucide-react";
 
 const FONTS = `
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
@@ -24,6 +24,7 @@ const COLORS = {
 // Le chatbot le communiquera spontanément en cas d'urgence.
 const PHONE_DISPLAY = "06 12 99 62 03";
 const PHONE_TEL = "+33612996203";
+const EMAIL_DISPLAY = "barreauenergies@gmail.com";
 
 // Endpoint Formspree — reçoit les demandes qualifiées par email.
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xzeppkyg";
@@ -343,6 +344,21 @@ export default function BarreauEnergiesChat() {
                 }}
               >
                 <Phone size={12} /> {PHONE_DISPLAY}
+              </a>
+              <a
+                href={`mailto:${EMAIL_DISPLAY}`}
+                title={`Écrire à ${EMAIL_DISPLAY}`}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "6px",
+                  borderRadius: 8,
+                  border: `1px solid ${COLORS.border}`,
+                  color: COLORS.tealSoft,
+                  textDecoration: "none",
+                }}
+              >
+                <Mail size={14} />
               </a>
               <button
                 onClick={() => setIsOpen(false)}

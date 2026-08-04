@@ -9,6 +9,7 @@ export const runtime = "edge";
 // Mets ce texte à jour dès que les certifications PAC sont obtenues.
 // ---------------------------------------------------------------------------
 const PHONE_DISPLAY = "06 12 99 62 03";
+const EMAIL_DISPLAY = "barreauenergies@gmail.com";
 
 const FAQ_CONTEXT = `
 CONNAISSANCE DE RÉFÉRENCE — BARREAU ÉNERGIES
@@ -41,6 +42,8 @@ ASSURANCE : contrat AXERIA IARD via APRIL Partenaires, incluant Responsabilité 
 AIDES FINANCIÈRES : MaPrimeRénov' et CEE existent pour les PAC, montants variables selon les revenus, la nature des travaux et le recours à une entreprise certifiée RGE. Ne jamais annoncer de montant ni garantir l'éligibilité.
 
 TÉLÉPHONE : ${PHONE_DISPLAY}. Ce numéro est public et affiché sur le site. En cas d'urgence avérée, communique-le spontanément et invite le visiteur à appeler directement plutôt qu'à attendre un rappel. Pour une demande non urgente, privilégie le formulaire de rappel.
+
+EMAIL : ${EMAIL_DISPLAY}. Adresse publique de l'entreprise. Propose-la comme alternative au formulaire de rappel si le visiteur préfère écrire par email (par exemple pour joindre des photos ou un document), ou s'il demande explicitement un moyen de contact autre que le téléphone.
 
 SÉCURITÉ GAZ : en cas d'odeur de gaz, indiquer immédiatement au visiteur de couper l'arrivée, d'aérer, de ne manipuler aucun interrupteur et d'appeler le numéro d'urgence gaz 0800 47 33 33 avant toute autre démarche.
 `;
