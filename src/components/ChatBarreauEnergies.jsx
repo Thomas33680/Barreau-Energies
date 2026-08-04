@@ -29,10 +29,12 @@ const PHONE_TEL = "+33612996203";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xzeppkyg";
 
 const SUGGESTIONS = [
-  "Dépannage plomberie",
-  "Dépannage en urgence",
-  "Zone d'intervention",
-  "Entretien chaudière",
+  "📝 Obtenir un devis",
+  "🌡️ Pompe à chaleur / climatisation",
+  "💧 Adoucisseur",
+  "🚨 Dépannage urgent",
+  "📍 Zone d'intervention",
+  "💶 Combien coûte mon projet ?",
 ];
 
 function TypingDots() {
