@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyCallBar } from "@/components/StickyCallBar";
 import { MotionProvider } from "@/components/motion/MotionProvider";
+import ChatBarreauEnergies from "@/components/ChatBarreauEnergies";
 import { siteConfig } from "@/lib/site-config";
 
 const montserrat = Montserrat({
@@ -48,6 +49,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
           <StickyCallBar />
+          <ChatBarreauEnergies />
         </MotionProvider>
       </body>
     </html>
