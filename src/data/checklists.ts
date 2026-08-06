@@ -1,6 +1,6 @@
 import type { ChecklistSection, InstallationType } from '../types'
 
-const PRIORITE_FIELD_ID = 'priorite_client'
+const GAMME_FIELD_ID = 'gamme_souhaitee'
 
 const electriciteSection: ChecklistSection = {
   id: 'electricite',
@@ -31,7 +31,6 @@ const electriciteSection: ChecklistSection = {
       id: 'ligne_dediee_a_creer',
       label: 'Une ligne électrique dédiée est à créer',
       type: 'boolean',
-      helpText: 'Coché automatiquement en option du devis si oui',
     },
   ],
 }
@@ -47,39 +46,18 @@ const accesSection: ChecklistSection = {
   ],
 }
 
-const prioriteField = {
-  id: PRIORITE_FIELD_ID,
-  label: 'Priorité exprimée par le client',
+const gammeField = {
+  id: GAMME_FIELD_ID,
+  label: 'Gamme de matériel souhaitée',
   type: 'select' as const,
   required: true,
   options: [
-    { value: 'prix', label: 'Budget serré / prix avant tout' },
-    { value: 'equilibre', label: 'Bon équilibre prix / qualité' },
-    { value: 'qualite', label: 'Qualité / performance avant tout' },
+    { value: 'entree', label: 'Entrée de gamme' },
+    { value: 'milieu', label: 'Milieu de gamme' },
+    { value: 'haut', label: 'Haut de gamme' },
   ],
   helpText: 'Utilisé pour orienter la recommandation de matériel',
 }
-
-const aidesFields = [
-  {
-    id: 'nb_personnes_foyer',
-    label: 'Nombre de personnes dans le foyer fiscal',
-    type: 'number' as const,
-    helpText: "Utilisé pour estimer les aides (MaPrimeRénov', CEE)",
-  },
-  {
-    id: 'rfr_foyer',
-    label: 'Revenu fiscal de référence (RFR) annuel',
-    type: 'number' as const,
-    unit: '€',
-    helpText: "Voir avis d'imposition du client — sert uniquement à estimer les aides",
-  },
-  {
-    id: 'zone_ile_de_france',
-    label: 'Logement en Île-de-France',
-    type: 'boolean' as const,
-  },
-]
 
 const CHECKLISTS: Record<InstallationType, ChecklistSection[]> = {
   'pac-air-eau': [
@@ -172,7 +150,7 @@ const CHECKLISTS: Record<InstallationType, ChecklistSection[]> = {
     {
       id: 'synthese',
       title: 'Synthèse visite',
-      fields: [...aidesFields, prioriteField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
+      fields: [gammeField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
     },
   ],
   'pac-air-air': [
@@ -251,7 +229,7 @@ const CHECKLISTS: Record<InstallationType, ChecklistSection[]> = {
     {
       id: 'synthese',
       title: 'Synthèse visite',
-      fields: [prioriteField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
+      fields: [gammeField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
     },
   ],
   'chauffe-eau-thermo': [
@@ -291,7 +269,7 @@ const CHECKLISTS: Record<InstallationType, ChecklistSection[]> = {
       fields: [
         { id: 'evacuation_condensats', label: 'Évacuation des condensats possible à proximité', type: 'boolean' },
         { id: 'arrivee_eau', label: "Arrivée/départ d'eau à proximité", type: 'boolean' },
-        { id: 'eau_dure', label: "Eau dure / entartrage connu sur le secteur", type: 'boolean', helpText: 'Oriente vers une proposition d\'adoucisseur BWT en option' },
+        { id: 'eau_dure', label: "Eau dure / entartrage connu sur le secteur", type: 'boolean', helpText: 'Pense à évoquer un adoucisseur avec le client' },
       ],
     },
     electriciteSection,
@@ -299,7 +277,7 @@ const CHECKLISTS: Record<InstallationType, ChecklistSection[]> = {
     {
       id: 'synthese',
       title: 'Synthèse visite',
-      fields: [...aidesFields, prioriteField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
+      fields: [gammeField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
     },
   ],
   adoucisseur: [
@@ -368,7 +346,7 @@ const CHECKLISTS: Record<InstallationType, ChecklistSection[]> = {
     {
       id: 'synthese',
       title: 'Synthèse visite',
-      fields: [prioriteField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
+      fields: [gammeField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
     },
   ],
 }

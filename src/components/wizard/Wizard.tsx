@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { ChecklistAnswers, ClientInfo, CompanyInfo, DevisSettings, InstallationType, ProductTier, Visit, VisitPhoto } from '../../types'
+import type { ChecklistAnswers, ClientInfo, InstallationType, ProductTier, Visit, VisitPhoto } from '../../types'
 import { upsertVisit, createVisitId } from '../../lib/storage'
 import { compressImage, deletePhotoBlob, storePhotoBlob } from '../../lib/photoStore'
 import type { KnownClient } from '../../lib/clients'
@@ -7,22 +7,18 @@ import { StepInstallationType } from './StepInstallationType'
 import { StepClientInfo } from './StepClientInfo'
 import { StepChecklist } from './StepChecklist'
 import { StepRecommendation } from './StepRecommendation'
-import { StepDevis } from './StepDevis'
 import { StepIndicator } from '../ui/StepIndicator'
 import { PhotoManager } from './PhotoManager'
 
-const STEP_LABELS = ['Type', 'Client', 'Check-list', 'Matériel', 'Devis']
+const STEP_LABELS = ['Type', 'Client', 'Check-list', 'Matériel']
 
 interface Props {
   initialVisit: Visit
-  settings: DevisSettings
-  company: CompanyInfo
   knownClients: KnownClient[]
-  onUpdateSettings: (patch: Partial<DevisSettings>) => void
   onExit: () => void
 }
 
-export function Wizard({ initialVisit, settings, company, knownClients, onUpdateSettings, onExit }: Props) {
+export function Wizard({ initialVisit, knownClients, onExit }: Props) {
   const [visit, setVisit] = useState<Visit>(initialVisit)
   const [showPhotos, setShowPhotos] = useState(false)
 
@@ -48,14 +44,14 @@ export function Wizard({ initialVisit, settings, company, knownClients, onUpdate
 
   function selectInstallationType(type: InstallationType) {
     if (type !== visit.installationType) {
-      updateVisit({ installationType: type, answers: {}, selectedTier: null, selectedBrandId: null, materielPrice: null, laborHours: null, selectedOptionIds: [], optionQuantities: {}, customOptions: [], step: 1 })
+      updateVisit({ installationType: type, answers: {}, selectedTier: null, selectedBrandId: null, step: 1 })
     } else {
       goToStep(1)
     }
   }
 
   function selectTier(tier: ProductTier) {
-    updateVisit({ selectedTier: tier, materielPrice: null })
+    updateVisit({ selectedTier: tier })
   }
 
   function selectBrand(brandId: string | null) {
@@ -90,7 +86,7 @@ export function Wizard({ initialVisit, settings, company, knownClients, onUpdate
     onExit()
   }
 
-  function saveAndExit() {
+  function finishVisit() {
     persist({ status: 'termine' })
     onExit()
   }
@@ -145,19 +141,7 @@ export function Wizard({ initialVisit, settings, company, knownClients, onUpdate
             onSelectTier={selectTier}
             onSelectBrand={selectBrand}
             onBack={() => goToStep(2)}
-            onContinue={() => goToStep(4)}
-          />
-        )}
-
-        {visit.step === 4 && visit.installationType && (
-          <StepDevis
-            visit={visit}
-            settings={settings}
-            company={company}
-            onUpdateVisit={updateVisit}
-            onUpdateSettings={onUpdateSettings}
-            onBack={() => goToStep(3)}
-            onSave={saveAndExit}
+            onFinish={finishVisit}
           />
         )}
       </div>

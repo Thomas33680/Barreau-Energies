@@ -514,16 +514,6 @@
   font-size: 0.82rem;
 }
 
-.tier-price {
-  font-size: 0.78rem;
-  font-weight: 600;
-}
-
-.tier-hint {
-  font-size: 0.68rem;
-  color: var(--color-text-muted);
-}
-
 .brand-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
@@ -556,109 +546,6 @@
   object-fit: contain;
 }
 
-/* ---------- Devis ---------- */
-
-.devis-block {
-  margin-bottom: 1.25rem;
-  padding-bottom: 1.1rem;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.devis-block h3 {
-  font-size: 0.9rem;
-  margin: 0 0 0.6rem;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
-.devis-line {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.5rem;
-}
-
-.devis-line-label {
-  flex: 1;
-  font-size: 0.9rem;
-}
-
-.devis-line-input {
-  width: 6rem;
-  padding: 0.45rem 0.5rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border);
-  background: var(--color-bg);
-  text-align: right;
-}
-
-.devis-line-unit {
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-  width: 3rem;
-}
-
-.option-row {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.6rem;
-}
-
-.option-checkbox {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.88rem;
-}
-
-.option-qty {
-  width: 4rem;
-  padding: 0.4rem 0.4rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border);
-  background: var(--color-bg);
-  text-align: center;
-}
-
-.option-price {
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-  white-space: nowrap;
-}
-
-.option-row-custom .option-custom-label {
-  border: none;
-  border-bottom: 1px solid var(--color-border);
-  background: transparent;
-  padding: 0.2rem 0;
-  width: 100%;
-}
-
-.devis-total {
-  background: var(--color-bg);
-  border-radius: var(--radius);
-  padding: 1rem;
-}
-
-.devis-total-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  padding: 0.25rem 0;
-  color: var(--color-text-muted);
-}
-
-.devis-total-ttc {
-  color: var(--color-text);
-  font-size: 1.15rem;
-  border-top: 1px solid var(--color-border);
-  margin-top: 0.4rem;
-  padding-top: 0.6rem;
-}
-
 /* ---------- Responsive ---------- */
 
 @media (min-width: 480px) {
@@ -669,12 +556,6 @@
 }
 
 /* ---------- Home header actions ---------- */
-
-.home-header-actions {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
 
 .visit-badges {
   display: flex;
@@ -703,7 +584,7 @@
   cursor: pointer;
 }
 
-/* ---------- Modal (photos, réglages entreprise) ---------- */
+/* ---------- Modal (photos) ---------- */
 
 .modal-overlay {
   position: fixed;
@@ -861,68 +742,16 @@
   font-size: 0.78rem;
 }
 
-/* ---------- Signature ---------- */
+/* ---------- Brand / logo ---------- */
 
-.signature-block {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.signature-canvas {
-  width: 100%;
-  height: 160px;
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius-sm);
-  background: #fff;
-  touch-action: none;
-}
-
-.signature-actions {
-  display: flex;
-  gap: 0.6rem;
-}
-
-.signature-actions .btn {
-  flex: 1;
-}
-
-.signature-preview {
-  width: 100%;
-  max-height: 160px;
-  object-fit: contain;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: #fff;
-}
-
-/* ---------- Aides & finalize ---------- */
-
-.aides-note {
-  font-size: 0.78rem;
-  color: var(--color-text-muted);
-  margin: 0.5rem 0 0;
-}
-
-.finalize-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-/* ---------- Company settings ---------- */
-
-.logo-row {
+.home-brand {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-.logo-preview {
-  width: 3.5rem;
-  height: 3.5rem;
-  object-fit: contain;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: #fff;
+.home-logo {
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
 }

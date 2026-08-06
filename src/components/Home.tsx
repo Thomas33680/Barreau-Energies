@@ -1,38 +1,15 @@
 import { getInstallationTypeInfo } from '../data/installationTypes'
-import { estimateSizing, buildDevis, suggestTier, tierPriceMidpoint, formatEUR } from '../lib/calculations'
-import type { DevisSettings, Visit } from '../types'
+import type { Visit } from '../types'
 import { deleteVisit } from '../lib/storage'
 
 interface Props {
   visits: Visit[]
-  settings: DevisSettings
   onOpenVisit: (id: string) => void
   onNewVisit: () => void
   onVisitsChange: (visits: Visit[]) => void
-  onOpenCompanySettings: () => void
 }
 
-function computeTotal(visit: Visit, settings: DevisSettings): number | null {
-  if (!visit.installationType) return null
-  const sizing = estimateSizing(visit.installationType, visit.answers)
-  const tier = visit.selectedTier ?? suggestTier(visit.answers)
-  const materielPrice = visit.materielPrice ?? tierPriceMidpoint(sizing.category, tier)
-  const laborHours = visit.laborHours ?? sizing.category.laborHours
-  const devis = buildDevis({
-    type: visit.installationType,
-    category: sizing.category,
-    tier,
-    materielPrice,
-    laborHours,
-    settings,
-    selectedOptionIds: visit.selectedOptionIds,
-    optionQuantities: visit.optionQuantities,
-    customOptions: visit.customOptions,
-  })
-  return devis.totalTTC
-}
-
-export function Home({ visits, settings, onOpenVisit, onNewVisit, onVisitsChange, onOpenCompanySettings }: Props) {
+export function Home({ visits, onOpenVisit, onNewVisit, onVisitsChange }: Props) {
   function handleDelete(id: string, nom: string) {
     const label = nom || 'cette visite'
     if (confirm(`Supprimer ${label} ? Cette action est irréversible.`)) {
@@ -43,18 +20,16 @@ export function Home({ visits, settings, onOpenVisit, onNewVisit, onVisitsChange
   return (
     <div className="home">
       <header className="home-header">
-        <div>
-          <h1>Assistant Devis Chantier</h1>
-          <p className="home-subtitle">Barreau Énergies — PAC, climatisation, chauffe-eau thermodynamique</p>
+        <div className="home-brand">
+          <img src="/logo-icon.svg" alt="" className="home-logo" />
+          <div>
+            <h1>Barreau Énergies</h1>
+            <p className="home-subtitle">Assistant technique chantier — PAC, climatisation, chauffe-eau, adoucisseur</p>
+          </div>
         </div>
-        <div className="home-header-actions">
-          <button type="button" className="btn btn-secondary" onClick={onOpenCompanySettings}>
-            ⚙️ Entreprise
-          </button>
-          <button type="button" className="btn btn-primary" onClick={onNewVisit}>
-            + Nouvelle visite
-          </button>
-        </div>
+        <button type="button" className="btn btn-primary" onClick={onNewVisit}>
+          + Nouvelle visite
+        </button>
       </header>
 
       {visits.length === 0 ? (
@@ -68,7 +43,6 @@ export function Home({ visits, settings, onOpenVisit, onNewVisit, onVisitsChange
         <ul className="visit-list">
           {visits.map((v) => {
             const typeInfo = getInstallationTypeInfo(v.installationType)
-            const total = computeTotal(v, settings)
             return (
               <li key={v.id} className="visit-card" onClick={() => onOpenVisit(v.id)}>
                 <div className="visit-card-main">
@@ -87,11 +61,11 @@ export function Home({ visits, settings, onOpenVisit, onNewVisit, onVisitsChange
                   <span className={`visit-status status-${v.status}`}>
                     {v.status === 'termine' ? 'Terminé' : 'Brouillon'}
                   </span>
-                  {total !== null && <span className="visit-total">{formatEUR(total)}</span>}
-                  <span className="visit-badges">
-                    {v.photos.length > 0 && <span title={`${v.photos.length} photo(s)`}>📷 {v.photos.length}</span>}
-                    {v.signatureDataUrl && <span title="Devis signé">✍️</span>}
-                  </span>
+                  {v.photos.length > 0 && (
+                    <span className="visit-badges" title={`${v.photos.length} photo(s)`}>
+                      📷 {v.photos.length}
+                    </span>
+                  )}
                   <button
                     type="button"
                     className="btn-icon"

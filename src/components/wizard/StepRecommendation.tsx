@@ -1,4 +1,4 @@
-import { estimateSizing, formatEUR, getCompatibleBrands, suggestTier } from '../../lib/calculations'
+import { estimateSizing, getCompatibleBrands, suggestTier } from '../../lib/calculations'
 import { BrandLogo } from '../ui/BrandLogo'
 import { TIER_LABELS } from '../../types'
 import type { ChecklistAnswers, InstallationType, ProductTier } from '../../types'
@@ -13,7 +13,7 @@ interface Props {
   onSelectTier: (tier: ProductTier) => void
   onSelectBrand: (brandId: string | null) => void
   onBack: () => void
-  onContinue: () => void
+  onFinish: () => void
 }
 
 export function StepRecommendation({
@@ -24,7 +24,7 @@ export function StepRecommendation({
   onSelectTier,
   onSelectBrand,
   onBack,
-  onContinue,
+  onFinish,
 }: Props) {
   const sizing = estimateSizing(installationType, answers)
   const suggested = suggestTier(answers)
@@ -49,28 +49,21 @@ export function StepRecommendation({
 
       <h3 className="reco-subtitle">Gamme conseillée</h3>
       <div className="tier-grid">
-        {TIERS.map((t) => {
-          const range = sizing.category.pricing[t]
-          return (
-            <button
-              key={t}
-              type="button"
-              className={`tier-card ${tier === t ? 'selected' : ''} ${suggested === t ? 'suggested' : ''}`}
-              onClick={() => onSelectTier(t)}
-            >
-              {suggested === t && <span className="tier-badge">Conseillé</span>}
-              <span className="tier-name">{TIER_LABELS[t]}</span>
-              <span className="tier-price">
-                {formatEUR(range.min)} – {formatEUR(range.max)}
-              </span>
-              <span className="tier-hint">matériel HT indicatif</span>
-            </button>
-          )
-        })}
+        {TIERS.map((t) => (
+          <button
+            key={t}
+            type="button"
+            className={`tier-card ${tier === t ? 'selected' : ''} ${suggested === t ? 'suggested' : ''}`}
+            onClick={() => onSelectTier(t)}
+          >
+            {suggested === t && <span className="tier-badge">Conseillé</span>}
+            <span className="tier-name">{TIER_LABELS[t]}</span>
+          </button>
+        ))}
       </div>
 
       <h3 className="reco-subtitle">Marques compatibles</h3>
-      <p className="step-intro">Sélectionne une marque à indiquer sur le devis (facultatif).</p>
+      <p className="step-intro">Sélectionne une marque à retenir pour cette visite (facultatif).</p>
       <div className="brand-grid">
         {brands.map((b) => (
           <BrandLogo
@@ -86,8 +79,8 @@ export function StepRecommendation({
         <button type="button" className="btn btn-secondary" onClick={onBack}>
           ← Précédent
         </button>
-        <button type="button" className="btn btn-primary" onClick={onContinue}>
-          Générer le devis →
+        <button type="button" className="btn btn-primary" onClick={onFinish}>
+          Terminer la visite ✓
         </button>
       </div>
     </div>

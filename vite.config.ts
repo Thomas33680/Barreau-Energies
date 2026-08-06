@@ -10,10 +10,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icons/icon-64.png'],
       manifest: {
-        name: 'Assistant Devis Chantier - Barreau Énergies',
-        short_name: 'Devis Chantier',
+        name: 'Assistant Technique Chantier - Barreau Énergies',
+        short_name: 'Chantier Technique',
         description:
-          "Assistant technique pour les visites chantier : check-list, recommandation de matériel et calcul de devis pour PAC, climatisation et chauffe-eau thermodynamique.",
+          "Assistant technique pour les visites chantier : check-list et recommandation de matériel pour PAC, climatisation, chauffe-eau thermodynamique et adoucisseur.",
         theme_color: '#0369a1',
         background_color: '#f3f6f8',
         display: 'standalone',
@@ -46,9 +46,6 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,webp,ico}'],
-        // jsPDF ships an optional .html() renderer (html2canvas + dompurify) that this app
-        // never calls — exclude those chunks from the offline precache.
-        globIgnores: ['**/html2canvas-*.js', '**/purify.es-*.js'],
         runtimeCaching: [
           {
             urlPattern: ({ request }) =>

@@ -56,58 +56,12 @@ export interface Brand {
   logo: string
 }
 
-export type TvaRate = 5.5 | 10 | 20
-
-export interface OptionLine {
-  id: string
-  label: string
-  price: number
-  selected: boolean
-  quantity?: number
-}
-
-export interface DevisSettings {
-  tauxHoraire: number
-  tva: TvaRate
-}
-
-export interface DevisLine {
-  id: string
-  label: string
-  quantite: number
-  prixUnitaire: number
-  total: number
-}
-
-export interface Devis {
-  materiel: DevisLine[]
-  mainOeuvre: DevisLine[]
-  options: DevisLine[]
-  sousTotalHT: number
-  tva: TvaRate
-  montantTva: number
-  totalTTC: number
-}
-
 export type VisitStatus = 'brouillon' | 'termine'
 
 export interface VisitPhoto {
   id: string
   caption: string
   createdAt: string
-}
-
-export interface AideLine {
-  label: string
-  amount: number
-}
-
-export interface AideEstimate {
-  eligible: boolean
-  categorie: string | null
-  lignes: AideLine[]
-  total: number
-  note: string
 }
 
 export interface Visit {
@@ -119,24 +73,7 @@ export interface Visit {
   answers: ChecklistAnswers
   selectedTier: ProductTier | null
   selectedBrandId: string | null
-  materielPrice: number | null
-  selectedOptionIds: string[]
-  optionQuantities: Record<string, number>
-  customOptions: OptionLine[]
-  laborHours: number | null
   photos: VisitPhoto[]
-  signatureDataUrl: string | null
-  signedAt: string | null
   step: number
   status: VisitStatus
-}
-
-export interface CompanyInfo {
-  nom: string
-  siret: string
-  adresse: string
-  telephone: string
-  email: string
-  assurance: string
-  logoDataUrl: string | null
 }
