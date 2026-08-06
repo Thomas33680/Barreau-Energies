@@ -106,12 +106,12 @@ export default function ServicesPage() {
                   </Button>
 
                   {service.images && service.images.length === 1 && (
-                    <div className="relative mt-6 aspect-[3/2] w-full overflow-hidden rounded-2xl border border-ink/10 bg-white">
+                    <div className="relative mt-6 aspect-[3/2] w-full overflow-hidden rounded-2xl border border-ink/10 bg-ink/[0.03]">
                       <Image
                         src={service.images[0].src}
                         alt={service.images[0].alt}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         sizes="(min-width: 1024px) 40vw, 100vw"
                       />
                     </div>
@@ -204,13 +204,13 @@ export default function ServicesPage() {
                   {service.images.map((image) => (
                     <div
                       key={image.src}
-                      className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-ink/10 bg-white"
+                      className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-ink/10 bg-ink/[0.03]"
                     >
                       <Image
                         src={image.src}
                         alt={image.alt}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         sizes="(min-width: 640px) 50vw, 100vw"
                       />
                     </div>
