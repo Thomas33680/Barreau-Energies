@@ -27,7 +27,7 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       <div className="mt-6 border-t border-ink/10 pt-4">
         <p className="text-sm font-bold text-ink">{testimonial.name}</p>
         <p className="text-xs text-ink/50">
-          {testimonial.location} — {testimonial.service}
+          {testimonial.location} · {testimonial.service}
         </p>
       </div>
     </motion.div>

@@ -21,7 +21,7 @@ export function ContactForm() {
     ].join("\n");
 
     const mailto = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
-      `Demande de devis — ${name || "site web"}`,
+      `Demande de devis, ${name || "site web"}`,
     )}&body=${encodeURIComponent(body)}`;
 
     window.location.href = mailto;

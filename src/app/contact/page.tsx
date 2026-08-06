@@ -27,7 +27,7 @@ const contactItems = [
   {
     icon: MapPin,
     label: "Zone d'intervention",
-    value: `${siteConfig.address.postalCode} ${siteConfig.address.line} — ${siteConfig.address.zone}`,
+    value: `${siteConfig.address.postalCode} ${siteConfig.address.line}, ${siteConfig.address.zone}`,
     href: "/zone-intervention",
   },
 ];

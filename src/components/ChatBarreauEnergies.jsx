@@ -178,7 +178,7 @@ export default function BarreauEnergiesChat() {
         // Formspree renvoie généralement { errors: [{ message, field }] }
         const detail =
           payload && payload.errors && payload.errors.length
-            ? payload.errors.map((er) => er.message).join(" — ")
+            ? payload.errors.map((er) => er.message).join(", ")
             : `Code ${response.status}`;
         setLeadError(detail);
         setLeadStatus("error");

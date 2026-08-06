@@ -178,7 +178,7 @@ export const services: Service[] = [
     summary:
       "Ballons thermodynamiques et chauffe-eau électriques adaptés à votre logement et à votre budget.",
     description:
-      "Pour votre eau chaude sanitaire, nous installons le chauffe-eau thermodynamique — qui utilise les calories de l'air pour chauffer votre eau avec une consommation électrique fortement réduite — ou le chauffe-eau électrique classique, une solution éprouvée avec un investissement de départ plus faible. Nous vous conseillons sur le choix le plus adapté à votre logement et votre budget.",
+      "Pour votre eau chaude sanitaire, nous installons le chauffe-eau thermodynamique, qui utilise les calories de l'air pour chauffer votre eau avec une consommation électrique fortement réduite, ou le chauffe-eau électrique classique, une solution éprouvée avec un investissement de départ plus faible. Nous vous conseillons sur le choix le plus adapté à votre logement et votre budget.",
     points: [
       "Chauffe-eau thermodynamique : jusqu'à 70 % d'économies",
       "Chauffe-eau électrique : résistance blindée ou stéatite",
@@ -368,7 +368,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Quelle est la différence entre une pompe à chaleur air/air et air/eau ?",
     answer:
-      "La pompe à chaleur air/air capte les calories de l'air extérieur et les diffuse directement sous forme d'air chaud (ou frais) via des unités murales — c'est la même technologie qu'une climatisation réversible. La pompe à chaleur air/eau chauffe l'eau qui circule dans vos radiateurs ou votre plancher chauffant, et peut aussi produire l'eau chaude sanitaire : elle remplace une chaudière fioul ou gaz. Nous vous aidons à choisir la solution la plus adaptée à votre logement.",
+      "La pompe à chaleur air/air capte les calories de l'air extérieur et les diffuse directement sous forme d'air chaud (ou frais) via des unités murales, c'est la même technologie qu'une climatisation réversible. La pompe à chaleur air/eau chauffe l'eau qui circule dans vos radiateurs ou votre plancher chauffant, et peut aussi produire l'eau chaude sanitaire : elle remplace une chaudière fioul ou gaz. Nous vous aidons à choisir la solution la plus adaptée à votre logement.",
   },
   {
     question: "Proposez-vous un devis gratuit ?",

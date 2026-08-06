@@ -8,7 +8,7 @@ export function Logo({ dark = true }: { dark?: boolean }) {
     <Link
       href="/"
       className="flex shrink-0 items-center gap-2.5"
-      aria-label="Barreau Énergies — retour à l'accueil"
+      aria-label="Barreau Énergies, retour à l'accueil"
     >
       <Image
         src="/logo-mark.png"

@@ -312,7 +312,7 @@ export function RealisationsGallery() {
                       <HoverScale className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-ink/5">
                         <Image
                           src={src}
-                          alt={`${project.title} — ${project.location}`}
+                          alt={`${project.title}, ${project.location}`}
                           fill
                           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                           className="object-cover"

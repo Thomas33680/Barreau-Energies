@@ -211,7 +211,7 @@ export function Simulator() {
       .join("\n");
 
     const mailto = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
-      `Simulateur — ${activeMode.label} — ${name || "site web"}`,
+      `Simulateur, ${activeMode.label}, ${name || "site web"}`,
     )}&body=${encodeURIComponent(lines)}`;
 
     window.location.href = mailto;

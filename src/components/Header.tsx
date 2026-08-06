@@ -79,7 +79,7 @@ export function Header() {
               href={siteConfig.phoneHref}
               className="mt-2 inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-brand-green px-5 py-3 text-sm font-semibold text-white"
             >
-              Appeler — {siteConfig.phone}
+              Appeler : {siteConfig.phone}
             </a>
           </Container>
         </div>

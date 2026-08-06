@@ -40,7 +40,7 @@ export function RadiusMap() {
           <Home size={14} aria-hidden="true" />
         </span>
         <span className="whitespace-nowrap rounded-full bg-white px-2 py-0.5 text-[10px] font-medium text-ink/70 shadow-sm">
-          Siège — {siteConfig.address.line}
+          Siège : {siteConfig.address.line}
         </span>
       </div>
 
