@@ -106,17 +106,12 @@ export default function ServicesPage() {
                   </Button>
 
                   {service.images && service.images.length === 1 && (
-                    <div
-                      className="relative mt-6 w-full overflow-hidden rounded-2xl border border-ink/10 bg-ink/[0.03]"
-                      style={{
-                        aspectRatio: `${service.images[0].width} / ${service.images[0].height}`,
-                      }}
-                    >
+                    <div className="relative mt-6 aspect-[4/3] w-full overflow-hidden rounded-2xl border border-ink/10 bg-ink/[0.03]">
                       <Image
                         src={service.images[0].src}
                         alt={service.images[0].alt}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         sizes="(min-width: 1024px) 40vw, 100vw"
                       />
                     </div>
@@ -205,18 +200,17 @@ export default function ServicesPage() {
               )}
 
               {service.images && service.images.length > 1 && (
-                <FadeIn delay={0.2} className="mt-10 grid items-start gap-4 sm:grid-cols-2">
+                <FadeIn delay={0.2} className="mt-10 grid gap-4 sm:grid-cols-2">
                   {service.images.map((image) => (
                     <div
                       key={image.src}
-                      className="relative w-full overflow-hidden rounded-2xl border border-ink/10 bg-ink/[0.03]"
-                      style={{ aspectRatio: `${image.width} / ${image.height}` }}
+                      className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-ink/10 bg-ink/[0.03]"
                     >
                       <Image
                         src={image.src}
                         alt={image.alt}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         sizes="(min-width: 640px) 50vw, 100vw"
                       />
                     </div>
