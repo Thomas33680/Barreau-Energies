@@ -1,0 +1,74 @@
+:root {
+  --color-bg: #f3f6f8;
+  --color-surface: #ffffff;
+  --color-border: #dbe3e8;
+  --color-text: #16232b;
+  --color-text-muted: #5c6b73;
+  --color-primary: #0369a1;
+  --color-primary-dark: #075985;
+  --color-accent: #0f766e;
+  --color-success: #15803d;
+  --color-danger: #b91c1c;
+  --radius: 14px;
+  --radius-sm: 9px;
+  --shadow: 0 1px 3px rgba(16, 40, 54, 0.08), 0 1px 2px rgba(16, 40, 54, 0.06);
+  --shadow-lg: 0 8px 24px rgba(16, 40, 54, 0.12);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f1a20;
+    --color-surface: #17242c;
+    --color-border: #2a3a43;
+    --color-text: #eaf1f4;
+    --color-text-muted: #93a5ad;
+    --color-primary: #38bdf8;
+    --color-primary-dark: #0ea5e9;
+    --color-accent: #2dd4bf;
+    --color-success: #4ade80;
+    --color-danger: #f87171;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.45);
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+}
