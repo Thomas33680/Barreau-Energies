@@ -156,7 +156,7 @@ export const services: Service[] = [
     images: [
       {
         src: "/services/pompe-a-chaleur-air-eau.jpg",
-        alt: "Unité extérieure de pompe à chaleur air/eau et ballon tampon installé en intérieur",
+        alt: "Groupe intérieur de pompe à chaleur air/eau et ballon tampon installés en buanderie",
         caption: "Pompe à chaleur air/eau",
       },
     ],
@@ -193,9 +193,14 @@ export const services: Service[] = [
     savingsLabel: "Chauffe-eau thermodynamique",
     images: [
       {
-        src: "/services/eau-chaude-sanitaire.jpg",
-        alt: "Comparaison entre un chauffe-eau électrique classique et un chauffe-eau thermodynamique installés en buanderie",
-        caption: "Chauffe-eau électrique classique et chauffe-eau thermodynamique",
+        src: "/services/eau-chaude-sanitaire-electrique.jpg",
+        alt: "Chauffe-eau électrique installé en buanderie",
+        caption: "Chauffe-eau électrique",
+      },
+      {
+        src: "/services/eau-chaude-sanitaire-thermodynamique.jpg",
+        alt: "Ballon thermodynamique installé en buanderie",
+        caption: "Chauffe-eau thermodynamique",
       },
     ],
   },
