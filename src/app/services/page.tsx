@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: "Nos services",
   description:
     "Climatisation réversible, pompe à chaleur air/eau, eau chaude sanitaire, traitement de l'eau et entretien par Barreau Énergies.",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 const icons: Record<Service["slug"], LucideIcon> = {
@@ -49,6 +52,7 @@ export default function ServicesPage() {
             title="Des solutions complètes pour votre confort thermique"
             description="Chauffage, climatisation, eau chaude sanitaire, traitement de l'eau et entretien : nous vous accompagnons de l'étude au suivi dans la durée."
             light
+            as="h1"
           />
         </Container>
       </section>

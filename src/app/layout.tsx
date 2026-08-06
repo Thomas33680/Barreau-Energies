@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   },
   description:
     "Barreau Énergies installe et entretient vos climatisations réversibles, pompes à chaleur air/eau, chauffe-eaux et adoucisseurs d'eau à Parigné-l'Évêque, Le Mans et alentours.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.tagline,
@@ -30,6 +33,29 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     type: "website",
   },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "HVACBusiness",
+  name: siteConfig.name,
+  image: `${siteConfig.url}/logo-full.png`,
+  url: siteConfig.url,
+  telephone: siteConfig.phoneHref.replace("tel:", ""),
+  email: siteConfig.email,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: siteConfig.address.line,
+    postalCode: siteConfig.address.postalCode,
+    addressCountry: "FR",
+  },
+  areaServed: [
+    { "@type": "City", name: "Le Mans" },
+    { "@type": "City", name: "Parigné-l'Évêque" },
+    { "@type": "AdministrativeArea", name: "Sarthe" },
+  ],
+  description:
+    "Installation et entretien de climatisations réversibles, pompes à chaleur air/eau, chauffe-eaux et adoucisseurs d'eau à Parigné-l'Évêque, Le Mans et alentours.",
 };
 
 export default function RootLayout({
@@ -44,6 +70,10 @@ export default function RootLayout({
       className={`${montserrat.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col pb-16 lg:pb-0">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         <MotionProvider>
           <Header />
           <main className="flex-1">{children}</main>

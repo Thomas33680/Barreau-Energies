@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: "Zone d'intervention",
   description:
     "Barreau Énergies intervient au Mans et dans un rayon de 50 km, depuis son siège à Parigné-l'Évêque.",
+  alternates: {
+    canonical: "/zone-intervention",
+  },
 };
 
 const communes = [
@@ -37,6 +40,7 @@ export default function ZoneInterventionPage() {
             eyebrow="Zone d'intervention"
             title="Une entreprise locale, proche de chez vous"
             description={`Basés à ${siteConfig.address.line} (${siteConfig.address.postalCode}), nous intervenons au Mans et dans un rayon de ${siteConfig.address.radiusKm} km pour tous vos projets de climatisation, pompe à chaleur, eau chaude sanitaire, traitement de l'eau et entretien.`}
+            as="h1"
           />
         </FadeIn>
 

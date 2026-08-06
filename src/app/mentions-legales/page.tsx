@@ -5,13 +5,16 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Mentions légales",
+  alternates: {
+    canonical: "/mentions-legales",
+  },
 };
 
 export default function MentionsLegalesPage() {
   return (
     <section className="bg-white py-20">
       <Container className="max-w-3xl">
-        <SectionHeading eyebrow="Informations légales" title="Mentions légales" />
+        <SectionHeading eyebrow="Informations légales" title="Mentions légales" as="h1" />
 
         <div className="mt-10 space-y-8 text-sm leading-relaxed text-ink/75">
           <div className="rounded-2xl border border-brand-orange/30 bg-brand-orange/5 p-5">

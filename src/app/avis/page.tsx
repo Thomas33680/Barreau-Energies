@@ -11,6 +11,9 @@ import { siteConfig, testimonials } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Avis clients",
   description: "Découvrez les avis des clients de Barreau Énergies.",
+  alternates: {
+    canonical: "/avis",
+  },
 };
 
 export default function AvisPage() {
@@ -22,6 +25,7 @@ export default function AvisPage() {
             eyebrow="Avis clients"
             title="Ce que pensent nos clients"
             center
+            as="h1"
           />
         </FadeIn>
 

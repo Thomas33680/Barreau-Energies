@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Réalisations",
   description:
     "Découvrez les installations réalisées par Barreau Énergies : climatisation, pompes à chaleur, chauffe-eaux et traitement de l'eau.",
+  alternates: {
+    canonical: "/realisations",
+  },
 };
 
 export default function RealisationsPage() {
@@ -19,6 +22,7 @@ export default function RealisationsPage() {
             eyebrow="Réalisations"
             title="Nos derniers chantiers"
             description="Logement, besoin du client, solution retenue, équipements installés et résultat obtenu : le détail de nos chantiers, pas seulement les photos. Filtrez pour trouver un chantier proche du vôtre."
+            as="h1"
           />
         </FadeIn>
 

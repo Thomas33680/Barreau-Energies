@@ -10,11 +10,31 @@ export const metadata: Metadata = {
   title: "FAQ",
   description:
     "Toutes les réponses à vos questions sur nos installations de climatisation, pompes à chaleur, chauffe-eaux, traitement de l'eau et entretien.",
+  alternates: {
+    canonical: "/faq",
+  },
+};
+
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
 };
 
 export default function FaqPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
       <section className="bg-ink py-20 text-white">
         <Container>
           <SectionHeading
@@ -22,6 +42,7 @@ export default function FaqPage() {
             title="Questions fréquentes"
             description="Vous ne trouvez pas la réponse à votre question ? Contactez-nous directement, nous vous répondrons rapidement."
             light
+            as="h1"
           />
         </Container>
       </section>

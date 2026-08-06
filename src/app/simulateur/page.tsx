@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Simulateur",
   description:
     "Estimez en quelques secondes la puissance de pompe à chaleur ou le volume de chauffe-eau thermodynamique adapté à votre logement.",
+  alternates: {
+    canonical: "/simulateur",
+  },
 };
 
 export default function SimulateurPage() {
@@ -20,6 +23,7 @@ export default function SimulateurPage() {
             title="Estimez votre projet en 30 secondes"
             description="Renseignez quelques informations sur votre logement pour obtenir une première estimation, puis affinez-la avec un devis personnalisé."
             light
+            as="h1"
           />
         </Container>
       </section>

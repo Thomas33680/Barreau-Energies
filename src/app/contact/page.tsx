@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Contactez Barreau Énergies pour votre projet de climatisation, pompe à chaleur, chauffe-eau, traitement de l'eau ou entretien.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 const contactItems = [
@@ -40,6 +43,7 @@ export default function ContactPage() {
           eyebrow="Contact"
           title="Parlons de votre projet"
           description="Décrivez-nous votre besoin, nous revenons vers vous rapidement pour convenir d'un rendez-vous ou vous transmettre un devis."
+          as="h1"
         />
 
         <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.3fr]">
