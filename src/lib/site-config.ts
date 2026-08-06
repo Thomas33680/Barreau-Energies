@@ -70,6 +70,9 @@ export type Service = {
     src: string;
     alt: string;
     caption: string;
+    /** Dimensions réelles du fichier, pour que le cadre colle exactement à la photo (ratio d'aspect). */
+    width: number;
+    height: number;
   }[];
 };
 
@@ -104,11 +107,15 @@ export const services: Service[] = [
         src: "/services/climatisation-reversible-monosplit.jpg",
         alt: "Unité murale de climatisation réversible mono-split installée dans un salon",
         caption: "Mono-split",
+        width: 1536,
+        height: 1024,
       },
       {
         src: "/services/climatisation-reversible-gainable.jpg",
         alt: "Système de climatisation réversible gainable, diffusion d'air par grilles au plafond",
         caption: "Gainable",
+        width: 1448,
+        height: 1086,
       },
     ],
   },
@@ -158,6 +165,8 @@ export const services: Service[] = [
         src: "/services/pompe-a-chaleur-air-eau.jpg",
         alt: "Groupe intérieur de pompe à chaleur air/eau et ballon tampon installés en buanderie",
         caption: "Pompe à chaleur air/eau",
+        width: 1448,
+        height: 1086,
       },
     ],
   },
@@ -196,11 +205,15 @@ export const services: Service[] = [
         src: "/services/eau-chaude-sanitaire-electrique.jpg",
         alt: "Chauffe-eau électrique installé en buanderie",
         caption: "Chauffe-eau électrique",
+        width: 1122,
+        height: 1402,
       },
       {
         src: "/services/eau-chaude-sanitaire-thermodynamique.jpg",
         alt: "Ballon thermodynamique installé en buanderie",
         caption: "Chauffe-eau thermodynamique",
+        width: 1536,
+        height: 1024,
       },
     ],
   },
@@ -226,6 +239,8 @@ export const services: Service[] = [
         src: "/services/traitement-eau.jpg",
         alt: "Adoucisseur d'eau installé en buanderie, à côté du ballon d'eau chaude",
         caption: "Adoucisseur d'eau",
+        width: 1121,
+        height: 1403,
       },
     ],
     benefits: {
@@ -267,6 +282,8 @@ export const services: Service[] = [
         src: "/services/entretien-depannage.jpg",
         alt: "Technicien Barreau Énergies en intervention d'entretien sur une pompe à chaleur",
         caption: "Entretien par nos techniciens",
+        width: 1448,
+        height: 1086,
       },
     ],
     checklistCards: [
