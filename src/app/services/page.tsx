@@ -111,7 +111,7 @@ export default function ServicesPage() {
                         src={service.images[0].src}
                         alt={service.images[0].alt}
                         fill
-                        className="object-contain"
+                        className="object-cover"
                         sizes="(min-width: 1024px) 40vw, 100vw"
                       />
                     </div>
@@ -210,7 +210,7 @@ export default function ServicesPage() {
                         src={image.src}
                         alt={image.alt}
                         fill
-                        className="object-contain"
+                        className="object-cover"
                         sizes="(min-width: 640px) 50vw, 100vw"
                       />
                     </div>
