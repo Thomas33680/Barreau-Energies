@@ -91,6 +91,25 @@ export interface Devis {
 
 export type VisitStatus = 'brouillon' | 'termine'
 
+export interface VisitPhoto {
+  id: string
+  caption: string
+  createdAt: string
+}
+
+export interface AideLine {
+  label: string
+  amount: number
+}
+
+export interface AideEstimate {
+  eligible: boolean
+  categorie: string | null
+  lignes: AideLine[]
+  total: number
+  note: string
+}
+
 export interface Visit {
   id: string
   createdAt: string
@@ -105,6 +124,19 @@ export interface Visit {
   optionQuantities: Record<string, number>
   customOptions: OptionLine[]
   laborHours: number | null
+  photos: VisitPhoto[]
+  signatureDataUrl: string | null
+  signedAt: string | null
   step: number
   status: VisitStatus
+}
+
+export interface CompanyInfo {
+  nom: string
+  siret: string
+  adresse: string
+  telephone: string
+  email: string
+  assurance: string
+  logoDataUrl: string | null
 }

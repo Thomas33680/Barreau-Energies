@@ -1,5 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { OPTIONS } from '../../data/options'
+import { estimateAides } from '../../data/aides'
 import {
   buildDevis,
   estimateSizing,
@@ -9,11 +10,15 @@ import {
   tierPriceMidpoint,
 } from '../../lib/calculations'
 import { getBrand } from '../../data/brands'
-import type { DevisSettings, OptionLine, TvaRate, Visit } from '../../types'
+import { buildDevisPdf, devisFileName } from '../../lib/pdf'
+import { buildMailtoLink, downloadBlob, sharePdf } from '../../lib/share'
+import type { CompanyInfo, DevisSettings, OptionLine, TvaRate, Visit } from '../../types'
+import { SignaturePad } from './SignaturePad'
 
 interface Props {
   visit: Visit
   settings: DevisSettings
+  company: CompanyInfo
   onUpdateVisit: (patch: Partial<Visit>) => void
   onUpdateSettings: (patch: Partial<DevisSettings>) => void
   onBack: () => void
@@ -22,7 +27,8 @@ interface Props {
 
 const TVA_RATES: TvaRate[] = [5.5, 10, 20]
 
-export function StepDevis({ visit, settings, onUpdateVisit, onUpdateSettings, onBack, onSave }: Props) {
+export function StepDevis({ visit, settings, company, onUpdateVisit, onUpdateSettings, onBack, onSave }: Props) {
+  const [sending, setSending] = useState(false)
   const type = visit.installationType!
   const sizing = estimateSizing(type, visit.answers)
   const tier = visit.selectedTier ?? suggestTier(visit.answers)
@@ -54,6 +60,9 @@ export function StepDevis({ visit, settings, onUpdateVisit, onUpdateSettings, on
     customOptions: visit.customOptions,
   })
 
+  const aides = estimateAides(type, visit.answers)
+  const resteACharge = Math.max(0, devis.totalTTC - aides.total)
+
   function toggleOption(id: string) {
     const set = new Set(visit.selectedOptionIds)
     if (set.has(id)) set.delete(id)
@@ -84,6 +93,43 @@ export function StepDevis({ visit, settings, onUpdateVisit, onUpdateSettings, on
 
   function removeCustomOption(id: string) {
     onUpdateVisit({ customOptions: visit.customOptions.filter((o) => o.id !== id) })
+  }
+
+  function buildPdf() {
+    return buildDevisPdf({ visit, company, devis, aides, sizingLabel: sizing.category.label })
+  }
+
+  function handleDownloadPdf() {
+    buildPdf().save(devisFileName(visit))
+  }
+
+  async function handleShare() {
+    setSending(true)
+    try {
+      const blob = buildPdf().output('blob')
+      const fileName = devisFileName(visit)
+      const shared = await sharePdf(
+        blob,
+        fileName,
+        `Devis ${company.nom}`,
+        `Devis pour ${visit.client.nom} — ${formatEUR(devis.totalTTC)} TTC`,
+      )
+      if (!shared) {
+        downloadBlob(blob, fileName)
+        if (visit.client.email) {
+          window.open(
+            buildMailtoLink(
+              visit.client.email,
+              `Votre devis ${company.nom}`,
+              `Bonjour ${visit.client.nom},\n\nVeuillez trouver ci-joint votre devis d'un montant de ${formatEUR(devis.totalTTC)} TTC (le PDF vient d'être téléchargé sur cet appareil, à joindre au message).\n\nCordialement,\n${company.nom}`,
+            ),
+            '_blank',
+          )
+        }
+      }
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -217,6 +263,50 @@ export function StepDevis({ visit, settings, onUpdateVisit, onUpdateSettings, on
         <div className="devis-total-row devis-total-ttc">
           <span>Total TTC</span>
           <strong>{formatEUR(devis.totalTTC)}</strong>
+        </div>
+      </section>
+
+      <section className="devis-block aides-block">
+        <h3>Aides financières estimées</h3>
+        {aides.lignes.length > 0 && (
+          <>
+            {aides.lignes.map((l) => (
+              <div key={l.label} className="devis-total-row">
+                <span>
+                  {l.label}
+                  {aides.categorie ? ` (${aides.categorie})` : ''}
+                </span>
+                <strong>- {formatEUR(l.amount)}</strong>
+              </div>
+            ))}
+            <div className="devis-total-row devis-total-ttc">
+              <span>Reste à charge estimé TTC</span>
+              <strong>{formatEUR(resteACharge)}</strong>
+            </div>
+          </>
+        )}
+        <p className="aides-note">{aides.note}</p>
+      </section>
+
+      <section className="devis-block">
+        <h3>Signature client</h3>
+        <p className="step-intro">Fais signer le client sur l'écran pour valider le devis sur place.</p>
+        <SignaturePad
+          value={visit.signatureDataUrl}
+          onSign={(dataUrl) => onUpdateVisit({ signatureDataUrl: dataUrl, signedAt: new Date().toISOString() })}
+          onClear={() => onUpdateVisit({ signatureDataUrl: null, signedAt: null })}
+        />
+      </section>
+
+      <section className="devis-block">
+        <h3>Finaliser</h3>
+        <div className="finalize-actions">
+          <button type="button" className="btn btn-secondary" onClick={handleDownloadPdf}>
+            ⬇️ Télécharger le PDF
+          </button>
+          <button type="button" className="btn btn-secondary" onClick={handleShare} disabled={sending}>
+            {sending ? 'Préparation…' : '📤 Partager (email / SMS / WhatsApp)'}
+          </button>
         </div>
       </section>
 

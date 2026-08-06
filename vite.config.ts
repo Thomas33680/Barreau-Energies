@@ -46,6 +46,9 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,webp,ico}'],
+        // jsPDF ships an optional .html() renderer (html2canvas + dompurify) that this app
+        // never calls — exclude those chunks from the offline precache.
+        globIgnores: ['**/html2canvas-*.js', '**/purify.es-*.js'],
         runtimeCaching: [
           {
             urlPattern: ({ request }) =>

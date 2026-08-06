@@ -1,24 +1,30 @@
 import { useEffect, useState } from 'react'
-import type { ChecklistAnswers, ClientInfo, DevisSettings, InstallationType, ProductTier, Visit } from '../../types'
-import { upsertVisit } from '../../lib/storage'
+import type { ChecklistAnswers, ClientInfo, CompanyInfo, DevisSettings, InstallationType, ProductTier, Visit, VisitPhoto } from '../../types'
+import { upsertVisit, createVisitId } from '../../lib/storage'
+import { compressImage, deletePhotoBlob, storePhotoBlob } from '../../lib/photoStore'
+import type { KnownClient } from '../../lib/clients'
 import { StepInstallationType } from './StepInstallationType'
 import { StepClientInfo } from './StepClientInfo'
 import { StepChecklist } from './StepChecklist'
 import { StepRecommendation } from './StepRecommendation'
 import { StepDevis } from './StepDevis'
 import { StepIndicator } from '../ui/StepIndicator'
+import { PhotoManager } from './PhotoManager'
 
 const STEP_LABELS = ['Type', 'Client', 'Check-list', 'Matériel', 'Devis']
 
 interface Props {
   initialVisit: Visit
   settings: DevisSettings
+  company: CompanyInfo
+  knownClients: KnownClient[]
   onUpdateSettings: (patch: Partial<DevisSettings>) => void
   onExit: () => void
 }
 
-export function Wizard({ initialVisit, settings, onUpdateSettings, onExit }: Props) {
+export function Wizard({ initialVisit, settings, company, knownClients, onUpdateSettings, onExit }: Props) {
   const [visit, setVisit] = useState<Visit>(initialVisit)
+  const [showPhotos, setShowPhotos] = useState(false)
 
   useEffect(() => {
     upsertVisit(visit)
@@ -56,6 +62,23 @@ export function Wizard({ initialVisit, settings, onUpdateSettings, onExit }: Pro
     updateVisit({ selectedBrandId: brandId })
   }
 
+  async function addPhoto(file: File) {
+    const blob = await compressImage(file)
+    const id = createVisitId()
+    await storePhotoBlob(id, blob)
+    const photo: VisitPhoto = { id, caption: '', createdAt: new Date().toISOString() }
+    updateVisit({ photos: [...visit.photos, photo] })
+  }
+
+  function updatePhotoCaption(id: string, caption: string) {
+    updateVisit({ photos: visit.photos.map((p) => (p.id === id ? { ...p, caption } : p)) })
+  }
+
+  async function deletePhoto(id: string) {
+    await deletePhotoBlob(id)
+    updateVisit({ photos: visit.photos.filter((p) => p.id !== id) })
+  }
+
   function persist(patch?: Partial<Visit>) {
     const next = { ...visit, ...patch, updatedAt: new Date().toISOString() }
     upsertVisit(next)
@@ -75,9 +98,14 @@ export function Wizard({ initialVisit, settings, onUpdateSettings, onExit }: Pro
   return (
     <div className="wizard">
       <div className="wizard-header">
-        <button type="button" className="btn-back" onClick={handleExit} aria-label="Retour à l'accueil">
-          ← Visites
-        </button>
+        <div className="wizard-header-row">
+          <button type="button" className="btn-back" onClick={handleExit} aria-label="Retour à l'accueil">
+            ← Visites
+          </button>
+          <button type="button" className="btn-photos" onClick={() => setShowPhotos(true)}>
+            📷 Photos{visit.photos.length > 0 ? ` (${visit.photos.length})` : ''}
+          </button>
+        </div>
         <StepIndicator steps={STEP_LABELS} currentStep={visit.step} />
       </div>
 
@@ -86,7 +114,7 @@ export function Wizard({ initialVisit, settings, onUpdateSettings, onExit }: Pro
 
         {visit.step === 1 && (
           <div className="step-panel">
-            <StepClientInfo client={visit.client} onChange={setClient} />
+            <StepClientInfo client={visit.client} knownClients={knownClients} onChange={setClient} />
             <div className="wizard-nav">
               <button type="button" className="btn btn-secondary" onClick={() => goToStep(0)}>
                 ← Précédent
@@ -125,6 +153,7 @@ export function Wizard({ initialVisit, settings, onUpdateSettings, onExit }: Pro
           <StepDevis
             visit={visit}
             settings={settings}
+            company={company}
             onUpdateVisit={updateVisit}
             onUpdateSettings={onUpdateSettings}
             onBack={() => goToStep(3)}
@@ -132,6 +161,16 @@ export function Wizard({ initialVisit, settings, onUpdateSettings, onExit }: Pro
           />
         )}
       </div>
+
+      {showPhotos && (
+        <PhotoManager
+          photos={visit.photos}
+          onAddPhoto={addPhoto}
+          onUpdateCaption={updatePhotoCaption}
+          onDeletePhoto={deletePhoto}
+          onClose={() => setShowPhotos(false)}
+        />
+      )}
     </div>
   )
 }

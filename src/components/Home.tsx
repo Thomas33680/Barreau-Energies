@@ -9,6 +9,7 @@ interface Props {
   onOpenVisit: (id: string) => void
   onNewVisit: () => void
   onVisitsChange: (visits: Visit[]) => void
+  onOpenCompanySettings: () => void
 }
 
 function computeTotal(visit: Visit, settings: DevisSettings): number | null {
@@ -31,7 +32,7 @@ function computeTotal(visit: Visit, settings: DevisSettings): number | null {
   return devis.totalTTC
 }
 
-export function Home({ visits, settings, onOpenVisit, onNewVisit, onVisitsChange }: Props) {
+export function Home({ visits, settings, onOpenVisit, onNewVisit, onVisitsChange, onOpenCompanySettings }: Props) {
   function handleDelete(id: string, nom: string) {
     const label = nom || 'cette visite'
     if (confirm(`Supprimer ${label} ? Cette action est irréversible.`)) {
@@ -46,9 +47,14 @@ export function Home({ visits, settings, onOpenVisit, onNewVisit, onVisitsChange
           <h1>Assistant Devis Chantier</h1>
           <p className="home-subtitle">Barreau Énergies — PAC, climatisation, chauffe-eau thermodynamique</p>
         </div>
-        <button type="button" className="btn btn-primary" onClick={onNewVisit}>
-          + Nouvelle visite
-        </button>
+        <div className="home-header-actions">
+          <button type="button" className="btn btn-secondary" onClick={onOpenCompanySettings}>
+            ⚙️ Entreprise
+          </button>
+          <button type="button" className="btn btn-primary" onClick={onNewVisit}>
+            + Nouvelle visite
+          </button>
+        </div>
       </header>
 
       {visits.length === 0 ? (
@@ -82,6 +88,10 @@ export function Home({ visits, settings, onOpenVisit, onNewVisit, onVisitsChange
                     {v.status === 'termine' ? 'Terminé' : 'Brouillon'}
                   </span>
                   {total !== null && <span className="visit-total">{formatEUR(total)}</span>}
+                  <span className="visit-badges">
+                    {v.photos.length > 0 && <span title={`${v.photos.length} photo(s)`}>📷 {v.photos.length}</span>}
+                    {v.signatureDataUrl && <span title="Devis signé">✍️</span>}
+                  </span>
                   <button
                     type="button"
                     className="btn-icon"

@@ -60,6 +60,27 @@ const prioriteField = {
   helpText: 'Utilisé pour orienter la recommandation de matériel',
 }
 
+const aidesFields = [
+  {
+    id: 'nb_personnes_foyer',
+    label: 'Nombre de personnes dans le foyer fiscal',
+    type: 'number' as const,
+    helpText: "Utilisé pour estimer les aides (MaPrimeRénov', CEE)",
+  },
+  {
+    id: 'rfr_foyer',
+    label: 'Revenu fiscal de référence (RFR) annuel',
+    type: 'number' as const,
+    unit: '€',
+    helpText: "Voir avis d'imposition du client — sert uniquement à estimer les aides",
+  },
+  {
+    id: 'zone_ile_de_france',
+    label: 'Logement en Île-de-France',
+    type: 'boolean' as const,
+  },
+]
+
 const CHECKLISTS: Record<InstallationType, ChecklistSection[]> = {
   'pac-air-eau': [
     {
@@ -151,7 +172,7 @@ const CHECKLISTS: Record<InstallationType, ChecklistSection[]> = {
     {
       id: 'synthese',
       title: 'Synthèse visite',
-      fields: [prioriteField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
+      fields: [...aidesFields, prioriteField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
     },
   ],
   'pac-air-air': [
@@ -278,7 +299,7 @@ const CHECKLISTS: Record<InstallationType, ChecklistSection[]> = {
     {
       id: 'synthese',
       title: 'Synthèse visite',
-      fields: [prioriteField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
+      fields: [...aidesFields, prioriteField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
     },
   ],
   adoucisseur: [

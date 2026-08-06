@@ -1,11 +1,31 @@
-import type { DevisSettings, Visit } from '../types'
+import type { CompanyInfo, DevisSettings, Visit } from '../types'
 
 const VISITS_KEY = 'adc:visits'
 const SETTINGS_KEY = 'adc:settings'
+const COMPANY_KEY = 'adc:company'
 
 export const DEFAULT_SETTINGS: DevisSettings = {
   tauxHoraire: 55,
   tva: 5.5,
+}
+
+export const DEFAULT_COMPANY: CompanyInfo = {
+  nom: 'Barreau Énergies',
+  siret: '',
+  adresse: '',
+  telephone: '',
+  email: '',
+  assurance: '',
+  logoDataUrl: null,
+}
+
+function normalizeVisit(visit: Partial<Visit> & Pick<Visit, 'id'>): Visit {
+  return {
+    photos: [],
+    signatureDataUrl: null,
+    signedAt: null,
+    ...visit,
+  } as Visit
 }
 
 export function loadVisits(): Visit[] {
@@ -13,7 +33,7 @@ export function loadVisits(): Visit[] {
     const raw = localStorage.getItem(VISITS_KEY)
     if (!raw) return []
     const parsed = JSON.parse(raw)
-    return Array.isArray(parsed) ? parsed : []
+    return Array.isArray(parsed) ? parsed.map(normalizeVisit) : []
   } catch {
     return []
   }
@@ -54,6 +74,21 @@ export function loadSettings(): DevisSettings {
 
 export function saveSettings(settings: DevisSettings): void {
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings))
+}
+
+export function loadCompanyInfo(): CompanyInfo {
+  try {
+    const raw = localStorage.getItem(COMPANY_KEY)
+    if (!raw) return DEFAULT_COMPANY
+    const parsed = JSON.parse(raw)
+    return { ...DEFAULT_COMPANY, ...parsed }
+  } catch {
+    return DEFAULT_COMPANY
+  }
+}
+
+export function saveCompanyInfo(info: CompanyInfo): void {
+  localStorage.setItem(COMPANY_KEY, JSON.stringify(info))
 }
 
 export function createVisitId(): string {

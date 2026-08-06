@@ -23,6 +23,9 @@ export function createEmptyVisit(): Visit {
     optionQuantities: {},
     customOptions: [],
     laborHours: null,
+    photos: [],
+    signatureDataUrl: null,
+    signedAt: null,
     step: 0,
     status: 'brouillon',
   }
