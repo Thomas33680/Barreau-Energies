@@ -57,7 +57,7 @@ export function Wizard({ initialVisit, settings, onUpdateSettings, onExit }: Pro
   }
 
   function persist(patch?: Partial<Visit>) {
-    const next = { ...visit, ...(patch ?? {}), updatedAt: new Date().toISOString() }
+    const next = { ...visit, ...patch, updatedAt: new Date().toISOString() }
     upsertVisit(next)
     return next
   }

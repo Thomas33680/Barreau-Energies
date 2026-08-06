@@ -1,4 +1,4 @@
-export type InstallationType = 'pac-air-eau' | 'pac-air-air' | 'chauffe-eau-thermo'
+export type InstallationType = 'pac-air-eau' | 'pac-air-air' | 'chauffe-eau-thermo' | 'adoucisseur'
 
 export interface InstallationTypeInfo {
   id: InstallationType

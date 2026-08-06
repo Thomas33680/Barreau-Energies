@@ -57,12 +57,24 @@ export function estimateSizing(type: InstallationType, answers: ChecklistAnswers
     const coef = ISOLATION_COEF_CLIM[isolation] ?? ISOLATION_COEF_CLIM.moyenne
     estimatedValue = Math.round(((surface * coef) / 1000) * 10) / 10
     explanation.push(`Puissance estimée à partir de ${surface || '—'} m² à traiter et d'une isolation "${isolation}" (${coef} W/m²).`)
-  } else {
+  } else if (type === 'chauffe-eau-thermo') {
     const occupants = Number(answers.nb_occupants) || 1
     if (occupants <= 2) estimatedValue = 200
     else if (occupants <= 4) estimatedValue = 270
     else estimatedValue = 300
     explanation.push(`Volume de ballon estimé pour ${occupants} occupant(s).`)
+  } else {
+    const occupants = Number(answers.nb_occupants) || 1
+    const durete = String(answers.durete_eau || 'moyenne')
+    let base: number
+    if (occupants <= 2) base = 12
+    else if (occupants <= 4) base = 16
+    else base = 20
+    if (durete === 'elevee' || durete === 'tres_elevee') {
+      base += 4
+    }
+    estimatedValue = base
+    explanation.push(`Capacité de résine estimée pour ${occupants} occupant(s) et une dureté d'eau "${durete}".`)
   }
 
   const category =

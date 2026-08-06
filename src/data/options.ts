@@ -79,4 +79,28 @@ export const OPTIONS: Record<InstallationType, OptionDef[]> = {
       autoSuggestIf: { fieldId: 'eau_dure', equals: true },
     },
   ],
+  adoucisseur: [
+    {
+      id: 'depose_ancien',
+      label: 'Dépose et évacuation ancien adoucisseur',
+      defaultPrice: 150,
+      autoSuggestIf: { fieldId: 'adoucisseur_existant', equals: true },
+    },
+    {
+      id: 'creation_evacuation',
+      label: 'Création d\'une évacuation pour la régénération',
+      defaultPrice: 180,
+      autoSuggestIf: { fieldId: 'evacuation_disponible', equals: false },
+    },
+    {
+      id: 'bypass_general',
+      label: "Pose d'un bypass général",
+      defaultPrice: 90,
+    },
+    {
+      id: 'kit_sel_demarrage',
+      label: 'Kit de sel de démarrage (1 an)',
+      defaultPrice: 60,
+    },
+  ],
 }

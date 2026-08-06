@@ -142,10 +142,52 @@ export const SIZE_CATEGORIES: Record<InstallationType, SizeCategory[]> = {
       },
     },
   ],
+  adoucisseur: [
+    {
+      id: '12l',
+      label: 'Adoucisseur 12 L (1-2 personnes)',
+      min: 0,
+      max: 12,
+      valueUnit: 'L',
+      laborHours: 2.5,
+      pricing: {
+        entree: { min: 700, max: 900 },
+        milieu: { min: 1000, max: 1300 },
+        haut: { min: 1400, max: 1800 },
+      },
+    },
+    {
+      id: '16l',
+      label: 'Adoucisseur 16 L (3-4 personnes)',
+      min: 12,
+      max: 16,
+      valueUnit: 'L',
+      laborHours: 3,
+      pricing: {
+        entree: { min: 900, max: 1200 },
+        milieu: { min: 1300, max: 1700 },
+        haut: { min: 1800, max: 2300 },
+      },
+    },
+    {
+      id: '20l',
+      label: 'Adoucisseur 20 L+ (5 personnes et +)',
+      min: 16,
+      max: 100,
+      valueUnit: 'L',
+      laborHours: 3.5,
+      pricing: {
+        entree: { min: 1200, max: 1600 },
+        milieu: { min: 1700, max: 2200 },
+        haut: { min: 2300, max: 2900 },
+      },
+    },
+  ],
 }
 
 export const BRAND_COVERAGE: Record<InstallationType, string[]> = {
   'pac-air-eau': ['ariston', 'atlantic', 'daikin', 'thermor', 'panasonic', 'mitsubishi-electric', 'altech'],
   'pac-air-air': ['atlantic', 'daikin', 'panasonic', 'mitsubishi-electric', 'altech'],
   'chauffe-eau-thermo': ['ariston', 'atlantic', 'thermor', 'altech'],
+  adoucisseur: ['bwt', 'altech'],
 }

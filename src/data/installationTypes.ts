@@ -22,6 +22,13 @@ export const INSTALLATION_TYPES: InstallationTypeInfo[] = [
     description: "Production d'eau chaude sanitaire par pompe à chaleur.",
     icon: '🚿',
   },
+  {
+    id: 'adoucisseur',
+    label: "Adoucisseur d'eau",
+    shortLabel: 'Adoucisseur',
+    description: "Traitement de l'eau et protection anti-tartre pour toute l'habitation.",
+    icon: '💧',
+  },
 ]
 
 export function getInstallationTypeInfo(id: string | null | undefined): InstallationTypeInfo | undefined {

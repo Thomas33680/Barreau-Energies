@@ -281,6 +281,75 @@ const CHECKLISTS: Record<InstallationType, ChecklistSection[]> = {
       fields: [prioriteField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
     },
   ],
+  adoucisseur: [
+    {
+      id: 'qualite_eau',
+      title: "Besoin & qualité de l'eau",
+      fields: [
+        { id: 'nb_occupants', label: "Nombre d'occupants du logement", type: 'number', required: true },
+        {
+          id: 'durete_eau',
+          label: "Dureté de l'eau mesurée",
+          type: 'select',
+          required: true,
+          helpText: "Mesure au testeur de dureté ou donnée du fournisseur d'eau local",
+          options: [
+            { value: 'faible', label: 'Faible (< 15°f)' },
+            { value: 'moyenne', label: 'Moyenne (15 à 25°f)' },
+            { value: 'elevee', label: 'Élevée (25 à 35°f)' },
+            { value: 'tres_elevee', label: 'Très élevée (> 35°f)' },
+          ],
+        },
+        { id: 'gout_odeur_eau', label: "Goût, odeur ou traces de tartre constatés par le client", type: 'boolean' },
+      ],
+    },
+    {
+      id: 'existant',
+      title: 'Installation existante',
+      fields: [
+        { id: 'adoucisseur_existant', label: 'Adoucisseur déjà en place à déposer', type: 'boolean' },
+        { id: 'marque_modele_existant', label: 'Marque / modèle existant', type: 'text' },
+      ],
+    },
+    {
+      id: 'raccordement',
+      title: 'Emplacement & raccordement',
+      fields: [
+        {
+          id: 'emplacement_local',
+          label: 'Emplacement envisagé',
+          type: 'select',
+          required: true,
+          options: [
+            { value: 'cellier', label: 'Cellier / buanderie' },
+            { value: 'garage', label: 'Garage' },
+            { value: 'sous_evier', label: "Sous évier / meuble cuisine" },
+            { value: 'local_technique', label: 'Local technique' },
+          ],
+        },
+        { id: 'arrivee_generale_accessible', label: "Arrivée d'eau générale accessible à cet emplacement", type: 'boolean', required: true },
+        {
+          id: 'diametre_arrivee',
+          label: "Diamètre de l'arrivée d'eau",
+          type: 'select',
+          options: [
+            { value: '15-21', label: '15/21 (standard maison)' },
+            { value: '20-27', label: '20/27' },
+            { value: '26-34', label: '26/34' },
+            { value: 'inconnu', label: 'À vérifier' },
+          ],
+        },
+        { id: 'evacuation_disponible', label: 'Évacuation disponible à proximité (régénération)', type: 'boolean', helpText: 'Nécessaire pour l\'évacuation des eaux de régénération' },
+        { id: 'prise_electrique_proximite', label: 'Prise électrique à proximité', type: 'boolean' },
+      ],
+    },
+    accesSection,
+    {
+      id: 'synthese',
+      title: 'Synthèse visite',
+      fields: [prioriteField, { id: 'notes_generales', label: 'Notes complémentaires', type: 'textarea' }],
+    },
+  ],
 }
 
 export function getChecklist(type: InstallationType): ChecklistSection[] {
