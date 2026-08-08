@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function SimulateurPage() {
   return (
     <>
-      <section className="bg-ink py-20 text-white">
+      <section className="bg-ink py-14 sm:py-20 text-white">
         <Container>
           <SectionHeading
             eyebrow="Simulateur"
@@ -28,7 +28,7 @@ export default function SimulateurPage() {
         </Container>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-14 sm:py-20">
         <Container className="max-w-4xl">
           <FadeIn>
             <Simulator />

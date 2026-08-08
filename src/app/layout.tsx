@@ -69,7 +69,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${montserrat.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col pb-16 lg:pb-0">
+      <body className="flex min-h-full flex-col pb-[calc(4rem+env(safe-area-inset-bottom))] lg:pb-0">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

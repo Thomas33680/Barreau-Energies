@@ -45,7 +45,7 @@ const dotClasses: Record<Service["color"], string> = {
 export default function ServicesPage() {
   return (
     <>
-      <section className="bg-ink py-20 text-white">
+      <section className="bg-ink py-14 sm:py-20 text-white">
         <Container>
           <SectionHeading
             eyebrow="Nos services"
@@ -88,7 +88,7 @@ export default function ServicesPage() {
           <section
             key={service.slug}
             id={service.slug}
-            className={`scroll-mt-36 py-20 ${index % 2 === 1 ? "bg-ink/[0.02]" : "bg-white"}`}
+            className={`scroll-mt-36 py-14 sm:py-20 ${index % 2 === 1 ? "bg-ink/[0.02]" : "bg-white"}`}
           >
             <Container>
               <div className="grid items-start gap-10 lg:grid-cols-[1fr_1.2fr]">

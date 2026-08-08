@@ -33,7 +33,7 @@ const communes = [
 
 export default function ZoneInterventionPage() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-14 sm:py-20">
       <Container>
         <FadeIn>
           <SectionHeading

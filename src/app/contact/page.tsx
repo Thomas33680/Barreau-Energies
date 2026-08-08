@@ -37,7 +37,7 @@ const contactItems = [
 
 export default function ContactPage() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-14 sm:py-20">
       <Container>
         <SectionHeading
           eyebrow="Contact"

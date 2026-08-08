@@ -279,7 +279,7 @@ export function RealisationsGallery() {
                   {project.location}
                 </p>
 
-                <div className="mt-6 grid grid-cols-2 gap-4 rounded-2xl border border-ink/10 bg-ink/[0.02] p-5 sm:grid-cols-5">
+                <div className="mt-6 grid grid-cols-1 gap-4 rounded-2xl border border-ink/10 bg-ink/[0.02] p-5 sm:grid-cols-5">
                   {specLabels.map(({ key, label }) => (
                     <div key={key}>
                       <p className="text-xs font-semibold uppercase tracking-wide text-ink/40">

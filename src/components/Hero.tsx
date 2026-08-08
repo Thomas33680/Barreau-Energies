@@ -15,7 +15,7 @@ export function Hero() {
     <ScrollHero className="relative overflow-hidden bg-ink text-white">
       <HeroBackground />
 
-      <Container className="relative grid gap-12 py-24 sm:py-32 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-10">
+      <Container className="relative grid gap-10 py-16 sm:gap-12 sm:py-32 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-10">
         <div className="flex flex-col items-start gap-8">
           <motion.p
             initial={{ opacity: 0, y: 12 }}

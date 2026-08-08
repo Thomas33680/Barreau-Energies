@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function AvisPage() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-14 sm:py-20">
       <Container>
         <FadeIn>
           <SectionHeading

@@ -83,7 +83,7 @@ export default function Home() {
     <>
       <Hero />
 
-      <section className="bg-white py-24">
+      <section className="bg-white py-14 sm:py-24">
         <Container>
           <FadeIn>
             <SectionHeading
@@ -119,7 +119,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="bg-ink/[0.02] py-24">
+      <section className="bg-ink/[0.02] py-14 sm:py-24">
         <Container className="max-w-4xl">
           <FadeIn>
             <SectionHeading
@@ -135,7 +135,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="bg-white py-24">
+      <section className="bg-white py-14 sm:py-24">
         <Container>
           <FadeIn>
             <SectionHeading
@@ -214,7 +214,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="bg-white py-24">
+      <section className="bg-white py-14 sm:py-24">
         <Container>
           <FadeIn>
             <SectionHeading
@@ -259,7 +259,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="border-y border-ink/10 bg-ink/[0.02] py-20">
+      <section className="border-y border-ink/10 bg-ink/[0.02] py-14 sm:py-20">
         <StaggerGroup>
           <Container className="grid gap-10 sm:grid-cols-3">
             {promises.map((item) => (
@@ -277,7 +277,7 @@ export default function Home() {
         </StaggerGroup>
       </section>
 
-      <section className="bg-ink py-24">
+      <section className="bg-ink py-14 sm:py-24">
         <Container>
           <FadeIn>
             <SectionHeading
@@ -298,7 +298,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="bg-white py-24">
+      <section className="bg-white py-14 sm:py-24">
         <Container>
           <FadeIn className="flex flex-col items-center gap-6 rounded-3xl bg-gradient-to-br from-brand-blue via-brand-green to-brand-orange p-12 text-center sm:p-16">
             <h2 className="max-w-xl text-3xl font-extrabold tracking-tight text-white sm:text-4xl">

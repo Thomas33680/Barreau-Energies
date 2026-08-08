@@ -35,7 +35,7 @@ export default function FaqPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
       />
-      <section className="bg-ink py-20 text-white">
+      <section className="bg-ink py-14 sm:py-20 text-white">
         <Container>
           <SectionHeading
             eyebrow="FAQ"
@@ -47,7 +47,7 @@ export default function FaqPage() {
         </Container>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-14 sm:py-20">
         <Container className="max-w-3xl">
           <Accordion items={faqItems} />
 

@@ -240,9 +240,9 @@ export default function BarreauEnergiesChat() {
         .be-lead-btn:hover { background: ${COLORS.surfaceLight} !important; }
         .be-lead-submit:hover { opacity: 0.85; }
 
-        /* Positionnement : au-dessus de la barre d'appel sticky mobile (StickyCallBar, ~64px), pleine position habituelle au-delà du breakpoint lg. */
-        .be-launcher-pos { position: fixed; right: 20px; bottom: 84px; }
-        .be-panel-pos { position: fixed; right: 12px; bottom: 80px; }
+        /* Positionnement : au-dessus de la barre d'appel sticky mobile (StickyCallBar, ~64px + zone de sécurité iOS), pleine position habituelle au-delà du breakpoint lg. */
+        .be-launcher-pos { position: fixed; right: 16px; bottom: calc(84px + env(safe-area-inset-bottom)); }
+        .be-panel-pos { position: fixed; right: 8px; bottom: calc(80px + env(safe-area-inset-bottom)); }
         @media (min-width: 1024px) {
           .be-launcher-pos { right: 28px; bottom: 28px; }
           .be-panel-pos { right: 24px; bottom: 24px; }
@@ -250,6 +250,12 @@ export default function BarreauEnergiesChat() {
         /* Empêche le zoom automatique de Safari iOS sur les champs < 16px */
         @media (max-width: 1023px) {
           .be-input { font-size: 16px !important; }
+        }
+        /* Hauteur du panneau : dvh tient compte de la barre d'adresse mobile (fallback vh si non supporté) */
+        .be-panel {
+          height: 560px;
+          max-height: calc(100vh - 48px);
+          max-height: calc(100dvh - 48px);
         }
       `}</style>
 
@@ -281,12 +287,10 @@ export default function BarreauEnergiesChat() {
       {/* Chat panel */}
       {isOpen && (
         <div
-          className="be-panel-pos"
+          className="be-panel-pos be-panel"
           style={{
             width: 360,
             maxWidth: "calc(100vw - 32px)",
-            height: 560,
-            maxHeight: "calc(100vh - 48px)",
             background: COLORS.surface,
             borderRadius: 16,
             border: `1px solid ${COLORS.border}`,

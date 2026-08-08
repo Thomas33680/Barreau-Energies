@@ -2,7 +2,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export function StickyCallBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 flex border-t border-white/10 bg-ink lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 flex border-t border-white/10 bg-ink pb-[env(safe-area-inset-bottom)] lg:hidden">
       <a
         href={siteConfig.phoneHref}
         className="flex flex-1 cursor-pointer items-center justify-center gap-2 py-4 text-sm font-semibold text-white"

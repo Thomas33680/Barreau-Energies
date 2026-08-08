@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function MentionsLegalesPage() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-14 sm:py-20">
       <Container className="max-w-3xl">
         <SectionHeading eyebrow="Informations légales" title="Mentions légales" as="h1" />
 
