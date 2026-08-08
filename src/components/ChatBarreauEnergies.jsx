@@ -247,6 +247,10 @@ export default function BarreauEnergiesChat() {
           .be-launcher-pos { right: 28px; bottom: 28px; }
           .be-panel-pos { right: 24px; bottom: 24px; }
         }
+        /* Empêche le zoom automatique de Safari iOS sur les champs < 16px */
+        @media (max-width: 1023px) {
+          .be-input { font-size: 16px !important; }
+        }
       `}</style>
 
       {/* Launcher */}

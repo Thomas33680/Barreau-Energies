@@ -58,7 +58,7 @@ const primaryButtonClasses =
   "inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-brand-green px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-brand-green/90";
 
 const inputClasses =
-  "w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/30";
+  "w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-base sm:text-sm text-ink placeholder:text-ink/40 focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/30";
 
 function formatEuro(n: number) {
   return `${Math.round(n / 100) * 100} €`.replace(/\B(?=(\d{3})+(?!\d))/g, " ");

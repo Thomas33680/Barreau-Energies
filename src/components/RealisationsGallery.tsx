@@ -126,7 +126,7 @@ const specLabels: { key: keyof Project["specs"]; label: string }[] = [
 ];
 
 const selectClasses =
-  "w-full rounded-lg border border-ink/15 bg-white px-3 py-2.5 text-sm text-ink focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/30";
+  "w-full rounded-lg border border-ink/15 bg-white px-3 py-2.5 text-base sm:text-sm text-ink focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/30";
 
 export function RealisationsGallery() {
   const [projectType, setProjectType] = useState("all");

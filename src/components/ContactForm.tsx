@@ -28,7 +28,7 @@ export function ContactForm() {
   }
 
   const inputClasses =
-    "w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/30";
+    "w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-base sm:text-sm text-ink placeholder:text-ink/40 focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/30";
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-5">
