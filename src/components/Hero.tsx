@@ -42,11 +42,12 @@ export function Hero() {
             installées et entretenues par une entreprise locale et réactive.
           </motion.p>
 
+          {/* Masqué sur mobile : fait doublon avec la barre fixe "Appeler / Demander un devis" en bas d'écran */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-wrap gap-4"
+            className="hidden flex-wrap gap-4 sm:flex"
           >
             <Button href="/contact" variant="primary" pulse>
               Demander un devis
