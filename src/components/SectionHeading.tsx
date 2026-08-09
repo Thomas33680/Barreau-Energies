@@ -5,6 +5,7 @@ export function SectionHeading({
   light = false,
   center = false,
   as: Tag = "h2",
+  hideDescriptionOnMobile = false,
 }: {
   eyebrow?: string;
   title: string;
@@ -12,6 +13,8 @@ export function SectionHeading({
   light?: boolean;
   center?: boolean;
   as?: "h1" | "h2";
+  /** Masque le texte de description sur mobile uniquement ; le titre reste seul. Le desktop n'est pas affecté. */
+  hideDescriptionOnMobile?: boolean;
 }) {
   return (
     <div className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
@@ -30,8 +33,8 @@ export function SectionHeading({
       {description && (
         <p
           className={`mt-4 text-base leading-relaxed ${
-            light ? "text-white/70" : "text-ink/70"
-          }`}
+            hideDescriptionOnMobile ? "hidden sm:block" : ""
+          } ${light ? "text-white/70" : "text-ink/70"}`}
         >
           {description}
         </p>

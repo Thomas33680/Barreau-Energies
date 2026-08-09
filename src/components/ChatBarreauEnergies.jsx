@@ -242,20 +242,29 @@ export default function BarreauEnergiesChat() {
 
         /* Positionnement : au-dessus de la barre d'appel sticky mobile (StickyCallBar, ~64px + zone de sécurité iOS), pleine position habituelle au-delà du breakpoint lg. */
         .be-launcher-pos { position: fixed; right: 16px; bottom: calc(84px + env(safe-area-inset-bottom)); }
-        .be-panel-pos { position: fixed; right: 8px; bottom: calc(80px + env(safe-area-inset-bottom)); }
+        .be-panel-pos {
+          position: fixed;
+          right: 8px;
+          bottom: calc(80px + env(safe-area-inset-bottom));
+          --be-panel-bottom: calc(80px + env(safe-area-inset-bottom));
+        }
         @media (min-width: 1024px) {
           .be-launcher-pos { right: 28px; bottom: 28px; }
-          .be-panel-pos { right: 24px; bottom: 24px; }
+          .be-panel-pos { right: 24px; bottom: 24px; --be-panel-bottom: 24px; }
         }
         /* Empêche le zoom automatique de Safari iOS sur les champs < 16px */
         @media (max-width: 1023px) {
           .be-input { font-size: 16px !important; }
         }
-        /* Hauteur du panneau : dvh tient compte de la barre d'adresse mobile (fallback vh si non supporté) */
+        /* Hauteur du panneau : doit toujours laisser la croix de fermeture (en haut) visible et cliquable.
+           Le budget retiré tient compte de l'offset réel du panneau par rapport au bas de l'écran
+           (--be-panel-bottom) ET de la hauteur du header sticky du site (80px + marge), sinon sur les
+           écrans courts le panneau remonte sous le header (qui passe au-dessus en z-index) et son
+           bouton de fermeture devient inatteignable au clic. */
         .be-panel {
           height: 560px;
-          max-height: calc(100vh - 48px);
-          max-height: calc(100dvh - 48px);
+          max-height: calc(100vh - var(--be-panel-bottom) - 96px);
+          max-height: calc(100dvh - var(--be-panel-bottom) - 96px);
         }
       `}</style>
 
@@ -276,7 +285,7 @@ export default function BarreauEnergiesChat() {
             justifyContent: "center",
             boxShadow: `0 10px 32px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.08), 0 6px 20px ${COLORS.copper}66`,
             transition: "transform 0.2s ease",
-            zIndex: 45,
+            zIndex: 60,
           }}
           aria-label="Ouvrir le chat"
         >
@@ -299,7 +308,7 @@ export default function BarreauEnergiesChat() {
             overflow: "hidden",
             boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
             animation: "be-panel-in 0.25s ease",
-            zIndex: 45,
+            zIndex: 60,
           }}
         >
           {/* Gradient signature line */}
