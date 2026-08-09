@@ -161,7 +161,8 @@ export default function ServicesPage() {
                     ))}
                   </ul>
 
-                  <div className="rounded-2xl border border-ink/10 bg-white p-6">
+                  {/* Masqué sur mobile : reformule presque toujours ce que dit déjà la description ci-dessus */}
+                  <div className="hidden rounded-2xl border border-ink/10 bg-white p-6 sm:block">
                     <div className="flex items-center gap-2">
                       <Lightbulb size={18} className={colors.text} aria-hidden="true" />
                       <h3 className="text-sm font-bold uppercase tracking-wide text-ink">
@@ -176,7 +177,7 @@ export default function ServicesPage() {
                   {service.checklistCards?.map((card) => (
                     <div
                       key={card.title}
-                      className="rounded-2xl border border-ink/10 bg-white p-6"
+                      className="hidden rounded-2xl border border-ink/10 bg-white p-6 sm:block"
                     >
                       <h3 className="text-sm font-bold uppercase tracking-wide text-ink">
                         {card.title}
