@@ -62,7 +62,27 @@ export default function ServicesPage() {
         className="sticky top-20 z-40 border-b border-ink/10 bg-white/95 backdrop-blur"
       >
         <Container>
-          <div className="flex flex-wrap justify-center gap-2 py-3">
+          {/* Mobile : icônes seules sur une ligne fine, pour laisser la place au contenu qui défile */}
+          <div className="flex items-center justify-center gap-2 py-2 sm:hidden">
+            {services.map((service) => {
+              const Icon = icons[service.slug];
+              const colors = colorClasses[service.color];
+              return (
+                <a
+                  key={service.slug}
+                  href={`#${service.slug}`}
+                  aria-label={service.shortName}
+                  title={service.shortName}
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-ink/10 ${colors.bg} ${colors.text} transition-colors hover:border-ink/20`}
+                >
+                  <Icon size={18} aria-hidden="true" />
+                </a>
+              );
+            })}
+          </div>
+
+          {/* Desktop : pastille + libellé complet */}
+          <div className="hidden flex-wrap justify-center gap-2 py-3 sm:flex">
             {services.map((service) => (
               <a
                 key={service.slug}
