@@ -416,11 +416,6 @@ export const faqItems: FaqItem[] = [
       "Nous sommes basés à Parigné-l'Évêque (72250) et intervenons au Mans ainsi que dans un rayon de 50 km autour. Consultez notre page Zone d'intervention pour plus de détails, ou contactez-nous directement pour vérifier si nous couvrons votre secteur.",
   },
   {
-    question: "Puis-je bénéficier d'aides financières pour mon projet (MaPrimeRénov', CEE) ?",
-    answer:
-      "Selon votre projet et votre situation, différents dispositifs d'aide à la rénovation énergétique peuvent exister (MaPrimeRénov', primes CEE, TVA à taux réduit...). Les conditions et montants dépendent de vos revenus, de votre logement et de l'équipement installé. Contactez-nous pour faire le point sur votre projet, nous vous orientons au mieux selon votre situation.",
-  },
-  {
     question: "Intervenez-vous en urgence en cas de panne ?",
     answer:
       "Oui, nous traitons les demandes de dépannage en priorité et intervenons dans les meilleurs délais, notamment en cas de panne de chauffage ou de production d'eau chaude. Contactez-nous directement par téléphone pour une prise en charge rapide.",
