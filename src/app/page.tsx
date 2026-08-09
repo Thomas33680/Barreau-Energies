@@ -19,6 +19,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { ServiceCard } from "@/components/ServiceCard";
 import { ValueCard } from "@/components/ValueCard";
 import { TestimonialCard } from "@/components/TestimonialCard";
+import { LeaveReviewPrompt } from "@/components/LeaveReviewPrompt";
 import { Hero } from "@/components/Hero";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { StaggerGroup, StaggerItem } from "@/components/motion/StaggerGroup";
@@ -239,9 +240,7 @@ export default function Home() {
                 Les premiers avis clients seront bientôt affichés ici. Vous êtes
                 client de Barreau Énergies ? Votre retour nous aide à progresser.
               </p>
-              <Button href={`mailto:${siteConfig.email}`} variant="primary">
-                Laisser un avis
-              </Button>
+              <LeaveReviewPrompt />
             </FadeIn>
           )}
 
