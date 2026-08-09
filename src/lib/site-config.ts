@@ -415,6 +415,36 @@ export const faqItems: FaqItem[] = [
     answer:
       "Nous sommes basés à Parigné-l'Évêque (72250) et intervenons au Mans ainsi que dans un rayon de 50 km autour. Consultez notre page Zone d'intervention pour plus de détails, ou contactez-nous directement pour vérifier si nous couvrons votre secteur.",
   },
+  {
+    question: "Puis-je bénéficier d'aides financières pour mon projet (MaPrimeRénov', CEE) ?",
+    answer:
+      "Selon votre projet et votre situation, différents dispositifs d'aide à la rénovation énergétique peuvent exister (MaPrimeRénov', primes CEE, TVA à taux réduit...). Les conditions et montants dépendent de vos revenus, de votre logement et de l'équipement installé. Contactez-nous pour faire le point sur votre projet, nous vous orientons au mieux selon votre situation.",
+  },
+  {
+    question: "Intervenez-vous en urgence en cas de panne ?",
+    answer:
+      "Oui, nous traitons les demandes de dépannage en priorité et intervenons dans les meilleurs délais, notamment en cas de panne de chauffage ou de production d'eau chaude. Contactez-nous directement par téléphone pour une prise en charge rapide.",
+  },
+  {
+    question: "Faut-il une autorisation pour installer une climatisation ou une pompe à chaleur ?",
+    answer:
+      "Dans la majorité des cas pour une maison individuelle, aucune autorisation n'est nécessaire. Si vous êtes en copropriété ou dans une zone soumise à des règles d'urbanisme particulières (secteur protégé, façade visible depuis la rue...), une déclaration préalable ou l'accord de la copropriété peut être requis. Nous pouvons vous conseiller sur ce point selon votre situation.",
+  },
+  {
+    question: "Comment savoir quelle puissance choisir pour ma pompe à chaleur ou ma climatisation ?",
+    answer:
+      "La puissance dépend de la surface à chauffer, de l'isolation, de l'exposition et du type de logement. Utilisez notre simulateur pour obtenir une première estimation en quelques secondes, puis nous affinons ce calcul lors d'une visite technique avant de vous proposer un devis précis.",
+  },
+  {
+    question: "Reprenez-vous mon ancienne chaudière ou mon ancien chauffe-eau ?",
+    answer:
+      "Oui, la dépose de votre ancien équipement (chaudière, chauffe-eau, climatiseur) est comprise dans nos interventions de remplacement. Nous nous chargeons de son évacuation dans le respect des filières de recyclage appropriées.",
+  },
+  {
+    question: "Sous combien de temps puis-je obtenir un rendez-vous ou un devis ?",
+    answer:
+      "Nous revenons généralement vers vous sous 24 à 48h après votre demande pour convenir d'une visite technique ou vous transmettre un devis. Pour les urgences (panne de chauffage ou d'eau chaude), votre demande est priorisée.",
+  },
 ];
 
 export type Testimonial = {
