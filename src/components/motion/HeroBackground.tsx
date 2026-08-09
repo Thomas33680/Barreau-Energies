@@ -33,13 +33,13 @@ export function HeroBackground() {
       <Fan
         size={420}
         strokeWidth={0.6}
-        className="motion-safe:animate-[fan-spin_16s_linear_infinite] absolute -right-20 top-1/2 -translate-y-1/2 text-ink/[0.05]"
+        className="motion-safe:animate-[fan-spin_16s_linear_infinite] absolute -right-20 top-1/2 -translate-y-1/2 text-white/[0.04]"
       />
 
       {particles.map((p) => (
         <span
           key={p.id}
-          className="motion-safe:animate-[float-up_var(--duration)_linear_infinite] absolute bottom-0 rounded-full bg-ink/10"
+          className="motion-safe:animate-[float-up_var(--duration)_linear_infinite] absolute bottom-0 rounded-full bg-white/20"
           style={
             {
               left: `${p.left}%`,

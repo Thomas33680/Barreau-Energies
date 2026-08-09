@@ -12,7 +12,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export function Hero() {
   return (
-    <ScrollHero className="relative overflow-hidden border-b border-ink/10 bg-white text-ink">
+    <ScrollHero className="relative overflow-hidden bg-ink text-white">
       <HeroBackground />
 
       <Container className="relative grid gap-10 py-16 sm:gap-12 sm:py-32 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-10">
@@ -35,7 +35,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.65 }}
-            className="max-w-xl text-lg leading-relaxed text-ink/70"
+            className="max-w-xl text-lg leading-relaxed text-white/70"
           >
             Des solutions de chauffage, climatisation, eau chaude
             sanitaire et traitement de l&apos;eau adaptées à vos besoins,
@@ -53,7 +53,7 @@ export function Hero() {
               Demander un devis
               <ArrowRight size={16} aria-hidden="true" />
             </Button>
-            <Button href={siteConfig.phoneHref} variant="ghost-light">
+            <Button href={siteConfig.phoneHref} variant="ghost">
               {siteConfig.phone}
             </Button>
           </motion.div>
@@ -63,7 +63,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-ink/10 shadow-2xl shadow-black/10"
+          className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black/40"
         >
           <Image
             src="/hero-pompe-a-chaleur.jpg"

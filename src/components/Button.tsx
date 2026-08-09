@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "ghost" | "ghost-light";
+type Variant = "primary" | "secondary" | "ghost";
 
 const variants: Record<Variant, string> = {
   primary:
@@ -13,9 +13,6 @@ const variants: Record<Variant, string> = {
     "bg-white text-ink hover:bg-white/90 hover:shadow-[0_0_28px_rgba(255,255,255,0.35)] focus-visible:outline-white",
   ghost:
     "bg-transparent text-white border border-white/30 hover:bg-white/10 hover:border-white/50 focus-visible:outline-white",
-  /** Même style que "ghost" mais lisible sur fond clair. */
-  "ghost-light":
-    "bg-transparent text-ink border border-ink/20 hover:bg-ink/5 hover:border-ink/30 focus-visible:outline-ink",
 };
 
 const MotionLink = motion.create(Link);
