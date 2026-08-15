@@ -97,9 +97,6 @@ const projects: Project[] = [
       "Le client bénéficie désormais d'un séjour confortable toute l'année avec une consommation de chauffage réduite par rapport à ses anciens convecteurs électriques.",
     photos: [
       "/realisations/parigne-leveque-climatisation-1.jpg",
-      "/realisations/parigne-leveque-climatisation-2.jpg",
-      "/realisations/parigne-leveque-climatisation-3.jpg",
-      "/realisations/parigne-leveque-climatisation-4.jpg",
     ],
   },
   {

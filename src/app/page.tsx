@@ -180,7 +180,7 @@ export default function Home() {
                 className="group relative block aspect-[4/5] cursor-pointer overflow-hidden rounded-3xl bg-ink shadow-lg shadow-ink/5 sm:aspect-[16/11]"
               >
                 <Image
-                  src="/realisations/parigne-leveque-climatisation-4.jpg"
+                  src="/realisations/parigne-leveque-climatisation-1.jpg"
                   alt="Climatisation réversible haut de gamme Mitsubishi Electric installée par Barreau Énergies à Parigné-l'Évêque"
                   fill
                   sizes="(min-width: 640px) 50vw, 100vw"
