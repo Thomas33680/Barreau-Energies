@@ -110,4 +110,35 @@ export const projects: Project[] = [
       { src: "/realisations/ruaudin-chauffe-eau-electrique-1.jpg", width: 1086, height: 1448 },
     ],
   },
+  {
+    key: "lemans-chauffe-eau-electrique",
+    title: "Chauffe-eau électrique plat",
+    location: "Le Mans (72000)",
+    commune: "Le Mans",
+    projectType: "chauffe-eau-electrique",
+    surfaceM2: 60,
+    housingCategory: "appartement",
+    specs: {
+      housingType: "Appartement",
+      surface: "Salle de bain, contrainte d'espace",
+      solution: "Chauffe-eau électrique plat",
+      brand: "Thermor",
+      power: "Adaptée à la contrainte d'espace",
+    },
+    context:
+      "Appartement au Mans avec un chauffe-eau électrique existant tombé en panne, installé dans un espace de rangement réduit.",
+    problem:
+      "Le client avait besoin de remplacer en urgence son chauffe-eau hors service, avec une contrainte d'espace imposant un modèle compact.",
+    solution:
+      "Nous avons installé un chauffe-eau électrique Thermor au format plat, adapté à l'espace disponible dans le placard technique, en remplacement de l'ancien appareil défaillant.",
+    whySolution:
+      "Le format plat permettait de respecter la contrainte d'espace du logement tout en assurant une production d'eau chaude fiable, sans travaux de gros œuvre.",
+    material:
+      "Chauffe-eau électrique Thermor au format plat, dépose de l'ancien appareil, raccordement hydraulique et électrique aux normes, mise en service.",
+    result:
+      "Le client dispose à nouveau d'une production d'eau chaude fiable, avec un appareil compact parfaitement intégré à son espace de rangement.",
+    photos: [
+      { src: "/realisations/lemans-chauffe-eau-electrique-1.jpg", width: 1448, height: 1086 },
+    ],
+  },
 ];
