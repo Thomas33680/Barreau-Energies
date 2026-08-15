@@ -172,4 +172,35 @@ export const projects: Project[] = [
       { src: "/realisations/arnage-climatisation-murale-1.jpg", width: 1448, height: 1086 },
     ],
   },
+  {
+    key: "lemans-chauffe-eau-200l",
+    title: "Chauffe-eau électrique 200 L",
+    location: "Le Mans (72000)",
+    commune: "Le Mans",
+    projectType: "chauffe-eau-electrique",
+    surfaceM2: 90,
+    housingCategory: "maison-ancienne",
+    specs: {
+      housingType: "Maison individuelle",
+      surface: "Salle de bain",
+      solution: "Chauffe-eau électrique 200 L",
+      brand: "Thermor",
+      power: "200 L",
+    },
+    context:
+      "Maison individuelle au Mans, avec un ancien chauffe-eau électrique à remplacer.",
+    problem:
+      "Le client souhaitait remplacer son ancien chauffe-eau par un modèle neuf, avec une capacité adaptée aux besoins du foyer.",
+    solution:
+      "Nous avons installé un chauffe-eau électrique Thermor de 200 litres en remplacement de l'ancien appareil.",
+    whySolution:
+      "Une capacité de 200 litres correspond aux besoins d'un foyer, offrant un bon compromis entre autonomie en eau chaude et encombrement.",
+    material:
+      "Chauffe-eau électrique Thermor 200 L, dépose de l'ancien appareil, raccordement hydraulique et électrique aux normes, mise en service.",
+    result:
+      "Le client dispose d'une production d'eau chaude fiable et renouvelée, avec un équipement neuf garanti.",
+    photos: [
+      { src: "/realisations/lemans-chauffe-eau-200l-1.jpg", width: 1448, height: 1086 },
+    ],
+  },
 ];
