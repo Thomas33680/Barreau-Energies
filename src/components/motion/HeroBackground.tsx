@@ -2,26 +2,6 @@
 
 import { motion } from "framer-motion";
 
-/** Hélice à pales pleines incurvées (façon ventilateur de PAC/clim), plus réaliste que l'icône Fan de lucide. */
-function PropellerIcon({ className }: { className?: string }) {
-  const blade =
-    "M50,50 C42,36 44,18 62,9 C76,2 90,8 88,18 C85,32 68,42 50,50 Z";
-
-  return (
-    <svg
-      viewBox="0 0 100 100"
-      fill="currentColor"
-      stroke="none"
-      className={className}
-    >
-      <path d={blade} />
-      <path d={blade} transform="rotate(120 50 50)" />
-      <path d={blade} transform="rotate(240 50 50)" />
-      <circle cx="50" cy="50" r="6" />
-    </svg>
-  );
-}
-
 const particles = Array.from({ length: 16 }, (_, i) => {
   const left = (i * 37) % 100;
   const size = 3 + ((i * 7) % 5);
@@ -47,13 +27,6 @@ export function HeroBackground() {
         className="absolute left-1/4 top-1/4 h-64 w-64 rounded-full bg-brand-orange/10 blur-3xl"
         animate={{ x: [0, 20, -25, 0], y: [0, -15, 10, 0] }}
         transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Un carré qui tourne a un encombrement visuel jusqu'à ×1.41 sa taille (à 45°) : la marge
-          par rapport au bord doit être supérieure à ça, sinon overflow-hidden tronque des pales
-          à certains instants de la rotation (pas en permanence, d'où le bug intermittent). */}
-      <PropellerIcon
-        className="motion-safe:animate-[fan-spin_16s_linear_infinite] absolute top-[56px] right-[56px] h-56 w-56 text-ink/[0.05] sm:top-[72px] sm:right-[72px] sm:h-72 sm:w-72 lg:top-[104px] lg:right-[104px] lg:h-[420px] lg:w-[420px]"
       />
 
       {particles.map((p) => (

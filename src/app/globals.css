@@ -53,15 +53,6 @@ html {
   }
 }
 
-@keyframes fan-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes cta-pulse {
   0%,
   100% {
