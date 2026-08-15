@@ -141,4 +141,35 @@ export const projects: Project[] = [
       { src: "/realisations/lemans-chauffe-eau-electrique-1.jpg", width: 1448, height: 1086 },
     ],
   },
+  {
+    key: "arnage-climatisation-murale",
+    title: "Climatisation réversible mono-split",
+    location: "Arnage (72230)",
+    commune: "Arnage",
+    projectType: "pac-air-air",
+    surfaceM2: 35,
+    housingCategory: "maison-ancienne",
+    specs: {
+      housingType: "Maison individuelle",
+      surface: "35 m²",
+      solution: "PAC air/air mono-split Wi-Fi",
+      brand: "Mitsubishi Electric",
+      power: "3,1 kW",
+    },
+    context:
+      "Maison individuelle de caractère (pierre et poutres apparentes), avec une pièce de vie de 35 m² à climatiser.",
+    problem:
+      "Le client souhaitait rafraîchir et chauffer sa pièce de vie de 35 m², avec une solution discrète et pilotable à distance.",
+    solution:
+      "Nous avons installé un split mural Mitsubishi Electric de 3,1 kW avec option Wi-Fi, dimensionné pour la surface de la pièce.",
+    whySolution:
+      "Une puissance de 3,1 kW correspond au besoin réel d'une pièce de 35 m², et l'option Wi-Fi permet un pilotage à distance depuis un smartphone.",
+    material:
+      "Groupe extérieur et unité murale Mitsubishi Electric 3,1 kW (option Wi-Fi), liaison frigorifique et raccordement électrique aux normes, mise en service.",
+    result:
+      "Le client bénéficie d'un confort thermique toute l'année dans sa pièce de vie, avec un pilotage simple depuis son smartphone.",
+    photos: [
+      { src: "/realisations/arnage-climatisation-murale-1.jpg", width: 1448, height: 1086 },
+    ],
+  },
 ];
