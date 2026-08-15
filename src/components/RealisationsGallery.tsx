@@ -102,6 +102,35 @@ const projects: Project[] = [
       "/realisations/parigne-leveque-climatisation-4.jpg",
     ],
   },
+  {
+    key: "ruaudin-chauffe-eau-electrique",
+    title: "Chauffe-eau électrique compact",
+    location: "Ruaudin (72230)",
+    commune: "Ruaudin",
+    projectType: "chauffe-eau-electrique",
+    surfaceM2: 90,
+    housingCategory: "maison-ancienne",
+    specs: {
+      housingType: "Maison individuelle (rénovation)",
+      surface: "Salle de bain à espace réduit",
+      solution: "Chauffe-eau électrique compact",
+      brand: "Thermor",
+      power: "Adaptée à la contrainte d'espace",
+    },
+    context:
+      "Maison individuelle en cours de rénovation, avec une salle de bain offrant peu d'espace disponible pour l'installation d'un nouveau chauffe-eau.",
+    problem:
+      "Le client avait besoin d'un ballon d'eau chaude électrique installé dans un espace restreint, avec une solution rapide à mettre en œuvre et maîtrisée en budget.",
+    solution:
+      "Nous avons installé un chauffe-eau électrique Thermor dimensionné pour s'intégrer dans l'espace disponible, dissimulé dans un placard à porte coulissante pour préserver l'esthétique de la salle de bain.",
+    whySolution:
+      "Le chauffe-eau électrique classique répondait à la fois à la contrainte d'espace, au besoin de rapidité d'installation et à un budget maîtrisé, sans nécessiter d'aménagement supplémentaire.",
+    material:
+      "Chauffe-eau électrique Thermor, raccordement hydraulique et électrique aux normes, mise en service.",
+    result:
+      "Le client dispose désormais d'une production d'eau chaude fiable, installée proprement dans un espace réduit sans compromis sur l'esthétique de sa salle de bain rénovée.",
+    photos: ["/realisations/ruaudin-chauffe-eau-electrique-1.jpg"],
+  },
 ];
 
 const infoBlocks: {
