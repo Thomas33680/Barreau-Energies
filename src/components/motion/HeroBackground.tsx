@@ -1,7 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Fan } from "lucide-react";
+
+/** Hélice à pales pleines incurvées (façon ventilateur de PAC/clim), plus réaliste que l'icône Fan de lucide. */
+function PropellerIcon({ size, className }: { size: number; className?: string }) {
+  const blade =
+    "M50,50 C42,36 44,18 62,9 C76,2 90,8 88,18 C85,32 68,42 50,50 Z";
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      fill="currentColor"
+      stroke="none"
+      className={className}
+    >
+      <path d={blade} />
+      <path d={blade} transform="rotate(120 50 50)" />
+      <path d={blade} transform="rotate(240 50 50)" />
+      <circle cx="50" cy="50" r="6" />
+    </svg>
+  );
+}
 
 const particles = Array.from({ length: 16 }, (_, i) => {
   const left = (i * 37) % 100;
@@ -30,9 +51,8 @@ export function HeroBackground() {
         transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <Fan
+      <PropellerIcon
         size={420}
-        strokeWidth={0.6}
         className="motion-safe:animate-[fan-spin_16s_linear_infinite] absolute -right-20 -top-20 text-ink/[0.05]"
       />
 
