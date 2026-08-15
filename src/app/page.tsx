@@ -26,6 +26,7 @@ import { StaggerGroup, StaggerItem } from "@/components/motion/StaggerGroup";
 import { HoverImageLink } from "@/components/motion/HoverImageLink";
 import { HoverLogo } from "@/components/motion/HoverLogo";
 import { Simulator } from "@/components/Simulator";
+import { projects, projectTypes } from "@/lib/realisations-data";
 import { siteConfig, services, values, partnerBrands, testimonials } from "@/lib/site-config";
 
 const promises = [
@@ -174,43 +175,47 @@ export default function Home() {
       <section className="bg-white pb-24">
         <Container>
           <div className="grid gap-6 sm:grid-cols-2">
-            <FadeIn>
-              <HoverImageLink
-                href="/realisations"
-                className="group relative block aspect-[4/5] cursor-pointer overflow-hidden rounded-3xl bg-ink shadow-lg shadow-ink/5 sm:aspect-[16/11]"
-              >
-                <Image
-                  src="/realisations/parigne-leveque-climatisation-1.jpg"
-                  alt="Climatisation réversible haut de gamme Mitsubishi Electric installée par Barreau Énergies à Parigné-l'Évêque"
-                  fill
-                  sizes="(min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
-                    Climatisation haut de gamme
-                  </p>
-                  <p className="mt-2 text-lg font-bold text-white">
-                    Installation Mitsubishi Electric à {siteConfig.address.line}
-                  </p>
-                  <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-white/80">
-                    Voir nos réalisations
-                    <ArrowRight size={16} aria-hidden="true" />
-                  </span>
-                </div>
-              </HoverImageLink>
-            </FadeIn>
+            {projects.slice(0, 2).map((project) => (
+              <FadeIn key={project.key}>
+                <HoverImageLink
+                  href="/realisations"
+                  className="group relative block aspect-[4/5] cursor-pointer overflow-hidden rounded-3xl bg-ink shadow-lg shadow-ink/5 sm:aspect-[16/11]"
+                >
+                  <Image
+                    src={project.photos[0].src}
+                    alt={`${project.title}, ${project.location}`}
+                    fill
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
+                      {projectTypes.find((t) => t.id === project.projectType)?.label}
+                    </p>
+                    <p className="mt-2 text-lg font-bold text-white">
+                      {project.title}, {project.commune}
+                    </p>
+                    <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-white/80">
+                      Voir nos réalisations
+                      <ArrowRight size={16} aria-hidden="true" />
+                    </span>
+                  </div>
+                </HoverImageLink>
+              </FadeIn>
+            ))}
 
-            <FadeIn delay={0.1}>
-              <div className="relative flex aspect-[4/5] flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-ink/15 bg-ink/[0.03] text-ink/40 sm:aspect-[16/11]">
-                <ImageIcon size={32} aria-hidden="true" />
-                <p className="text-sm font-medium text-ink/60">
-                  Eau chaude sanitaire
-                </p>
-                <p className="text-xs">Photo de chantier à venir</p>
-              </div>
-            </FadeIn>
+            {projects.length < 2 && (
+              <FadeIn delay={0.1}>
+                <div className="relative flex aspect-[4/5] flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-ink/15 bg-ink/[0.03] text-ink/40 sm:aspect-[16/11]">
+                  <ImageIcon size={32} aria-hidden="true" />
+                  <p className="text-sm font-medium text-ink/60">
+                    Autres chantiers
+                  </p>
+                  <p className="text-xs">Photo de chantier à venir</p>
+                </div>
+              </FadeIn>
+            )}
           </div>
         </Container>
       </section>
