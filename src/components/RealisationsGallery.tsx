@@ -64,7 +64,8 @@ type Project = {
   whySolution: string;
   material: string;
   result: string;
-  photos: string[];
+  /** Dimensions réelles du fichier, pour afficher chaque photo entière (sans recadrage) au bon ratio. */
+  photos: { src: string; width: number; height: number }[];
 };
 
 const projects: Project[] = [
@@ -96,7 +97,7 @@ const projects: Project[] = [
     result:
       "Le client bénéficie désormais d'un séjour confortable toute l'année avec une consommation de chauffage réduite par rapport à ses anciens convecteurs électriques.",
     photos: [
-      "/realisations/parigne-leveque-climatisation-1.jpg",
+      { src: "/realisations/parigne-leveque-climatisation-1.jpg", width: 1672, height: 941 },
     ],
   },
   {
@@ -126,7 +127,9 @@ const projects: Project[] = [
       "Chauffe-eau électrique Thermor, raccordement hydraulique et électrique aux normes, mise en service.",
     result:
       "Le client dispose désormais d'une production d'eau chaude fiable, installée proprement dans un espace réduit sans compromis sur l'esthétique de sa salle de bain rénovée.",
-    photos: ["/realisations/ruaudin-chauffe-eau-electrique-1.jpg"],
+    photos: [
+      { src: "/realisations/ruaudin-chauffe-eau-electrique-1.jpg", width: 1086, height: 1448 },
+    ],
   },
 ];
 
@@ -332,16 +335,17 @@ export function RealisationsGallery() {
               </div>
 
               <div className="border-t border-ink/10 bg-ink/[0.02] p-8 sm:p-10">
-                <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                  {project.photos.map((src) => (
-                    <StaggerItem key={src}>
-                      <HoverScale className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-ink/5">
+                <StaggerGroup className="flex flex-wrap justify-center gap-6">
+                  {project.photos.map((photo) => (
+                    <StaggerItem key={photo.src}>
+                      <HoverScale className="overflow-hidden rounded-2xl bg-ink/5 shadow-sm">
                         <Image
-                          src={src}
+                          src={photo.src}
                           alt={`${project.title}, ${project.location}`}
-                          fill
-                          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                          className="object-cover"
+                          width={photo.width}
+                          height={photo.height}
+                          sizes="(min-width: 1024px) 60vw, 90vw"
+                          className="h-auto max-h-[36rem] w-auto max-w-full"
                         />
                       </HoverScale>
                     </StaggerItem>
