@@ -16,3 +16,20 @@ Le modèle d'exploitation stratégique de l'entreprise est documenté dans [`doc
 - **CARE** — maintenance & assistance (entretien, abonnements, Passeport Maison)
 
 Document de travail stratégique : les noms d'offres et de divisions sont des noms de travail, à valider juridiquement avant exploitation commerciale.
+
+## Site web
+
+Application Next.js (App Router, TypeScript, Tailwind CSS v4) : page d'accueil, une page par division
+(`/climate`, `/water`, `/energy`, `/home`, `/care`), `/a-propos` et `/contact`.
+
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # build de production
+npm run lint
+```
+
+**Avant mise en ligne**, remplacer les valeurs à compléter :
+- `src/content/company.ts` — téléphone, email et zone d'intervention (actuellement des valeurs de test)
+- `src/app/mentions-legales/page.tsx` — SIRET, forme juridique, adresse, hébergeur (obligatoire pour un site commercial en France)
+- Le formulaire de contact (`src/components/ContactForm.tsx`) ouvre la messagerie du visiteur avec le message pré-rempli ; brancher un envoi d'email côté serveur (Resend, SMTP...) si un vrai formulaire est préféré.

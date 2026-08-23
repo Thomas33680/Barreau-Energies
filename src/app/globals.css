@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+
+  --color-ink: #1a1712;
+  --color-ink-muted: #6b6659;
+  --color-ink-soft: #8c8778;
+  --color-paper: #faf8f3;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #f2efe7;
+  --color-border: #e7e1d3;
+
+  --color-brand: #2454d9;
+  --color-brand-dark: #17358c;
+  --color-brand-light: #eaf0fd;
+
+  --color-climate: #2454d9;
+  --color-climate-light: #eaf0fd;
+  --color-water: #0e8fa6;
+  --color-water-light: #e6f5f7;
+  --color-energy: #d6870f;
+  --color-energy-light: #fbf0df;
+  --color-air: #3f8e45;
+  --color-air-light: #ecf5ec;
+  --color-care: #7a57c9;
+  --color-care-light: #f1ecfb;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-paper: var(--color-paper);
+  --color-surface: var(--color-surface);
+  --color-surface-sunken: var(--color-surface-sunken);
+  --color-border: var(--color-border);
+
+  --color-brand: var(--color-brand);
+  --color-brand-dark: var(--color-brand-dark);
+  --color-brand-light: var(--color-brand-light);
+
+  --color-climate: var(--color-climate);
+  --color-climate-light: var(--color-climate-light);
+  --color-water: var(--color-water);
+  --color-water-light: var(--color-water-light);
+  --color-energy: var(--color-energy);
+  --color-energy-light: var(--color-energy-light);
+  --color-air: var(--color-air);
+  --color-air-light: var(--color-air-light);
+  --color-care: var(--color-care);
+  --color-care-light: var(--color-care-light);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-manrope);
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-brand);
+  color: white;
+}
