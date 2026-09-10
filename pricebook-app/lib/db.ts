@@ -1,46 +1,68 @@
-import Database from 'better-sqlite3'
-import fs from 'node:fs'
-import path from 'node:path'
+import { Pool, type QueryResultRow } from 'pg'
 import crypto from 'node:crypto'
 import type { PricebookItem, PricebookItemInput } from './types'
 
-const DATA_DIR = path.join(process.cwd(), 'data')
-const DB_PATH = process.env.DATABASE_PATH || path.join(DATA_DIR, 'pricebook.db')
+const globalForDb = globalThis as unknown as { pgPool?: Pool }
 
-function createConnection() {
-  fs.mkdirSync(path.dirname(DB_PATH), { recursive: true })
-  const db = new Database(DB_PATH)
-  db.pragma('journal_mode = WAL')
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS pricebook_items (
-      id TEXT PRIMARY KEY,
-      reference TEXT NOT NULL DEFAULT '',
-      name TEXT NOT NULL,
-      type TEXT NOT NULL DEFAULT 'produit',
-      category TEXT NOT NULL,
-      brand TEXT NOT NULL DEFAULT '',
-      model TEXT NOT NULL DEFAULT '',
-      unit TEXT NOT NULL DEFAULT 'pièce',
-      cost_price REAL NOT NULL DEFAULT 0,
-      sell_price REAL NOT NULL DEFAULT 0,
-      vat_rate REAL NOT NULL DEFAULT 20,
-      supplier TEXT NOT NULL DEFAULT '',
-      description TEXT NOT NULL DEFAULT '',
-      specs TEXT NOT NULL DEFAULT '[]',
-      active INTEGER NOT NULL DEFAULT 1,
-      created_at TEXT NOT NULL,
-      updated_at TEXT NOT NULL
-    );
-    CREATE INDEX IF NOT EXISTS idx_pricebook_category ON pricebook_items(category);
-    CREATE INDEX IF NOT EXISTS idx_pricebook_brand ON pricebook_items(brand);
-  `)
-  return db
+function getPool(): Pool {
+  if (globalForDb.pgPool) return globalForDb.pgPool
+
+  // Different Postgres integrations (Neon, Vercel Postgres, Supabase…) name the
+  // injected connection string differently — accept the common variants.
+  const connectionString =
+    process.env.DATABASE_URL ||
+    process.env.POSTGRES_URL ||
+    process.env.POSTGRES_PRISMA_URL ||
+    process.env.DATABASE_URL_UNPOOLED
+  if (!connectionString) {
+    throw new Error(
+      "Aucune chaîne de connexion PostgreSQL trouvée (DATABASE_URL). Ajoutez-la dans .env.local en local, ou dans les variables d'environnement du projet sur votre hébergeur."
+    )
+  }
+  const isLocal = /localhost|127\.0\.0\.1/.test(connectionString)
+  const pool = new Pool({
+    connectionString,
+    ssl: isLocal ? false : { rejectUnauthorized: false },
+  })
+  globalForDb.pgPool = pool
+  return pool
 }
 
-// Reuse the connection across hot-reloads in dev so we don't leak file handles.
-const globalForDb = globalThis as unknown as { pricebookDb?: Database.Database }
-const db = globalForDb.pricebookDb ?? createConnection()
-if (process.env.NODE_ENV !== 'production') globalForDb.pricebookDb = db
+async function query<T extends QueryResultRow>(text: string, params: unknown[] = []) {
+  return getPool().query<T>(text, params)
+}
+
+let schemaReady: Promise<void> | null = null
+function ensureSchema(): Promise<void> {
+  if (!schemaReady) {
+    schemaReady = (async () => {
+      await query(`
+        CREATE TABLE IF NOT EXISTS pricebook_items (
+          id TEXT PRIMARY KEY,
+          reference TEXT NOT NULL DEFAULT '',
+          name TEXT NOT NULL,
+          type TEXT NOT NULL DEFAULT 'produit',
+          category TEXT NOT NULL,
+          brand TEXT NOT NULL DEFAULT '',
+          model TEXT NOT NULL DEFAULT '',
+          unit TEXT NOT NULL DEFAULT 'pièce',
+          cost_price DOUBLE PRECISION NOT NULL DEFAULT 0,
+          sell_price DOUBLE PRECISION NOT NULL DEFAULT 0,
+          vat_rate DOUBLE PRECISION NOT NULL DEFAULT 20,
+          supplier TEXT NOT NULL DEFAULT '',
+          description TEXT NOT NULL DEFAULT '',
+          specs JSONB NOT NULL DEFAULT '[]',
+          active BOOLEAN NOT NULL DEFAULT true,
+          created_at TEXT NOT NULL,
+          updated_at TEXT NOT NULL
+        );
+      `)
+      await query('CREATE INDEX IF NOT EXISTS idx_pricebook_category ON pricebook_items(category);')
+      await query('CREATE INDEX IF NOT EXISTS idx_pricebook_brand ON pricebook_items(brand);')
+    })()
+  }
+  return schemaReady
+}
 
 interface Row {
   id: string
@@ -56,19 +78,13 @@ interface Row {
   vat_rate: number
   supplier: string
   description: string
-  specs: string
-  active: number
+  specs: unknown
+  active: boolean
   created_at: string
   updated_at: string
 }
 
 function rowToItem(row: Row): PricebookItem {
-  let specs: PricebookItem['specs'] = []
-  try {
-    specs = JSON.parse(row.specs)
-  } catch {
-    specs = []
-  }
   return {
     id: row.id,
     reference: row.reference,
@@ -83,8 +99,8 @@ function rowToItem(row: Row): PricebookItem {
     vatRate: row.vat_rate,
     supplier: row.supplier,
     description: row.description,
-    specs,
-    active: row.active === 1,
+    specs: Array.isArray(row.specs) ? (row.specs as PricebookItem['specs']) : [],
+    active: row.active,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   }
@@ -98,132 +114,126 @@ export interface ItemFilters {
   status?: 'active' | 'archived' | 'all'
 }
 
-export function listItems(filters: ItemFilters = {}): PricebookItem[] {
+export async function listItems(filters: ItemFilters = {}): Promise<PricebookItem[]> {
+  await ensureSchema()
+
   const clauses: string[] = []
-  const params: Record<string, unknown> = {}
+  const params: unknown[] = []
+  const addParam = (value: unknown) => {
+    params.push(value)
+    return `$${params.length}`
+  }
 
   if (filters.search) {
+    const p = addParam(`%${filters.search}%`)
     clauses.push(
-      `(name LIKE @search OR reference LIKE @search OR brand LIKE @search OR model LIKE @search OR description LIKE @search)`
+      `(name ILIKE ${p} OR reference ILIKE ${p} OR brand ILIKE ${p} OR model ILIKE ${p} OR description ILIKE ${p})`
     )
-    params.search = `%${filters.search}%`
   }
-  if (filters.category) {
-    clauses.push('category = @category')
-    params.category = filters.category
-  }
-  if (filters.brand) {
-    clauses.push('brand = @brand')
-    params.brand = filters.brand
-  }
-  if (filters.type) {
-    clauses.push('type = @type')
-    params.type = filters.type
-  }
+  if (filters.category) clauses.push(`category = ${addParam(filters.category)}`)
+  if (filters.brand) clauses.push(`brand = ${addParam(filters.brand)}`)
+  if (filters.type) clauses.push(`type = ${addParam(filters.type)}`)
+
   if (!filters.status || filters.status === 'active') {
-    clauses.push('active = 1')
+    clauses.push('active = true')
   } else if (filters.status === 'archived') {
-    clauses.push('active = 0')
+    clauses.push('active = false')
   }
 
   const where = clauses.length ? `WHERE ${clauses.join(' AND ')}` : ''
-  const rows = db
-    .prepare(`SELECT * FROM pricebook_items ${where} ORDER BY name COLLATE NOCASE ASC`)
-    .all(params) as Row[]
-  return rows.map(rowToItem)
+  const result = await query<Row>(
+    `SELECT * FROM pricebook_items ${where} ORDER BY LOWER(name) ASC`,
+    params
+  )
+  return result.rows.map(rowToItem)
 }
 
-export function getItem(id: string): PricebookItem | null {
-  const row = db.prepare('SELECT * FROM pricebook_items WHERE id = ?').get(id) as Row | undefined
-  return row ? rowToItem(row) : null
+export async function getItem(id: string): Promise<PricebookItem | null> {
+  await ensureSchema()
+  const result = await query<Row>('SELECT * FROM pricebook_items WHERE id = $1', [id])
+  return result.rows[0] ? rowToItem(result.rows[0]) : null
 }
 
-export function createItem(input: PricebookItemInput): string {
+export async function createItem(input: PricebookItemInput): Promise<string> {
+  await ensureSchema()
   const id = crypto.randomUUID()
   const now = new Date().toISOString()
-  db.prepare(
+  await query(
     `INSERT INTO pricebook_items
       (id, reference, name, type, category, brand, model, unit, cost_price, sell_price, vat_rate, supplier, description, specs, active, created_at, updated_at)
-     VALUES
-      (@id, @reference, @name, @type, @category, @brand, @model, @unit, @costPrice, @sellPrice, @vatRate, @supplier, @description, @specs, @active, @createdAt, @updatedAt)`
-  ).run({
-    id,
-    reference: input.reference,
-    name: input.name,
-    type: input.type,
-    category: input.category,
-    brand: input.brand,
-    model: input.model,
-    unit: input.unit,
-    costPrice: input.costPrice,
-    sellPrice: input.sellPrice,
-    vatRate: input.vatRate,
-    supplier: input.supplier,
-    description: input.description,
-    specs: JSON.stringify(input.specs),
-    active: input.active ? 1 : 0,
-    createdAt: now,
-    updatedAt: now,
-  })
+     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17)`,
+    [
+      id,
+      input.reference,
+      input.name,
+      input.type,
+      input.category,
+      input.brand,
+      input.model,
+      input.unit,
+      input.costPrice,
+      input.sellPrice,
+      input.vatRate,
+      input.supplier,
+      input.description,
+      JSON.stringify(input.specs),
+      input.active,
+      now,
+      now,
+    ]
+  )
   return id
 }
 
-export function updateItem(id: string, input: PricebookItemInput): void {
+export async function updateItem(id: string, input: PricebookItemInput): Promise<void> {
+  await ensureSchema()
   const now = new Date().toISOString()
-  db.prepare(
+  await query(
     `UPDATE pricebook_items SET
-      reference = @reference,
-      name = @name,
-      type = @type,
-      category = @category,
-      brand = @brand,
-      model = @model,
-      unit = @unit,
-      cost_price = @costPrice,
-      sell_price = @sellPrice,
-      vat_rate = @vatRate,
-      supplier = @supplier,
-      description = @description,
-      specs = @specs,
-      active = @active,
-      updated_at = @updatedAt
-     WHERE id = @id`
-  ).run({
-    id,
-    reference: input.reference,
-    name: input.name,
-    type: input.type,
-    category: input.category,
-    brand: input.brand,
-    model: input.model,
-    unit: input.unit,
-    costPrice: input.costPrice,
-    sellPrice: input.sellPrice,
-    vatRate: input.vatRate,
-    supplier: input.supplier,
-    description: input.description,
-    specs: JSON.stringify(input.specs),
-    active: input.active ? 1 : 0,
-    updatedAt: now,
-  })
+      reference = $1, name = $2, type = $3, category = $4, brand = $5, model = $6, unit = $7,
+      cost_price = $8, sell_price = $9, vat_rate = $10, supplier = $11, description = $12,
+      specs = $13, active = $14, updated_at = $15
+     WHERE id = $16`,
+    [
+      input.reference,
+      input.name,
+      input.type,
+      input.category,
+      input.brand,
+      input.model,
+      input.unit,
+      input.costPrice,
+      input.sellPrice,
+      input.vatRate,
+      input.supplier,
+      input.description,
+      JSON.stringify(input.specs),
+      input.active,
+      now,
+      id,
+    ]
+  )
 }
 
-export function deleteItem(id: string): void {
-  db.prepare('DELETE FROM pricebook_items WHERE id = ?').run(id)
+export async function deleteItem(id: string): Promise<void> {
+  await ensureSchema()
+  await query('DELETE FROM pricebook_items WHERE id = $1', [id])
 }
 
-export function distinctCategories(): string[] {
-  const rows = db
-    .prepare('SELECT DISTINCT category FROM pricebook_items WHERE category != \'\' ORDER BY category COLLATE NOCASE')
-    .all() as { category: string }[]
-  return rows.map((r) => r.category)
+export async function distinctCategories(): Promise<string[]> {
+  await ensureSchema()
+  const result = await query<{ category: string }>(
+    "SELECT DISTINCT category FROM pricebook_items WHERE category != '' ORDER BY category"
+  )
+  return result.rows.map((r) => r.category)
 }
 
-export function distinctBrands(): string[] {
-  const rows = db
-    .prepare('SELECT DISTINCT brand FROM pricebook_items WHERE brand != \'\' ORDER BY brand COLLATE NOCASE')
-    .all() as { brand: string }[]
-  return rows.map((r) => r.brand)
+export async function distinctBrands(): Promise<string[]> {
+  await ensureSchema()
+  const result = await query<{ brand: string }>(
+    "SELECT DISTINCT brand FROM pricebook_items WHERE brand != '' ORDER BY brand"
+  )
+  return result.rows.map((r) => r.brand)
 }
 
 export interface DashboardStats {
@@ -235,11 +245,13 @@ export interface DashboardStats {
   byBrand: { brand: string; count: number }[]
 }
 
-export function getDashboardStats(): DashboardStats {
-  const active = listItems({ status: 'active' })
-  const archivedCountRow = db
-    .prepare('SELECT COUNT(*) as c FROM pricebook_items WHERE active = 0')
-    .get() as { c: number }
+export async function getDashboardStats(): Promise<DashboardStats> {
+  await ensureSchema()
+  const active = await listItems({ status: 'active' })
+  const archivedResult = await query<{ c: string }>(
+    'SELECT COUNT(*) as c FROM pricebook_items WHERE active = false'
+  )
+  const totalArchived = Number(archivedResult.rows[0]?.c ?? 0)
 
   const catalogValue = active.reduce((sum, item) => sum + item.sellPrice, 0)
   const margins = active
@@ -271,7 +283,7 @@ export function getDashboardStats(): DashboardStats {
 
   return {
     totalActive: active.length,
-    totalArchived: archivedCountRow.c,
+    totalArchived,
     catalogValue,
     averageMarginPercent,
     byCategory,

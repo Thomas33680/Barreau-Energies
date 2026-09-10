@@ -3,8 +3,8 @@ import * as db from '@/lib/db'
 import { formatCurrency, formatPercent } from '@/lib/format'
 import { StatTile } from '@/components/StatTile'
 
-export default function DashboardPage() {
-  const stats = db.getDashboardStats()
+export default async function DashboardPage() {
+  const stats = await db.getDashboardStats()
   const isEmpty = stats.totalActive === 0 && stats.totalArchived === 0
 
   if (isEmpty) {

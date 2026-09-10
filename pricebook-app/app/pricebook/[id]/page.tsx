@@ -10,7 +10,7 @@ import { DeleteItemButton } from './DeleteItemButton'
 
 export default async function PricebookItemPage({ params }: PageProps<'/pricebook/[id]'>) {
   const { id } = await params
-  const item = db.getItem(id)
+  const item = await db.getItem(id)
   if (!item) notFound()
 
   const margin = computeMargin(item.costPrice, item.sellPrice)

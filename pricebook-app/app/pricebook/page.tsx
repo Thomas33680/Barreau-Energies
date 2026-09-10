@@ -17,15 +17,17 @@ function first(value: string | string[] | undefined): string | undefined {
 export default async function PricebookPage({ searchParams }: PageProps<'/pricebook'>) {
   const params = await searchParams
 
-  const items = db.listItems({
-    search: first(params.q),
-    category: first(params.category),
-    brand: first(params.brand),
-    type: first(params.type),
-    status: (first(params.status) as 'active' | 'archived' | 'all' | undefined) ?? 'active',
-  })
-  const categories = db.distinctCategories()
-  const brands = db.distinctBrands()
+  const [items, categories, brands] = await Promise.all([
+    db.listItems({
+      search: first(params.q),
+      category: first(params.category),
+      brand: first(params.brand),
+      type: first(params.type),
+      status: (first(params.status) as 'active' | 'archived' | 'all' | undefined) ?? 'active',
+    }),
+    db.distinctCategories(),
+    db.distinctBrands(),
+  ])
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-8">

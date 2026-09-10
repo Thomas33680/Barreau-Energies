@@ -6,9 +6,9 @@ export const metadata = {
   title: 'Nouvel article — Pricebook',
 }
 
-export default function NewPricebookItemPage() {
-  const categories = db.distinctCategories()
-  const brands = db.distinctBrands()
+export default async function NewPricebookItemPage() {
+  const categories = await db.distinctCategories()
+  const brands = await db.distinctBrands()
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-8">

@@ -5,33 +5,54 @@ Application interne (usage personnel) pour centraliser le pricebook de Barreau
 à chaleur, climatisation, chauffe-eaux thermodynamiques, adoucisseurs…) et
 services, avec calcul automatique des marges.
 
-## Démarrage
+## Mettre l'application en ligne (à faire une fois)
 
-1. Installer les dépendances :
+Pas besoin d'installer quoi que ce soit sur votre ordinateur : tout se fait
+dans le navigateur, avec des services gratuits. Ça prend environ 5 minutes.
 
-   ```bash
-   npm install
-   ```
+**1. Créer un compte sur [vercel.com](https://vercel.com)**
+Cliquez sur *Sign Up*, puis *Continue with GitHub* et autorisez l'accès avec
+le même compte GitHub que celui de ce projet.
 
-2. Créer le fichier de configuration :
+**2. Importer le projet**
+Sur le tableau de bord Vercel, cliquez sur *Add New* → *Project*, puis
+sélectionnez le dépôt **Barreau-Energies**.
 
-   ```bash
-   cp .env.example .env.local
-   ```
+Avant de cliquer sur *Deploy*, ouvrez *Configure* / les réglages du projet
+et vérifiez ces deux points (importants, sinon le déploiement échoue) :
+- **Root Directory** → `pricebook-app` (le code de l'application est dans ce
+  sous-dossier, pas à la racine du dépôt).
+- **Branch** → `claude/brave-curie-p0vmm7` (si Vercel ne le propose pas tout
+  de suite, vous pourrez le changer juste après dans *Settings → Git →
+  Production Branch*).
 
-   Puis remplir dans `.env.local` :
-   - `APP_PASSWORD` : le mot de passe pour accéder à l'application.
-   - `AUTH_SECRET` : une valeur aléatoire secrète, générée par exemple avec
-     `openssl rand -hex 32`.
+**3. Ajouter une base de données**
+Toujours dans le projet Vercel : onglet **Storage** → *Create Database* (ou
+*Browse Marketplace*) → choisissez **Neon** (PostgreSQL, offre gratuite très
+suffisante pour cet usage) → suivez les étapes proposées. Vercel relie
+automatiquement la base au projet (une variable `DATABASE_URL` est ajoutée
+toute seule).
 
-3. Lancer le serveur de développement :
+**4. Ajouter vos deux réglages secrets**
+Onglet **Settings → Environment Variables**, ajoutez :
 
-   ```bash
-   npm run dev
-   ```
+| Nom | Valeur |
+|---|---|
+| `APP_PASSWORD` | le mot de passe que *vous* choisissez pour vous connecter à l'application |
+| `AUTH_SECRET` | `7f7d5c17f017bcaaa1a049fa4e1b5be219846b942345760bfc6cbf5fa2ddd5c7` (déjà généré, à copier tel quel) |
 
-   Ouvrir [http://localhost:3000](http://localhost:3000), se connecter avec
-   `APP_PASSWORD`, puis ajouter vos premiers articles.
+**5. Déployer**
+Cliquez sur *Deploy*. Au bout d'une minute, Vercel affiche un lien du type
+`barreau-energies.vercel.app`. Ouvrez-le, entrez le mot de passe choisi à
+l'étape 4 : votre pricebook est en ligne, accessible depuis votre téléphone
+et votre ordinateur. Vous pouvez ajouter ce lien à l'écran d'accueil de votre
+téléphone pour l'ouvrir comme une application.
+
+*Si l'étape "Deploy" échoue en signalant `DATABASE_URL` manquant* : allez
+dans l'onglet **Storage** de votre base Neon, copiez la chaîne de connexion
+affichée, et ajoutez-la manuellement dans **Settings → Environment
+Variables** sous le nom `DATABASE_URL`, puis relancez le déploiement
+(*Deployments* → *…* → *Redeploy*).
 
 ## Fonctionnement
 
@@ -46,31 +67,19 @@ services, avec calcul automatique des marges.
 - L'accès est protégé par un simple mot de passe (usage individuel — pas de
   gestion multi-utilisateurs).
 
-## Données
+## Développement local
 
-Les données sont stockées dans une base SQLite locale : `data/pricebook.db`
-(non versionnée — voir `.gitignore`). C'est un fichier unique : pensez à le
-sauvegarder régulièrement (copie vers un espace de stockage sûr) si vous
-déployez l'application.
+Pour modifier l'application sur votre ordinateur (nécessite
+[Node.js](https://nodejs.org)) :
 
-## Déploiement
-
-L'application est un projet Next.js classique :
-
-```bash
-npm run build
-npm start
-```
-
-Elle a besoin :
-- Des variables d'environnement `APP_PASSWORD` et `AUTH_SECRET` (voir ci-dessus).
-- D'un **disque persistant** à l'endroit où vit `data/pricebook.db` (SQLite
-  est un fichier local). Un petit VPS, un conteneur Docker avec volume, ou un
-  hébergeur type Railway/Render conviennent. Un hébergement purement
-  serverless (fonctions éphémères sans disque persistant) n'est pas adapté
-  tel quel.
+1. `npm install`
+2. `cp .env.example .env.local` puis remplir `APP_PASSWORD`, `AUTH_SECRET`
+   (`openssl rand -hex 32`) et `DATABASE_URL` (une base Postgres locale ou un
+   second projet Neon gratuit dédié au développement).
+3. `npm run dev`, puis ouvrir [http://localhost:3000](http://localhost:3000).
 
 ## Stack technique
 
-Next.js 16 (App Router, Server Actions), TypeScript, Tailwind CSS, SQLite
-(`better-sqlite3`).
+Next.js 16 (App Router, Server Actions), TypeScript, Tailwind CSS,
+PostgreSQL (`pg`). Le schéma de la base est créé automatiquement au premier
+lancement.

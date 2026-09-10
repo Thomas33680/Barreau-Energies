@@ -6,11 +6,10 @@ import { ItemForm } from '../../ItemForm'
 
 export default async function EditPricebookItemPage({ params }: PageProps<'/pricebook/[id]/edit'>) {
   const { id } = await params
-  const item = db.getItem(id)
+  const item = await db.getItem(id)
   if (!item) notFound()
 
-  const categories = db.distinctCategories()
-  const brands = db.distinctBrands()
+  const [categories, brands] = await Promise.all([db.distinctCategories(), db.distinctBrands()])
   const boundAction = updateItemAction.bind(null, item.id)
 
   return (

@@ -55,7 +55,7 @@ export async function createItemAction(_prevState: FormState, formData: FormData
   const input = parseInput(formData)
   if ('error' in input) return input
 
-  const id = db.createItem(input)
+  const id = await db.createItem(input)
   revalidatePath('/pricebook')
   revalidatePath('/')
   redirect(`/pricebook/${id}`)
@@ -66,13 +66,13 @@ export async function updateItemAction(
   _prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
-  const existing = db.getItem(id)
+  const existing = await db.getItem(id)
   if (!existing) return { error: 'Article introuvable.' }
 
   const input = parseInput(formData)
   if ('error' in input) return input
 
-  db.updateItem(id, input)
+  await db.updateItem(id, input)
   revalidatePath('/pricebook')
   revalidatePath(`/pricebook/${id}`)
   revalidatePath('/')
@@ -80,7 +80,7 @@ export async function updateItemAction(
 }
 
 export async function deleteItemAction(id: string) {
-  db.deleteItem(id)
+  await db.deleteItem(id)
   revalidatePath('/pricebook')
   revalidatePath('/')
   redirect('/pricebook')
