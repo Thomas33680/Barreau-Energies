@@ -70,6 +70,8 @@ export const VAT_RATES = [20, 10, 5.5, 0] as const
 
 export function computeMargin(costPrice: number, sellPrice: number) {
   const amount = sellPrice - costPrice
-  const percent = costPrice > 0 ? (amount / costPrice) * 100 : null
+  // Marge nette (doctrine Barreau Énergies) : résultat / prix — % du prix de
+  // vente, pas du coût d'achat.
+  const percent = sellPrice > 0 ? (amount / sellPrice) * 100 : null
   return { amount, percent }
 }

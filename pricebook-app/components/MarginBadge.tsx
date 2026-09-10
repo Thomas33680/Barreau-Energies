@@ -2,9 +2,10 @@ import { computeMargin } from '@/lib/types'
 import { formatCurrency, formatPercent } from '@/lib/format'
 
 export function marginTone(percent: number | null): 'good' | 'warning' | 'critical' | 'neutral' {
+  // Doctrine L0 : plancher absolu 5 %, cible de lancement 8-10 %.
   if (percent === null) return 'neutral'
-  if (percent < 10) return 'critical'
-  if (percent < 25) return 'warning'
+  if (percent < 5) return 'critical'
+  if (percent < 8) return 'warning'
   return 'good'
 }
 

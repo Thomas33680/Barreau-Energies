@@ -80,9 +80,9 @@ export default async function PricebookItemPage({ params }: PageProps<'/priceboo
             </p>
           </div>
         </div>
-        {margin.percent !== null && margin.percent < 10 && (
+        {margin.percent !== null && margin.percent < 5 && (
           <p className="mt-3 text-xs text-critical-text">
-            Marge faible ({formatPercent(margin.percent)}) — vérifiez le prix de vente.
+            Marge sous le plancher des 5 % — vérifiez le prix de vente.
           </p>
         )}
       </section>
