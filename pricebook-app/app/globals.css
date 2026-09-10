@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f9f9f7;
+  --surface: #fcfcfb;
+  --surface-hover: #f2f1ed;
+  --foreground: #0b0b0b;
+  --foreground-secondary: #52514e;
+  --foreground-muted: #898781;
+  --border: rgba(11, 11, 11, 0.1);
+  --hairline: #e1e0d9;
+  --accent: #2a78d6;
+  --accent-hover: #1c5cab;
+  --accent-contrast: #ffffff;
+
+  --good-text: #006300;
+  --good-bg: #e3f5e3;
+  --warning-text: #92400e;
+  --warning-bg: #fef3e2;
+  --critical-text: #d03b3b;
+  --critical-bg: #fbe3e3;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-border: var(--border);
+  --color-hairline: var(--hairline);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-good-text: var(--good-text);
+  --color-good-bg: var(--good-bg);
+  --color-warning-text: var(--warning-text);
+  --color-warning-bg: var(--warning-bg);
+  --color-critical-text: var(--critical-text);
+  --color-critical-bg: var(--critical-bg);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0d0d0d;
+    --surface: #1a1a19;
+    --surface-hover: #242423;
+    --foreground: #ffffff;
+    --foreground-secondary: #c3c2b7;
+    --foreground-muted: #898781;
+    --border: rgba(255, 255, 255, 0.1);
+    --hairline: #2c2c2a;
+    --accent: #3987e5;
+    --accent-hover: #6da7ec;
+    --accent-contrast: #ffffff;
+
+    --good-text: #0ca30c;
+    --good-bg: rgba(12, 163, 12, 0.16);
+    --warning-text: #fab219;
+    --warning-bg: rgba(250, 178, 25, 0.16);
+    --critical-text: #e66767;
+    --critical-bg: rgba(230, 103, 103, 0.16);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
